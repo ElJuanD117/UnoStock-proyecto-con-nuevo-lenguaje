@@ -1,0 +1,43 @@
+{
+	"name": "Unostock",
+	"description": "Una aplicación de gestión de inventario construida con Electron.",
+	"version": "1.0.0",
+	"main": "app/main.js",
+	"scripts": {
+		"start": "electron .",
+		"pack": "electron-builder --dir",
+		"build:win": "electron-builder build --win --publish never",
+		"deploy:win": "electron-builder build --win --publish always",
+		"build:linux": "electron-builder build --linux --publish never",
+		"deploy:linux": "electron-builder build --linux --publish always"
+	},
+	"keywords": ["Electronjs", "inventario", "stock"],
+	"author": "",
+	"license": "ISC",
+	"build": {
+		"appId": "com.OneStock.app",
+		"productName": "OneStock",
+		"asar": true,
+		"win": {
+			"icon": "build/icon.ico",
+			"target": [
+				"NSIS"
+			]
+		},
+		"linux": {
+			"icon": "build/icon.png",
+			"target": [
+				"deb",
+				"tar.gz",
+				"rpm"
+			]
+		}
+	},
+	"devDependencies": {
+		"electron": "^13.6.9",
+		"electron-builder": "^24.4.0"
+	},
+	"dependencies": {
+		"uuid": "^9.0.1"
+	}
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title id="versionApp"></title>
+</head>
+<style type="text/css">
+	*{
+		margin: 0px;
+		padding: 0px;
+	}
+</style>
+<body id="app">
+<h1>UneStock</h1>
+</body>
+<script type="text/javascript">
+	api.send("app_version");
+	api.receive('app_version',(event,info)=>{
+
+		document.getElementById("versionApp").innerHTML=info.name+" "+info.version;
+
+	})
+</script>
+</html>
