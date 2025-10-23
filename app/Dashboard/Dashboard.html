@@ -1,6 +1,5 @@
-function Dashboard(){
-	
-return ` 
+ <link rel="stylesheet" type="text/css" href="../assets/icoMoon/style.css">
+ <link rel="stylesheet" type="text/css" href="../assets/UnoStock-v1.0/style.css">
 <style type="text/css">
 *{
 	margin: 0px;
@@ -15,10 +14,11 @@ body{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 50px) repeat(4, 1fr);
-    grid-column-gap: 3px;
-    grid-row-gap: 7px;
-    /* background-color: grey; */
-    height: 81vh;
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+    background-color: grey;
+    height: 98vh;
+    padding: 4px;
 }
 
 .section1 { grid-area: 1 / 1 / 3 / 2; }
@@ -29,10 +29,48 @@ body{
 .section6 { grid-area: 3 / 4 / 5 / 5; }
 .section7 { grid-area: 5 / 1 / 7 / 5; }
 /*-----------------------------------------------*/
+.aside_menu {
+    background: white;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 150px 1fr 37px;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+.aside_menu_img_app {
+    width: 100%;
+}
+.sub_aside_menu1{
+background: white;
+}
 
+.btn_aside_menu {
+    width: 94%;
+    padding: 5px;
+    margin-bottom: 14px;
+    margin-left: 4px;
+}
+.sub_aside_menu2{
+background: white;
+}
+
+/*----------------------------------------------*/
+.header_app {
+    background: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.sub-containner-icono-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+/*--------------------------------------------------*/
 .sub_card {
     background: white;
-    width: 91%;
+    width: 94%;
     border-radius: 11px;
     display: grid;
     grid-template-columns: 14fr 40px;
@@ -163,6 +201,6 @@ border-bottom: 2px solid #000;
 		</div>
 </section>
 </section>
+<script type="text/javascript" src="../assets/icoMoon/selection.json"></script>
+<script type="text/javascript" src="../assets/UnoStock-v1.0/selection.json"></script>
 
-`;
-}
