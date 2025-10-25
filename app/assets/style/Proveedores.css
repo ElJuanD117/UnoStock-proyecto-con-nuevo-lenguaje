@@ -1,0 +1,164 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+
+}
+
+.Proveedor {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 7px;
+    background-color: grey;
+    height: 79vh;
+    padding: 4px;
+}
+.section1 { grid-area: 1 / 1 / 2 / 2; }
+.section2{ grid-area: 2 / 1 / 3 / 2; }
+/*----------------------------------------------*/
+.container-gestion {
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+}
+.title-container-gestion{
+
+}
+.btn-agregar-proveedor {
+    background: #08b9ef;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    border-style: none;
+}
+/*-----------------------------------------*/
+.container-proveedores-gestion {
+    background: white;
+}
+.title_historial_Movimientos_Recientes{
+
+}
+.sub-container-action-proveedor {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    border-bottom: 3px #8b8686 solid;
+    justify-content: space-between;
+    padding: 4px;
+}
+.containner-search-proveedor {
+    display: flex;
+    align-items: center;
+    width: 52%;
+}
+.search-proveedor {
+    background: white;
+    border: 0.5px solid grey;
+    width: 73%;
+    margin-right: 3px;
+}
+.search-name {
+    border-style: none;
+    width: 92%;
+    height: 32px;
+}
+.search-name:focus {
+    outline: none;
+}
+.btn-search{
+    background: white;
+    font-weight: bold;
+    border-style: none;
+}
+
+.Select-filtros{
+    width: 30%;
+    height: 34px;
+
+}
+/*------------*/
+.container-title-sub-gestion {
+    width: 48%;
+    display: flex;
+    align-items: center;
+}
+.container-title-sub-gestion>h2{
+margin-right:5px;
+}
+.container-title-sub-gestion>span{
+font-weight: bold;
+font-size: 25px;
+}
+/************************************/
+.container-registro-Proveedores {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 3fr 1fr 0.6fr;
+    grid-template-rows: 35px 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    background: #d9d9d9;
+    font-weight: bold;
+    align-items: center;
+}
+
+.data-item1 { grid-area: 1 / 1 / 2 / 2; }
+.data-item2 { grid-area: 1 / 2 / 2 / 3; }
+.data-item3 { grid-area: 1 / 3 / 2 / 4; }
+.data-item4 { grid-area: 1 / 4 / 2 / 5; }
+.data-item5 { grid-area: 1 / 5 / 2 / 6; }
+.list-data-proveedores{ grid-area: 2 / 1 / 3 / 6; }
+
+.list-data-proveedores {
+    overflow-y: scroll;
+    height: 53vh;
+    padding: 5px;
+}
+
+.data-item-proveedor {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 3fr 1fr 0.5fr;
+    grid-template-rows: 31px 1fr;
+    grid-column-gap: 2px;
+    grid-row-gap: 0px;
+    margin-bottom: 2px;
+    /* background: red; */
+}
+
+.data-item-proveedor>span {
+    background: white;
+    padding: 7px;
+}
+
+
+.span-action-proveedor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.span-action-proveedor>button {
+    width: 47%;
+    background: white;
+    
+}
+.btn-action-proveedor{
+    border-style: none;
+}
+
+.btn-action-history{
+    border-style: none;
+}
+.iconUnoStock-edit{
+
+color:blue;
+}
+.iconUnoStock-delete{
+color:red;
+
+}

@@ -10,7 +10,7 @@ body{
 
 }
 
-.parent {
+.Dashboard{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 50px) repeat(4, 1fr);
@@ -21,54 +21,17 @@ body{
     padding: 4px;
 }
 
-.section1 { grid-area: 1 / 1 / 3 / 2; }
-.section2 { grid-area: 1 / 2 / 3 / 3; }
-.section3 { grid-area: 1 / 3 / 3 / 4; }
-.section4 { grid-area: 1 / 4 / 3 / 5; }
-.section5 { grid-area: 3 / 1 / 5 / 4; }
-.section6 { grid-area: 3 / 4 / 5 / 5; }
-.section7 { grid-area: 5 / 1 / 7 / 5; }
+.section_Dashboard1 { grid-area: 1 / 1 / 3 / 2; }
+.section_Dashboard2 { grid-area: 1 / 2 / 3 / 3; }
+.section_Dashboard3 { grid-area: 1 / 3 / 3 / 4; }
+.section_Dashboard4 { grid-area: 1 / 4 / 3 / 5; }
+.section_Dashboard5 { grid-area: 3 / 1 / 5 / 4; }
+.section_Dashboard6 { grid-area: 3 / 4 / 5 / 5; }
+.section_Dashboard7 { grid-area: 5 / 1 / 7 / 5; }
 /*-----------------------------------------------*/
-.aside_menu {
-    background: white;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 150px 1fr 37px;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-}
-.aside_menu_img_app {
-    width: 100%;
-}
-.sub_aside_menu1{
-background: white;
-}
 
-.btn_aside_menu {
-    width: 94%;
-    padding: 5px;
-    margin-bottom: 14px;
-    margin-left: 4px;
-}
-.sub_aside_menu2{
-background: white;
-}
-
-/*----------------------------------------------*/
-.header_app {
-    background: white;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-.sub-containner-icono-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
 /*--------------------------------------------------*/
-.sub_card {
+.sub_card_Dashboard {
     background: white;
     width: 94%;
     border-radius: 11px;
@@ -154,38 +117,38 @@ border-bottom: 2px solid #000;
     font-weight: bold;
 }
 </style>
-<section class="parent">
-	<section class="section1 sub_card"> 
+<section class="Dashboard">
+	<section class="section_Dashboard1 sub_card_Dashboard"> 
 		<label class="title_sub_card">Total de Productos</label>
 		<div class="number_estado_sub_card">50</div>
 		<span class="info_sub_card">info2 </span>
 		<span class="image_sub_card iconUnoStock-Productos_2"></span>
 	</section>
-	<section class="section2 sub_card">
+	<section class="section_Dashboard2 sub_card_Dashboard">
 		<label class="title_sub_card">Total de Productos</label>
 		<div class="number_estado_sub_card">50</div>
 		<span class="info_sub_card">info2 </span>
 		<span class="image_sub_card iconUnoStock-advertencia"></span>
 	</section>
-	<section class="section3 sub_card"> 
+	<section class="section_Dashboard3 sub_card_Dashboard"> 
 		<label class="title_sub_card">Total de Productos</label>
 		<div class="number_estado_sub_card">50</div>
 		<span class="info_sub_card">info2 </span>
 		<span class="image_sub_card icon-cotainer"><p class="icon-coin-dollar"></p></span>
 	</section>
-	<section class="section4 sub_card"> 
+	<section class="section_Dashboard4 sub_card_Dashboard"> 
 		<label class="title_sub_card">Total de Productos</label>
 		<div class="number_estado_sub_card">50</div>
 		<span class="info_sub_card">info2 </span>
 		<span class="image_sub_card iconUnoStock-Movimientos"></span>
 	</section>
-	<section class="section5 containner_Productos_con_bajo_Stock">
+	<section class="section_Dashboard5 containner_Productos_con_bajo_Stock">
 		<label class="Title_Productos_con_bajo_Stock">Productos con bajo Stock</label>
 		<div>
 			
 		</div>
 	</section>
-	<section class="section6 containner_Acciones_Rapidas">
+	<section class="section_Dashboard6 containner_Acciones_Rapidas">
 		<label class="title_Acciones_Rapidas">Acciones Rapidas</label>
 		<div class="sub_containner_Acciones_Rapidas">
 			<button class="btn_Acciones_Rapidas" style="color:white; background:red;">+ Nuevo Producto</button> 
@@ -194,7 +157,7 @@ border-bottom: 2px solid #000;
 			<button class="btn_Acciones_Rapidas" style="color:white; background:purple;">Generar Reporte</button>
 		</div>
 	</section>
-	<section class="section7 containner_Movimientos_Recientes">
+	<section class="section_Dashboard7 containner_Movimientos_Recientes">
 		<label class="title_Movimientos_Recientes">Movimientos Recientes</label>
 		<div>
 			

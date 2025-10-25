@@ -4,195 +4,46 @@
 	<title id="versionApp"></title>
 	<link rel="stylesheet" type="text/css" href="assets/icoMoon/style.css">
 	<link rel="stylesheet" type="text/css" href="assets/UnoStock-v1.0/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/style/index.css">
+    <link rel="stylesheet" type="text/css" href="assets/style/Dashboard.css">
+    <link rel="stylesheet" type="text/css" href="assets/style/Movimientos.css">
+    <link rel="stylesheet" type="text/css" href="assets/style/Proveedores.css">
 </head>
-<style type="text/css">
-	*{
-		margin: 0px;
-		padding: 0px;
-	}
-#app {
-    display: grid;
-    grid-template-columns: 143px repeat(2, 1fr);
-    grid-template-rows: 90px 1fr;
-    grid-column-gap: 4px;
-    grid-row-gap: 0px;
-    height: 98vh;
-    background: #bfbfbf;
-    padding: 4px;
-}
-.container-Aside { grid-area: 1 / 1 / 3 / 2; }
-.containner-header{ grid-area: 1 / 2 / 2 / 4; }
-.container-main{ grid-area: 2 / 2 / 3 / 4; }
-
-/*----------------------------*/
-
-.container-Aside { height: auto }
-.containner-header{ background: pink; height: auto }
-.container-main {
-    background: #bfbfbf;
-    height: auto;
-    padding: 4px;
-}
-/*---------------------------*/
-.aside_menu {
-    /* background: white; */
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 150px 1fr 45px;
-    grid-column-gap: 3px;
-    grid-row-gap: 6px;
-}
-.aside_menu_img_app {
-    width: 96%;
-    height: -webkit-fill-available;
-    padding: 3.5px;
-    background: white;
-    border-radius: 20px;
-    object-fit: fill;
-}
-.sub_aside_menu1 {
-    padding-top: 17px;
-    background: white;
-    border-radius: 11px 11px 0px 0px;
- 
-}
-
-.btn_aside_menu {
-    width: 92%;
-    padding: 5px;
-    margin-bottom: 14px;
-    margin-left: 5px;
-    font-size: 13px;
-    background: white;
-    border: 0.5px solid grey;
-    border-radius: 8px;
-}
-
-.btn_aside_menu>span {
-    font-size: 22px;
-    margin-right: 5px;
-}
-
-.iconUnoStock-dashboard:before {
-    
-    color: blueviolet;
-}
-
-.iconUnoStock-Productos:before {
-   
-    color: #ff5722;
-}
-.iconUnoStock-Proveedores:before {
-    
-    color: #2fb935;
-}
-.iconUnoStock-Movimientos:before {
- 
-    color: #2196f3;
-}
-/*--------------*/
-
-.sub_aside_menu2 {
-    background: white;
-    padding: 6px;
-     border-radius: 0px 0px 11px 11px;
-}
-
-/*----------------------------------------------*/
-.header_app {
-    background: white;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 7px;
-}
-
-.containner-search {
-    border: 0.2px solid #c3c0c0;
-    width: 42%;
-    /* background: red; */
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    padding: 4px;
-    border-radius: 11px;
-}
-.search-name {
-    width: 96%;
-    height: 29px;
-    border-style: none;
-}
-
-.btn-search{
-	border-style: none;
-	background: white;
-}
-.sub-containner-icono-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-right: 18px;
-}
-.Text-icono {
-    color: #2196f3;
-    font-size: 24px;
-}
-.iconoApp {
-    background: #ffffff;
-    color: #2196f3;
-    font-size: 50px;
-    padding: 5px;
-    border-radius: 29px;
-}
-
-.containner-info-header {
-    margin-left: 10px;
-}
-.title-header{
-
-}
-.sub-title-header{
-
-}
-/*--------------------------------------------------*/
-</style>
 <body id="app">
 <aside class="container-Aside aside_menu">
 		<img class="aside_menu_img_app" src="assets/image/example.png">
 		<div class="sub_aside_menu1">
-			<button class="btn_aside_menu"><span class=" iconUnoStock-dashboard"></span>Dashboard</button>
-			<button class="btn_aside_menu "><span class="iconUnoStock-Productos"></span>Productos</button>
-			<button class="btn_aside_menu "><span class="iconUnoStock-Proveedores"></span>Proveedores</button>
-			<button class="btn_aside_menu "><span class="iconUnoStock-Movimientos"></span>Movimientos</button>
+			<button class="btn_aside_menu" onclick="SelectMenu('Dashboard')"><span class=" iconUnoStock-dashboard"></span>Dashboard</button>
+			<button class="btn_aside_menu" onclick="SelectMenu('Productos')"><span class="iconUnoStock-Productos"></span>Productos</button>
+			<button class="btn_aside_menu" onclick="SelectMenu('Proveedores')"><span class="iconUnoStock-Proveedores"></span>Proveedores</button>
+			<button class="btn_aside_menu" onclick="SelectMenu('Movimientos')"><span class="iconUnoStock-Movimientos"></span>Movimientos</button>
 		</div>
 		<div class="sub_aside_menu2">
 			<button class="btn_aside_menu"><span class=" iconUnoStock-settings"></span>Configuración</button>
 		</div>
 </aside>
 <header class="containner-header header_app">
-
-		<div class="containner-info-header">
-			<h1 class="title-header">Dashboard</h1>
-			<p class="sub-title-header">#########</p>	
-		</div>
-		
+<div class="containner-info-header">
+	<h1 class="title-header">Dashboard</h1>
+	<p class="sub-title-header">#########</p>	
+</div>	
 <div class="containner-search">
-	<input id="search_name" class="search-name" type="search" name="" placeholder="Busqueda" >
-	<button class="btn-search" id="btn_search_name" ><i class="icon-search"></i></button>
+<input id="search_name" class="search-name" type="search" name="" placeholder="Busqueda" >
+<button class="btn-search" id="btn_search_name" ><i class="icon-search"></i></button>
 </div>
-		<div class="sub-containner-icono-header">
-			<h2 class="Text-icono">UnoStock</h2>
-			<label class="iconoApp iconUnoStock-Logo"></label>
-		</div>
+<div class="sub-containner-icono-header">
+<h2 class="Text-icono">UnoStock</h2>
+<label class="iconoApp iconUnoStock-Logo"></label>
+</div>
 </header>
 <main class="container-main" id="main_containner_activity">
-	
 </main>
 </body>
 <script type="text/javascript" src="assets/icoMoon/selection.json"></script>
 <script type="text/javascript" src="assets/UnoStock-v1.0/selection.json"></script>
 <script type="text/javascript" src="Dashboard/Dashboard.js"></script>
+<script type="text/javascript" src="Proveedores/Proveedores.js"></script>
+<script type="text/javascript" src="Movimientos/Movimientos.js"></script>
 
 <script type="text/javascript">
 	api.send("app_version");
@@ -202,6 +53,25 @@
 
 	})
 
-	document.getElementById("main_containner_activity").innerHTML=Dashboard();
+	
+Dashboard("main_containner_activity");
+
+
+  //  let Menu=["Dashboard","Productos","Proveedores","Movimientos"];
+
+function SelectMenu(OPT){
+    if(OPT=="Dashboard"){
+        Dashboard("main_containner_activity");
+    } 
+    if(OPT=="Productos"){
+        Dashboard("main_containner_activity");
+    }   
+     if(OPT=="Proveedores"){
+        Proveedores("main_containner_activity");
+    } 
+    if(OPT=="Movimientos"){
+       Movimientos("main_containner_activity");
+    }
+}
 </script>
 </html>

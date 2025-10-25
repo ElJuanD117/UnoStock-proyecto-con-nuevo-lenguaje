@@ -1,153 +1,36 @@
-function Dashboard(){
-	
-return ` 
-<style type="text/css">
-*{
-	margin: 0px;
-	padding: 0px;
-}
-
-body{
-
-}
-
-.parent {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 50px) repeat(4, 1fr);
-    grid-column-gap: 3px;
-    grid-row-gap: 7px;
-    /* background-color: grey; */
-    height: 81vh;
-}
-
-.section1 { grid-area: 1 / 1 / 3 / 2; }
-.section2 { grid-area: 1 / 2 / 3 / 3; }
-.section3 { grid-area: 1 / 3 / 3 / 4; }
-.section4 { grid-area: 1 / 4 / 3 / 5; }
-.section5 { grid-area: 3 / 1 / 5 / 4; }
-.section6 { grid-area: 3 / 4 / 5 / 5; }
-.section7 { grid-area: 5 / 1 / 7 / 5; }
-/*-----------------------------------------------*/
-
-.sub_card {
-    background: white;
-    width: 91%;
-    border-radius: 11px;
-    display: grid;
-    grid-template-columns: 14fr 40px;
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    padding: 9px;
-}
-.title_sub_card { grid-area: 1 / 1 / 2 / 3;  font-size: 16px; font-weight: bold;}
-.number_estado_sub_card  { grid-area: 2 / 1 / 3 / 2; }
-.info_sub_card  { grid-area: 3 / 1 / 4 / 2; }
-.image_sub_card {
-    /* grid-area: 2 / 2 / 4 / 3; */
-    font-size: 39px;
-}
-.iconUnoStock-Movimientos{ color:orange; }
-.iconUnoStock-advertencia{ color:red; }
-.icon-cotainer {
-    background: green;
-    border-radius: 64px;
-    width: 39px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-}
-.icon-coin-dollar {
-    color: white;
-    font-size: 37px;
-}
-.iconUnoStock-Movimientos{ color:purple; }
-/*-------------------------------------------------*/
-.containner_Productos_con_bajo_Stock{
-	background: white;
-	padding: 7px;
-}
-.Title_Productos_con_bajo_Stock {
-    border-bottom: 2px solid #000;
-    width: 100%;
-    display: block;
-    width: 95%;
-    font-size: 18px;
-    font-weight: bold;
-}
-/*-----------------------------------------------*/
-.containner_Acciones_Rapidas {
-    background: white;
-    padding: 5px;
-}
-.title_Acciones_Rapidas{
-	border-bottom: 2px solid #000;
-    width: 100%;
-    display: block;
-    width: 95%;
-    font-size: 15px;
-    font-weight: bold;
-}
-.sub_containner_Acciones_Rapidas {
-    display: flex;
-    flex-direction: column;
-    height: 93%;
-    justify-content: space-evenly;
-    align-items: center;
-}
-.btn_Acciones_Rapidas {
-    width: 98%;
-    height: 32px;
-    border-style: none;
-    border-radius: 5px;
-}
-/*-----------------------------------------*/
-.containner_Movimientos_Recientes {
-    background: white;
-    padding: 7px;
-}
-.title_Movimientos_Recientes{
-border-bottom: 2px solid #000;
-    width: 100%;
-    display: block;
-    width: 95%;
-    font-size: 18px;
-    font-weight: bold;
-}
-</style>
-<section class="parent">
-	<section class="section1 sub_card"> 
+let Html_Dashboard=`
+<section class="Dashboard">
+	<section class="section_dasboard1 sub_card_Dashboard"> 
 		<label class="title_sub_card">Total de Productos</label>
 		<div class="number_estado_sub_card">50</div>
 		<span class="info_sub_card">info2 </span>
 		<span class="image_sub_card iconUnoStock-Productos_2"></span>
 	</section>
-	<section class="section2 sub_card">
+	<section class="section_dasboard2 sub_card_Dashboard">
 		<label class="title_sub_card">Total de Productos</label>
 		<div class="number_estado_sub_card">50</div>
 		<span class="info_sub_card">info2 </span>
 		<span class="image_sub_card iconUnoStock-advertencia"></span>
 	</section>
-	<section class="section3 sub_card"> 
+	<section class="section_dasboard3 sub_card_Dashboard"> 
 		<label class="title_sub_card">Total de Productos</label>
 		<div class="number_estado_sub_card">50</div>
 		<span class="info_sub_card">info2 </span>
 		<span class="image_sub_card icon-cotainer"><p class="icon-coin-dollar"></p></span>
 	</section>
-	<section class="section4 sub_card"> 
+	<section class="section_dasboard4 sub_card_Dashboard"> 
 		<label class="title_sub_card">Total de Productos</label>
 		<div class="number_estado_sub_card">50</div>
 		<span class="info_sub_card">info2 </span>
 		<span class="image_sub_card iconUnoStock-Movimientos"></span>
 	</section>
-	<section class="section5 containner_Productos_con_bajo_Stock">
+	<section class="section_dasboard5 containner_Productos_con_bajo_Stock">
 		<label class="Title_Productos_con_bajo_Stock">Productos con bajo Stock</label>
 		<div>
 			
 		</div>
 	</section>
-	<section class="section6 containner_Acciones_Rapidas">
+	<section class="section_dasboard6 containner_Acciones_Rapidas">
 		<label class="title_Acciones_Rapidas">Acciones Rapidas</label>
 		<div class="sub_containner_Acciones_Rapidas">
 			<button class="btn_Acciones_Rapidas" style="color:white; background:red;">+ Nuevo Producto</button> 
@@ -156,13 +39,17 @@ border-bottom: 2px solid #000;
 			<button class="btn_Acciones_Rapidas" style="color:white; background:purple;">Generar Reporte</button>
 		</div>
 	</section>
-	<section class="section7 containner_Movimientos_Recientes">
+	<section class="section_dasboard7 containner_Movimientos_Recientes">
 		<label class="title_Movimientos_Recientes">Movimientos Recientes</label>
 		<div>
 			
 		</div>
 </section>
-</section>
+</section>`;
 
-`;
+function Dashboard(id){
+    
+
+    document.getElementById(id).innerHTML=Html_Dashboard;
+
 }
