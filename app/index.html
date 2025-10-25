@@ -24,7 +24,7 @@
 </aside>
 <header class="containner-header header_app">
 <div class="containner-info-header">
-	<h1 class="title-header">Dashboard</h1>
+	<h1 class="title-header" id="title_header">Dashboard</h1>
 	<p class="sub-title-header">#########</p>	
 </div>	
 <div class="containner-search">
@@ -55,20 +55,24 @@
 
 	
 Dashboard("main_containner_activity");
-
+document.getElementById("title_header").innerHTML="Dashboard";
 
 function SelectMenu(OPT){
     if(OPT=="Dashboard"){
         Dashboard("main_containner_activity");
+document.getElementById("title_header").innerHTML="Dashboard";
     } 
     if(OPT=="Productos"){
         Dashboard("main_containner_activity");
+document.getElementById("title_header").innerHTML="Productos";
     }   
      if(OPT=="Proveedores"){
         Proveedores("main_containner_activity");
+document.getElementById("title_header").innerHTML="Proveedores";
     } 
     if(OPT=="Movimientos"){
        Movimientos("main_containner_activity");
+document.getElementById("title_header").innerHTML="Movimientos";
     }
 }
 </script>
