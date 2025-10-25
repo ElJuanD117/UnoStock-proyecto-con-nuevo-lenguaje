@@ -23,11 +23,10 @@
 .container-main {
     background: #bfbfbf;
     height: auto;
-    padding: 4px;
+    /* padding: 4px; */
 }
-/*---------------------------*/
+/*------------aside_menu---------------*/
 .aside_menu {
-    /* background: white; */
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 150px 1fr 45px;
@@ -82,7 +81,6 @@
  
     color: #2196f3;
 }
-/*--------------*/
 
 .sub_aside_menu2 {
     background: white;
@@ -90,7 +88,7 @@
      border-radius: 0px 0px 11px 11px;
 }
 
-/*----------------------------------------------*/
+/*-------------------header_app-------------------------*/
 .header_app {
     background: white;
     display: flex;
@@ -139,8 +137,10 @@
 }
 
 .containner-info-header {
+   
     margin-left: 10px;
 }
+
 .title-header{
 
 }
