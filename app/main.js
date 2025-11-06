@@ -1,9 +1,14 @@
 /*Variables de librerias library varial***/
-const {app, BrowserWindow, Menu, MenuItem, ipcMain, dialog, Notification } = require('electron');
+const {app, BrowserWindow, Menu, MenuItem, ipcMain,ipcRenderer, dialog, Notification } = require('electron');
 const path = require('path')
 const fs = require('fs')
 const os_system = require('os')
-/*-------------------------------*/
+const { v4: uuidv4 } = require('uuid');
+
+const {Info_Producto} = require(path.join(__dirname,'./Productos/Informacion/Informacion'));
+const {Registro_Producto} = require(path.join(__dirname,'./Productos/Registro/Registro'));
+const {Actualizar_Producto} = require(path.join(__dirname,'./Productos/Actualizar/Actualizar'));
+//const PathDB = require(path.join(__dirname,'../Path_db.js'));
 
 /*--------------------------------------*/
 
@@ -35,8 +40,69 @@ function App(){
 
 }
 /*------------------------------------------------------*/
+/****Manejo de productos*****/
+ipcMain.on('Buscar-input-text-producto', (event) => {
 
 
+console.log('Buscar-input-text-producto')
+
+
+})
+
+ipcMain.on('Buscar-categoria-producto', (event) => {
+
+
+console.log('Buscar-categoria-producto')
+
+
+})
+
+
+ipcMain.on('open-registro-producto', (event) => {
+
+
+console.log("abriendo registro")
+
+Registro_Producto()
+
+})
+
+
+ipcMain.on('open-Actualizar-producto', (event) => {
+
+
+console.log("abriendo actualizar")
+Actualizar_Producto()
+
+})
+
+ipcMain.on('open-Info-producto', (event) => {
+
+
+console.log("abriendo Informacion producto")
+Info_Producto()
+
+
+})
+
+ipcMain.on('open-retiro-producto', (event) => {
+
+
+console.log("abriendo retiro")
+
+
+
+})
+
+ipcMain.on('open-Borrar-producto', (event) => {
+
+
+console.log("abriendo retiro")
+
+
+})
+
+/****Manejo de productos*****/
 /*------------------------------------------------------*/
 ipcMain.on('app_version', (event) => {
 

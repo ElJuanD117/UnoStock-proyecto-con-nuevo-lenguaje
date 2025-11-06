@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="assets/style/Dashboard.css">
     <link rel="stylesheet" type="text/css" href="assets/style/Movimientos.css">
     <link rel="stylesheet" type="text/css" href="assets/style/Proveedores.css">
+    <link rel="stylesheet" type="text/css" href="assets/style/Productos.css">
 </head>
 <body id="app">
 <aside class="container-Aside aside_menu">
@@ -25,7 +26,7 @@
 <header class="containner-header header_app">
 <div class="containner-info-header">
 	<h1 class="title-header" id="title_header">Dashboard</h1>
-	<p class="sub-title-header">#########</p>	
+	<p class="sub-title-header" id="sub_title_header">#########</p>	
 </div>	
 <div class="containner-search">
 <input id="search_name" class="search-name" type="search" name="" placeholder="Busqueda" >
@@ -41,11 +42,15 @@
 </body>
 <script type="text/javascript" src="assets/icoMoon/selection.json"></script>
 <script type="text/javascript" src="assets/UnoStock-v1.0/selection.json"></script>
+<script type="text/javascript" src="assets/js/AudioSpeak.js"></script>
 <script type="text/javascript" src="Dashboard/Dashboard.js"></script>
 <script type="text/javascript" src="Proveedores/Proveedores.js"></script>
 <script type="text/javascript" src="Movimientos/Movimientos.js"></script>
+<script type="text/javascript" src="Productos/Productos.js"></script>
 
 <script type="text/javascript">
+
+	Speak("Hola Bienvenido a UnoStock")
 	api.send("app_version");
 	api.receive('app_version',(event,info)=>{
 
@@ -56,23 +61,28 @@
 	
 Dashboard("main_containner_activity");
 document.getElementById("title_header").innerHTML="Dashboard";
+document.getElementById("sub_title_header").innerHTML="Menu principal informativo";
 
 function SelectMenu(OPT){
     if(OPT=="Dashboard"){
         Dashboard("main_containner_activity");
 document.getElementById("title_header").innerHTML="Dashboard";
+document.getElementById("sub_title_header").innerHTML="Menu principal informativo";
     } 
     if(OPT=="Productos"){
-        Dashboard("main_containner_activity");
+        Productos("main_containner_activity");
 document.getElementById("title_header").innerHTML="Productos";
+document.getElementById("sub_title_header").innerHTML="Información de productos";
     }   
      if(OPT=="Proveedores"){
         Proveedores("main_containner_activity");
 document.getElementById("title_header").innerHTML="Proveedores";
+document.getElementById("sub_title_header").innerHTML="Información de Proveedores";
     } 
     if(OPT=="Movimientos"){
        Movimientos("main_containner_activity");
 document.getElementById("title_header").innerHTML="Movimientos";
+document.getElementById("sub_title_header").innerHTML="Ultimos Movimientos";
     }
 }
 </script>

@@ -1,0 +1,353 @@
+<style type="text/css">
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+.containner-registre-update {
+    background: white;
+}
+.form-register-update-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+span {
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 7px;
+    font-size: 15px;
+}
+input {
+    width: 88%;
+    height: 35px;
+    text-align: center;
+    border-style: none;
+    border-bottom: 2.54px solid #9f9c9c;
+}
+input:focus{
+
+  outline: none;
+
+}
+.input-value-product{
+        height: 35px;
+        text-align: center;
+}
+
+.containner-input{
+
+    display: flex;
+        flex-direction:column;
+            align-items: center;
+            justify-content: center;
+        
+}
+/*---------------------------------*/
+.section-area1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 50px 1fr;
+    grid-template-areas: 'title title title'
+                         'data1 data1 image'
+                         'data2 data2 data2';
+                         background: white;
+}
+.containner-data1 {
+    grid-area: data1;
+    /* padding: 20px; */
+}
+
+.containner-data2{
+    grid-area:data2;
+   /*  padding: 20px;*/
+
+}
+
+/*****************************/
+.containner-data1 {
+
+display: grid;
+grid-template-columns: repeat(6, 1fr);
+grid-template-rows: 1fr;
+grid-column-gap: 2px;
+grid-row-gap: 2px;
+grid-template-areas:'serial   serial   serial  name    name     name'
+                    'category category amount  amount  time     time'
+                    'iva      iva      price   price   discount discount';
+
+}
+
+
+.containner-Image-Product {
+    grid-area: image;
+    padding: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-product {
+    width: 340px;
+    height: 148px;
+    border-top: 1px solid #adadad;
+    border-right: 1px solid #9d9d9d;
+    border-bottom: 1px solid #818181;
+    border-left: 1px solid #939393;
+}
+
+.btn_send_image {
+    background: orange;
+    color: white;
+    width: 340px;
+    height: 32px;
+    text-align: center;
+    margin-top: 2px;
+    border-style: none;
+}
+
+.Serial-input{
+    grid-area:serial;
+}
+
+.title-registre-Product {
+    grid-area: title;
+    text-align: center;
+    color: #6a6969;
+}
+
+.Name-Product-input{
+    grid-area:name;
+}
+
+.Category-Product-input{
+    grid-area:category;
+}
+
+.Price-Product-input{
+    grid-area:price;
+}
+
+.Iva-Product-input{
+    grid-area:iva;
+
+}
+
+
+
+.Amount-Product-input{
+    grid-area:amount;
+}
+
+.Time-Product-input{
+    grid-area:time;
+}
+.Time-Product {
+    font-size: 12px;
+    font-weight: bold;
+}
+.Discount-Product-input{
+    grid-area:discount;
+}
+
+
+.Image{
+ width: 100%;
+    height: 32px;
+
+}
+
+
+
+/*---------------------------------------------------*/
+/*section-area2*/
+.section-area2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 32px 1fr;
+    grid-column-gap: 3px;
+    grid-row-gap: 3px;
+    grid-template-areas: 'Title Title Title Title'
+        'Name Addres Phone Email';
+    margin-bottom: 10px;
+    width: 100%;
+    background: white;
+}
+.Title-registre-Supplier{
+grid-area:Title;
+text-align: center;
+color: #6a6969;
+    }
+
+    .Name-Product-input-Supplier{
+grid-area:Name;
+    }
+
+    .Addres-Product-input-Supplier{
+
+grid-area:Addres;
+    }
+
+    .Phone-Product-input-Supplier{
+grid-area:Phone;
+        }
+
+.Email-Product-input-Supplier{
+    grid-area:Email;
+}   
+
+
+
+/***********containner-btn********************/
+.containner-btn {
+    width: 100%;
+    grid-area: btn;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.btn-product {
+    width: 33%;
+    height: 40px;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+}
+.save{
+    background:#20AD10
+}
+
+.reset{
+    background:#0073A8;
+}
+
+.exit{
+    background: red;
+}
+/*-------------------------------*/
+.Iva-Product-containner {
+    width: 100%;
+}
+.Iva-Product {
+    height: 35px;
+    text-align: center;
+    width: 91%;
+}
+/*------------------------------*/
+.Price-Product-containner {
+    width: 100%;
+}
+
+.Price-Product {
+    width: 90%;
+}
+/*-----------------------*/
+.Discount-Product-containner {
+    width: 100%;
+}
+
+.Discount-Product{
+    width: 100%;
+}
+</style>
+
+<div class="containner-registre-update">
+    <form class="form-register-update-product">
+    <!--------->
+                    <h1 class="title-registre-Product" id="title_pagina">Registro de Producto</h2>
+        <section  class="section-area1">
+                <h2 class="title-registre-Product" id="title_pagina">Producto</h2>
+                <div class="containner-data1">
+                  
+                    <label class="containner-input Serial-input">
+                            <span id="serial_span">Código</span>
+                            <input type="text" name="Serial Product" id="Serial_Product"  class="Serial-Product" placeholder="Serial Product" required>
+                    </label>
+
+                    <label class="containner-input Name-Product-input">
+                            <span id="Name_procduct_span">Nombre Producto</span>
+                            <input type="text" name="Name Product" id="Name_Product"  class="Name-Product" placeholder="Name Product" required>
+                    </label>
+
+                    <label class="containner-input Category-Product-input">
+                            <span id="Category_Product_span">Categoria</span>
+                            <input type="text" name="Category Product" id="Category_Product"  class="Category-Product" placeholder="Category Product" required>
+                    </label>
+
+                    <label class="containner-input  Amount-Product-input">
+                            <span id="Amount_Product_span">Cantidad</span>
+                            <input type="number" name="Amount Product" id="Amount_Product"  class="Amount-Product" placeholder="Amount Product" min="0" required>
+                    </label>
+                   
+                    <label class="containner-input Time-Product-input">
+                        <span id="Time_Product_span">Tiempo</span>
+                        <input type="datetime-local" id="Time_Product" class="Time-Product" required>
+                    </label>               
+
+                    <label class="containner-input  Iva-Product-input">
+                        <span id="Iva_Product_span">Iva producto</span>
+                        <span class="Iva-Product-containner" >
+                            <input type="number" name="Iva Product" id="Iva_Product"  class="input-value-product Iva-Product" placeholder="Iva Product" min="0" required>
+                            <span class="moneda" >%</span>                                        
+                        </span>
+                    </label>
+
+                    <label class="containner-input  Price-Product-input">
+                       <span id="Price_Product_span">Precio</span>                
+                       <span class="Price-Product-containner" >
+                                <input type="number" name="Price Product" id="Price_Product"  class="input-value-product Price-Product" placeholder="Price Product" min="0"required>
+                                <span class="moneda" id="type_moneda">Bs</span>
+                        </span>                     
+                    </label> 
+
+                    <label class="containner-input Discount-Product-input">
+                        <span id="Discount_Product_price_span">Descuento</span> 
+                            <span class="Discount-Product-containner" >
+                                <input type="number" name="Discount Product" id="Discount_Product_price"  class="input-value-product Discount-Product" placeholder="Discount Product" min="0" required>                                           
+                            </span>                                                         
+                    </label>
+            
+                </div>
+                <div class="containner-Image-Product">
+                    <img src="producto.png" class="image-product" id="imagen_product">
+                    <button id="Image_Product" class="btn_send_image" onclick="open_dialog()">Seleccionar Imagen</button>   
+                </div>
+        </section>
+        <!--------->
+        <section  class="section-area2">
+            <h2 class="Title-registre-Supplier" id="Supplier">Proveedor</h2>
+
+            <label class="containner-input Name-Product-input-Supplier">
+            <span id="Name_Supplier_span">Nombre</span>
+            <input type="text" name="Name Product" id="Name_Product_Supplier"  class="Name-Product-Supplier" placeholder="Name Product" required>
+            </label>
+
+            <label class="containner-input Addres-Product-input-Supplier">
+            <span id="Addres_Product_Supplier_span">Dirección</span>
+            <input type="text" name="Addres Supplier Product" id="Addres_Product_Supplier"  class="Addres-Product-Supplier" placeholder="Addres Product" required>
+            </label>
+
+            <label class="containner-input Email-Product-input-Supplier">
+            <span id="Email_Product_Supplier_span">Correo</span>
+            <input type="email" name="Email Supplier Product" id="Email_Product_Supplier"  class="Email-Product-Supplier" placeholder="Email Product" required>
+            </label>
+
+            <label class="containner-input Phone-Product-input-Supplier">
+            <span id="Phone_Product_Supplier_span">Telefono</span>
+            <input type="tel" name="Phone Supplier Product" id="Phone_Product_Supplier"  class="Phone-Product-Supplier" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="Phone Product" required>
+            </label>
+        </section>
+        <!--------->
+        <section class="containner-btn">
+            <button class="btn-product save" type="submit" value="save" id="btn_save" >Guardar</button>
+            <button class="btn-product reset" type="reset" id="btn_reset">Limpiar</button>
+            <button class="btn-product exit " id="btn_exit">Salir</button>      
+        <section >
+    <!--------->
+    </form>     
+</div>
+<script type="text/javascript">
+
+</script>
+ 

@@ -1,0 +1,161 @@
+<style type="text/css">
+	*{
+		margin: 0px;
+		padding: 0px;
+	}
+.productos {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 35px 35px repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 1px;
+}
+.container-search {
+    grid-area: 1 / 1 / 2 / 6;
+    /*-----------------------------*/
+    display: grid;
+    grid-template-columns: 1fr repeat(3, 60px);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+.container-select-categoria{ grid-area: 2 / 1 / 3 / 6; }
+.container-list-product { grid-area: 3 / 1 / 6 / 5; }
+.container-data-product{ grid-area: 3 / 5 / 6 / 6; }
+
+/*-------------------------*/
+.productos{
+		background: red;
+		width: auto;
+}
+/*------------------------------*/
+.container-search { background: purple; }
+.btn-product-action{
+color:white;
+border-style: none;
+}
+.Buscar{background:orange;}
+.Ingreso{background:blue;}
+.Retiro{background:red;}
+/*--------------------------------*/
+.container-select-categoria {
+    background: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+}
+.item-categoria {
+    padding: 5px;
+    background: #adadad;
+    width: auto;
+    color: white;
+    margin-left: 20px;
+    border-radius: 6px;
+}
+.item-categoria>span{
+	padding: 2px;
+}
+/*------------------------------*/
+.container-list-product {
+    background: #bfbfbf;
+    /* padding: 5px; */
+}
+.container-producto-item, .list-product-data{
+	display: grid;
+	grid-template-columns: 0.3fr 0.5fr repeat(5, 1fr);
+	grid-template-rows: 1fr;
+	grid-column-gap: 2px;
+	grid-row-gap: 0px;
+}
+
+.container-producto-item{
+	background: grey;
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+.container-productolist-data {
+    background: grey;
+    height: 79vh;
+    overflow-y: scroll;
+}
+.list-product-data{
+	font-weight: bold;
+	margin-bottom: 2px;
+}
+.item-product-data {
+    background: white;
+    padding: 4px;
+}
+/*------------------------------*/
+.container-data-product{ background: blue; }
+.container-imagen-product {
+    width: auto;
+    height: 179px;
+    background: white;
+    padding: 0.5px;
+}
+.data-image-product {
+    width: 100%;
+    height: 100%;
+}
+.sub-container-data-product-info {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    height: 49vh;
+}
+</style>
+<section class="productos" id="productosdata">
+	<div class="container-search">
+		<input type="search" placeholder="Codigo o Nombre de Producto">
+		<button class="btn-product-action Buscar">Buscar</button>
+		<button class="btn-product-action Ingreso">Ingreso</button>		
+		<button class="btn-product-action Retiro">Retiro</button>
+	</div>
+	<div class="container-select-categoria">
+		<label class="item-categoria" id="categoria">item<span>x</span></label>
+		<label class="item-categoria" id="categoria">item<span>x</span></label>
+		<label class="item-categoria" id="categoria">item<span>x</span></label>
+		<label class="item-categoria" id="categoria">item<span>x</span></label>
+		<label class="item-categoria" id="categoria">item<span>x</span></label>
+	</div>
+	<div class="container-list-product">
+		<div class="container-producto-item">
+			<span class="item-product-data">N</span>
+			<span class="item-product-data">cod</span>
+			<span class="item-product-data">Nombre</span>
+			<span class="item-product-data">Categoria</span>
+			<span class="item-product-data">cant</span>
+			<span class="item-product-data">precio</span>
+			<span class="item-product-data">precio Unitario</span>
+		</div>	
+		<div class="container-productolist-data">
+			<article class="list-product-data">
+				<span class="item-product-data">0</span>
+				<span class="item-product-data">items</span>
+				<span class="item-product-data">items</span>
+				<span class="item-product-data">items</span>
+				<span class="item-product-data">items</span>
+				<span class="item-product-data">items</span>
+				<span class="item-product-data">items</span>
+			</article>			
+		</div>
+	</div>
+	<div class="container-data-product">
+		<div class="container-imagen-product">
+			<img class="data-image-product" id="data-producto-image" alt="imagen-data" src="C:/Users/Duno%20Castellano/Desktop/Proyectos/UnoStock-proyecto-con-nuevo-lenguaje/app/Dashboard/Copilot_20251102_220924.png">
+		</div>
+		<div class="sub-container-data-product-info">
+			<h3 id="Nombre_producto_data">Nombre <span id="data-npmbre">Chuleta</span></h3>
+			<label id="cant_producto_data">Cant.<span>80</span></label>
+			<label id="categoria_producto_data">Categoria <span>Carne</span></label>
+			<label id="precio_producto_data">
+				<span id="precio">Precio <span>0.00</span>
+				<span id="simbolo">Bs</span>
+			</label>
+		</div>
+	</div>
+</section>
+
+
