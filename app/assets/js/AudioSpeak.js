@@ -24,7 +24,7 @@ function Speak(text) {
     // speech.voice = getVoice('es-MX'); // Ejemplo: elegir una voz específica
     speech.volume = 1;
     speech.pitch = 1; // Tono (de 0 a 2)
-    speech.rate = 1; // Velocidad (de 0.1 a 10)
+    speech.rate = 0.5; // Velocidad (de 0.1 a 10)
 
     // Hablamos el texto
     window.speechSynthesis.speak(speech);
