@@ -11,7 +11,11 @@
 		"build:linux": "electron-builder build --linux --publish never",
 		"deploy:linux": "electron-builder build --linux --publish always"
 	},
-	"keywords": ["Electronjs", "inventario", "stock"],
+	"keywords": [
+		"Electronjs",
+		"inventario",
+		"stock"
+	],
 	"author": "",
 	"license": "ISC",
 	"build": {
@@ -38,6 +42,7 @@
 		"electron-builder": "^24.4.0"
 	},
 	"dependencies": {
+		"sqlite3": "^5.1.7",
 		"uuid": "^9.0.1"
 	}
 }

@@ -5,10 +5,13 @@ const fs = require('fs')
 const os_system = require('os')
 const { v4: uuidv4 } = require('uuid');
 
+/*--------------------------------------*/
+const UnoStockDB = require(path.join(__dirname,'./BD/UnoStockManager.js'));
+const DB = new UnoStockDB();
+/*--------------------------------------*/
 const {Info_Producto} = require(path.join(__dirname,'./Productos/Informacion/Informacion'));
 const {Registro_Producto} = require(path.join(__dirname,'./Productos/Registro/Registro'));
 const {Actualizar_Producto} = require(path.join(__dirname,'./Productos/Actualizar/Actualizar'));
-//const PathDB = require(path.join(__dirname,'../Path_db.js'));
 
 /*--------------------------------------*/
 
@@ -28,42 +31,41 @@ function App(){
           }
       })
 
-      // Carga el archivo HTML de nuestra aplicación
+      //Carga el archivo HTML de nuestra aplicación
   
-    mainWindow.loadFile(path.join(__dirname,'index.html'));
+      mainWindow.loadFile(path.join(__dirname,'index.html'));
 
-  	mainWindow.webContents.openDevTools();
+    	mainWindow.webContents.openDevTools();
 
-    mainWindow.on('close', (event) => {
+      mainWindow.on('close', (event) => {
 
-    });
+      });
 
 }
+/*------------------------------------------------------*/
+
+
+
 /*------------------------------------------------------*/
 /****Manejo de productos*****/
 ipcMain.on('Buscar-input-text-producto', (event) => {
 
-
-console.log('Buscar-input-text-producto')
-
+  console.log('Buscar-input-text-producto')
 
 })
 
 ipcMain.on('Buscar-categoria-producto', (event) => {
 
-
-console.log('Buscar-categoria-producto')
-
+  console.log('Buscar-categoria-producto')
 
 })
 
 
 ipcMain.on('open-registro-producto', (event) => {
 
+  console.log("abriendo registro")
 
-console.log("abriendo registro")
-
-Registro_Producto()
+  Registro_Producto()
 
 })
 
@@ -71,16 +73,16 @@ Registro_Producto()
 ipcMain.on('open-Actualizar-producto', (event) => {
 
 
-console.log("abriendo actualizar")
-Actualizar_Producto()
+  console.log("abriendo actualizar")
+  Actualizar_Producto()
 
 })
 
 ipcMain.on('open-Info-producto', (event) => {
 
 
-console.log("abriendo Informacion producto")
-Info_Producto()
+  console.log("abriendo Informacion producto")
+  Info_Producto()
 
 
 })
@@ -88,7 +90,7 @@ Info_Producto()
 ipcMain.on('open-retiro-producto', (event) => {
 
 
-console.log("abriendo retiro")
+  console.log("abriendo retiro")
 
 
 
