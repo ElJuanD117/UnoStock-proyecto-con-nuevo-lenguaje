@@ -152,4 +152,8 @@ db.verificarOCrearDB().then(() => {
       .catch(err => console.error('Error al limpiar tablas:', err));
 });
 
+INSERT INTO productos (cod,cod.E,Nombre,precio,iva,descuento,image,categoria,cant,informacion_adicional ) VALUES ('LPT-001A', '9998877665544', 'Monitor 4K Curvo', 399.99, 12.50, 10.00, '/img/monitor_4k.png', 'Periféricos', 25, 'Pantalla de 32 pulgadas, 144Hz de tasa de refresco.')
+
+
+
 *****/

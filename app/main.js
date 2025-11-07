@@ -46,26 +46,19 @@ function App(){
 /*------------------------------------------------------*/
 
 DB.conectar("UnoStock.db").then(db => {
-        // Aquí puedes usar el objeto db para consultas
-        // Por ejemplo, crear tablas, insertar datos, etc.
-        //crearTabla("")
+
 (async () => { 
  await DB.conectar();
  // Listar tablas
         const tablas = await DB.listarTablas();
         console.log('Tablas en la base de datos:', tablas);
+
+
   //******//
-          const productos = await DB.leer('SELECT * FROM productos');
-        console.log('Productos:', productos);
-        /*----------------------*/
-
-// Insertar un producto
-/*
-  const nuevoId = await DB.crear('INSERT INTO productos (nombre, cantidad) VALUES (?, ?)', ['Teclado', 10]);
-  console.log('Producto insertado con ID:', nuevoId);
-*/
-
-        /*---------------------------*/
+        const productos = await DB.leer('SELECT * FROM productos');
+        await console.log('Productos:', productos);
+  //******//
+ 
  await DB.cerrar();
 })();
 
@@ -93,9 +86,18 @@ ipcMain.on('Buscar-categoria-producto', (event) => {
 
 ipcMain.on('open-registro-producto', (event) => {
 
-  console.log("abriendo registro")
+  //console.log("abriendo registro")
 
-  Registro_Producto()
+       // Registro_Producto()
+
+      (async () => { 
+       await DB.conectar();
+        /*-----------*/
+        const nuevoId = await DB.crear('INSERT INTO productos (nombre, categoria, stock, precio_usd) VALUES ( ?, ?, ?, ?)', ["Arros","granos",20,7.00]);
+        await console.log('Producto insertado con ID:', nuevoId);
+        /*---------------*/
+       await DB.cerrar();
+      })();
 
 })
 
@@ -173,3 +175,12 @@ app.on('activate', () => {
     App();
   }
 });
+
+
+
+/*******
+
+insert into `wp_users`(`ID`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `user_registered`, `user_activation_key`, `user_status`, `display_name`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10])
+
+
+*********/

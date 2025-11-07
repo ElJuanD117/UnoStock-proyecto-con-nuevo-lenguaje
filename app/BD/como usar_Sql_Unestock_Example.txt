@@ -1,0 +1,229 @@
+(async () => {
+    const db = new UnoStockDB();
+
+    try {
+        await db.conectar();
+
+        // Crear tabla
+        await db.crearTabla(`CREATE TABLE IF NOT EXISTS productos (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nombre TEXT NOT NULL,
+            cantidad INTEGER NOT NULL
+        );`);
+        console.log('Tabla creada');
+
+        // Insertar un producto
+        const nuevoId = await db.crear('INSERT INTO productos (nombre, cantidad) VALUES (?, ?)', ['Teclado', 10]);
+        console.log('Producto insertado con ID:', nuevoId);
+
+        // Leer todos los productos
+        const productos = await db.leer('SELECT * FROM productos');
+        console.log('Productos:', productos);
+
+        // Buscar un producto por ID
+        const producto = await db.buscar('SELECT * FROM productos WHERE id = ?', [nuevoId]);
+        console.log('Producto encontrado:', producto);
+
+        // Actualizar producto
+        const filasActualizadas = await db.actualizar('UPDATE productos SET cantidad = ? WHERE id = ?', [20, nuevoId]);
+        console.log('Filas actualizadas:', filasActualizadas);
+
+        // Borrar producto
+        const filasBorradas = await db.borrar('DELETE FROM productos WHERE id = ?', [nuevoId]);
+        console.log('Filas borradas:', filasBorradas);
+
+        // Listar tablas
+        const tablas = await db.listarTablas();
+        console.log('Tablas en la base de datos:', tablas);
+
+        // Limpiar tablas (vaciar datos)
+        await db.limpiarTablas();
+        console.log('Todas las tablas han sido vaciadas');
+
+        // Cerrar conexión
+        await db.cerrar();
+        console.log('Conexión cerrada');
+    } catch (error) {
+        console.error('Error:', error);
+    }
+})();
+
+(async () => { 
+         await db.conectar();
+         // Listar tablas
+        const tablas = await db.listarTablas();
+        console.log('Tablas en la base de datos:', tablas);
+})();
+
+
+
+Método  Descripción el error de llamada
+crearTabla  Crea una tabla con SQL  crearTabla('CREATE TABLE ...')
+crear   Inserta un registro crear('INSERT INTO ... VALUES (?, ?)', [val1, val2])
+leer    Obtiene varios registros    leer('SELECT * FROM tabla')
+buscar  Obtiene un solo registro    buscar('SELECT * FROM tabla WHERE id = ?', [id])
+actualizar  Registros actuales  actualizar('UPDATE tabla SET col = ? WHERE id = ?', [val, id])
+borrar  Borra registros borrar('DELETE FROM tabla WHERE id = ?', [id])
+listarTablas    Lista todas las tablas existentes   listarTablas()
+cerrar  Cierra la conexión a la base de datos   cerrar()
+
+
+
+'INSERT INTO productos (nombre, cantidad) VALUES (?, ?)', ['Teclado', 10]
+
+
+CREATE TABLE productos (
+    -- Clave primaria: Identificador único y auto-incremental
+    `key` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+
+    -- Códigos de producto
+    cod VARCHAR(50) UNIQUE NOT NULL, -- Código interno único
+    `cod.E` VARCHAR(50),             -- Código Externo (ej. código de barras)
+
+    -- Información general
+    Nombre VARCHAR(255) NOT NULL,    -- Nombre del producto
+    precio DECIMAL(10, 2) NOT NULL,  -- Precio base (con 2 decimales)
+    iva DECIMAL(4, 2) DEFAULT 0.00,  -- Tasa de IVA (ej. 16.00)
+    descuento DECIMAL(4, 2) DEFAULT 0.00, -- Porcentaje de descuento
+
+    -- Datos adicionales
+    image VARCHAR(255),              -- URL o ruta de la imagen
+    categoria VARCHAR(100),          -- Categoría del producto
+    cant INT NOT NULL DEFAULT 0,     -- Cantidad en stock
+
+    -- Registro de tiempo
+    Time_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Fecha y hora de creación/registro
+    
+    -- Columna para información adicional
+    informacion_adicional TEXT       -- Campo grande para texto libre
+);
+
+>SQL<
+CREATE TABLE productos (
+    `key` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    cod VARCHAR(50) UNIQUE NOT NULL,
+    `cod.E` VARCHAR(50),
+    Nombre VARCHAR(255) NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL,
+    iva DECIMAL(4, 2) DEFAULT 0.00,
+    descuento DECIMAL(4, 2) DEFAULT 0.00,
+    image VARCHAR(255),
+    categoria VARCHAR(100),
+    cant INT NOT NULL DEFAULT 0,
+    Time_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    informacion_adicional TEXT
+);
+
+
+>SQLite
+CREATE TABLE productos (
+    -- Clave primaria: Identificador único y auto-incremental
+    "key" INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    -- Códigos de producto
+    cod TEXT UNIQUE NOT NULL,      -- Código interno único (TEXT en lugar de VARCHAR)
+    "cod.E" TEXT,                  -- Código Externo
+
+    -- Información general
+    Nombre TEXT NOT NULL,          -- Nombre del producto
+    precio REAL NOT NULL,          -- Precio base (REAL para decimales)
+    iva REAL DEFAULT 0.00,         -- Tasa de IVA
+    descuento REAL DEFAULT 0.00,   -- Porcentaje de descuento
+
+    -- Datos adicionales
+    image TEXT,                    -- URL o ruta de la imagen
+    categoria TEXT,                -- Categoría del producto
+    cant INTEGER NOT NULL DEFAULT 0, -- Cantidad en stock
+
+    -- Registro de tiempo
+    Time_registro DATETIME DEFAULT CURRENT_TIMESTAMP, -- Fecha y hora de registro
+    
+    -- Columna para información adicional
+    informacion_adicional TEXT       -- Campo grande para texto libre
+);
+
+
+CREATE TABLE productos (
+    "key" INTEGER PRIMARY KEY AUTOINCREMENT,
+    cod TEXT UNIQUE NOT NULL,
+    "cod.E" TEXT,
+    Nombre TEXT NOT NULL,
+    precio REAL NOT NULL,
+    iva REAL DEFAULT 0.00,
+    descuento REAL DEFAULT 0.00,
+    image TEXT,
+    categoria TEXT,
+    cant INTEGER NOT NULL DEFAULT 0,
+    Time_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
+    informacion_adicional TEXT
+);
+
+
+Principales Cambios para SQLite3:
+Clave Primaria:
+
+MySQL: INT NOT NULL AUTO_INCREMENT PRIMARY KEY
+
+SQLite3: INTEGER PRIMARY KEY AUTOINCREMENT
+
+En SQLite, usar INTEGER PRIMARY KEY convierte implícitamente la columna en un alias para la ROWID y le da el comportamiento de auto-incremento.
+
+Tipos de Datos:
+
+SQLite es flexible con los tipos de datos. Hemos cambiado VARCHAR por TEXT y DECIMAL por REAL (para números de punto flotante/decimales) o NUMERIC (que también funciona).
+
+Cambiamos TIMESTAMP por DATETIME para usar la función CURRENT_TIMESTAMP de SQLite de manera más explícita.
+
+Comillas en Nombres de Columna: Se usan comillas dobles (") para las columnas que contienen un punto (cod.E) o son palabras reservadas (key) en SQLite, aunque las comillas simples (' ') se reservan solo para valores.
+/---------------------------------------------------------*/
+SQL
+INSERT INTO productos (
+    cod,
+    `cod.E`,
+    Nombre,
+    precio,
+    iva,
+    descuento,
+    image,
+    categoria,
+    cant,
+    informacion_adicional
+) VALUES (
+    'P001',             -- cod (VARCHAR)
+    '7891234567890',    -- cod.E (VARCHAR)
+    'Laptop Ultrabook X', -- Nombre (VARCHAR)
+    1250.50,            -- precio (DECIMAL)
+    16.00,              -- iva (DECIMAL)
+    5.00,               -- descuento (DECIMAL)
+    '/imagenes/laptop_x.jpg', -- image (VARCHAR)
+    'Electrónica',      -- categoria (VARCHAR)
+    15,                 -- cant (INT)
+    'Modelo de alta gama con procesador i7.' -- informacion_adicional (TEXT)
+);
+
+SQLLITE
+
+INSERT INTO productos (
+    cod,
+    "cod.E",
+    Nombre,
+    precio,
+    iva,
+    descuento,
+    image,
+    categoria,
+    cant,
+    informacion_adicional
+) VALUES (
+    'LPT-001A',             -- cod (TEXT)
+    '9998877665544',        -- cod.E (TEXT)
+    'Monitor 4K Curvo',     -- Nombre (TEXT)
+    399.99,                 -- precio (REAL)
+    12.50,                  -- iva (REAL)
+    10.00,                  -- descuento (REAL)
+    '/img/monitor_4k.png',  -- image (TEXT)
+    'Periféricos',          -- categoria (TEXT)
+    25,                     -- cant (INTEGER)
+    'Pantalla de 32 pulgadas, 144Hz de tasa de refresco.' -- informacion_adicional (TEXT)
+);
+
