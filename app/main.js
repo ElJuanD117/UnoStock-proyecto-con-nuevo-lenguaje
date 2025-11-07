@@ -7,7 +7,8 @@ const { v4: uuidv4 } = require('uuid');
 
 /*--------------------------------------*/
 const UnoStockDB = require(path.join(__dirname,'./BD/UnoStockManager.js'))
-let DB_Path = path.join(__dirname,'/BD/UnoStock.db');
+let DB_Path = path.join(__dirname,'./BD/UnoStock.db');
+//console.log(DB_Path)
 const DB = new UnoStockDB(DB_Path);
 /*--------------------------------------*/
 const {Info_Producto} = require(path.join(__dirname,'./Productos/Informacion/Informacion'));
@@ -44,29 +45,34 @@ function App(){
 
 }
 /*------------------------------------------------------*/
+/*******CREA LA BASE DE DATOS SI NO ESTA Y SE CONECTA****************/
+DB.conectar("UnoStock.db").then(async db => {
 
-DB.conectar("UnoStock.db").then(db => {
+  console.log("Conectado a una Base de Datos")
 
-(async () => { 
- await DB.conectar();
- // Listar tablas
-        const tablas = await DB.listarTablas();
-        console.log('Tablas en la base de datos:', tablas);
+  
+      /*------------------------------*/
+      const tablas = await DB.listarTablas();
+      await console.log('Tablas en la base de datos:',tablas.length);
+      /*------------------------------*/
+      if(tablas.length==0){
+        console.log("creando tablas...")
+        await DB.conectar();
 
+        await DB.crearTabla("CREATE TABLE IF NOT EXISTS productos (key INTEGER PRIMARY KEY AUTOINCREMENT, cod TEXT UNIQUE NOT NULL, cod_Empresa TEXT, nombre TEXT NOT NULL, precio REAL NOT NULL, iva REAL DEFAULT 0.00, descuento REAL DEFAULT 0.00, image TEXT, categoria TEXT, cant INTEGER NOT NULL DEFAULT 0, time_registro DATETIME DEFAULT CURRENT_TIMESTAMP, informacion_adicional TEXT )")
+        await DB.crearTabla("CREATE TABLE IF NOT EXISTS usuarios (key INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL, email TEXT UNIQUE, edad INTEGER )")
+        await DB.crearTabla("CREATE TABLE IF NOT EXISTS proveedores (key INTEGER PRIMARY KEY AUTOINCREMENT, cod_Empresa TEXT NOT NULL UNIQUE, Nombre TEXT NOT NULL, Direccion TEXT, correo TEXT UNIQUE, Telefono TEXT )") 
+        await DB.crearTabla("CREATE TABLE IF NOT EXISTS detalle_venta (id_detalle INTEGER PRIMARY KEY AUTOINCREMENT, id_venta INTEGER, id_producto INTEGER, cantidad INTEGER NOT NULL, precio_venta_usd REAL NOT NULL, FOREIGN KEY(id_venta) REFERENCES ventas(id_venta), FOREIGN KEY(id_producto) REFERENCES productos(id_producto) )") 
+        await DB.crearTabla("CREATE TABLE IF NOT EXISTS movimientos_stock (id_movimiento INTEGER PRIMARY KEY AUTOINCREMENT, id_producto INTEGER NOT NULL, tipo_movimiento TEXT NOT NULL, cantidad INTEGER NOT NULL, costo_unidad_usd REAL, fecha_hora TEXT NOT NULL, FOREIGN KEY(id_producto) REFERENCES productos(id_producto) )")
+        await DB.crearTabla("CREATE TABLE ventas (id_venta INTEGER PRIMARY KEY AUTOINCREMENT, fecha_hora TEXT NOT NULL, total_usd REAL NOT NULL, total_ves REAL NOT NULL )")
 
-  //******//
-        const productos = await DB.leer('SELECT * FROM productos');
-        await console.log('Productos:', productos);
-  //******//
- 
- await DB.cerrar();
-})();
+        await DB.cerrar();
+      }
 
-
-    })
-    .catch(err => {
-        console.error('No se pudo conectar a la base de datos:', err);
-    });
+})
+.catch(err => {
+    console.error('No se pudo conectar a la base de datos:', err);
+});
 
 
 /*------------------------------------------------------*/
@@ -87,18 +93,7 @@ ipcMain.on('Buscar-categoria-producto', (event) => {
 ipcMain.on('open-registro-producto', (event) => {
 
   //console.log("abriendo registro")
-
-       // Registro_Producto()
-
-      (async () => { 
-       await DB.conectar();
-        /*-----------*/
-        const nuevoId = await DB.crear('INSERT INTO productos (nombre, categoria, stock, precio_usd) VALUES ( ?, ?, ?, ?)', ["Arros","granos",20,7.00]);
-        await console.log('Producto insertado con ID:', nuevoId);
-        /*---------------*/
-       await DB.cerrar();
-      })();
-
+       Registro_Producto()
 })
 
 

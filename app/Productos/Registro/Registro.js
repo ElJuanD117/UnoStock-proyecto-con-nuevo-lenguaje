@@ -4,7 +4,16 @@ const fs = require('fs')
 const os_system = require('os')
 const { v4: uuidv4 } = require('uuid');
 
+/*----------------------------------------------------*/
+const UnoStockDB = require(path.join(__dirname,'../../BD/UnoStockManager.js'))
+let DB_Path = path.join(__dirname,'../../BD/UnoStock.db');
+//console.log("DBdesdeRegistre ",DB_Path)
+const DB = new UnoStockDB(DB_Path);
+/*---------------------------------------------------------------*/
+
+
 let Registro_Producto_Window;
+
 
 function Registro_Producto(Action){
 
@@ -37,6 +46,30 @@ function Registro_Producto(Action){
 console.log("Action",Action)
       
 }
+
+
+/*
+ipcMain.on('get_language_info_product',(event,arg) => {              
+    Info_Product_Window.send("change_language_info_product",Setting_App_control.type_language)
+});
+
+
+*/
+
+ipcMain.on('save_data_product',(event,data_producto) => {  
+      
+      console.log(data_producto)
+/*
+      (async () => { 
+       await DB.conectar();
+
+        const nuevoId = await DB.crear('INSERT INTO productos (nombre, categoria, stock, precio_usd) VALUES ( ?, ?, ?, ?)', ["Arros","granos",20,7.00]);
+        await console.log('Producto insertado con ID:', nuevoId);
+     
+       await DB.cerrar();
+      })();
+*/
+})
 
 module.exports = {
    Registro_Producto:Registro_Producto,

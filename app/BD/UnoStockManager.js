@@ -127,8 +127,6 @@ module.exports = UnoStockDB;
 /*******************************************/
 /****
 
-
-
 db.verificarOCrearDB(async (dbInstance) => {
     // Crear tabla si la base de datos es nueva
     await dbInstance.crearTabla(`CREATE TABLE IF NOT EXISTS productos (
