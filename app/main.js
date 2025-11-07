@@ -6,8 +6,9 @@ const os_system = require('os')
 const { v4: uuidv4 } = require('uuid');
 
 /*--------------------------------------*/
-const UnoStockDB = require(path.join(__dirname,'./BD/UnoStockManager.js'));
-const DB = new UnoStockDB();
+const UnoStockDB = require(path.join(__dirname,'./BD/UnoStockManager.js'))
+let DB_Path = path.join(__dirname,'/BD/UnoStock.db');
+const DB = new UnoStockDB(DB_Path);
 /*--------------------------------------*/
 const {Info_Producto} = require(path.join(__dirname,'./Productos/Informacion/Informacion'));
 const {Registro_Producto} = require(path.join(__dirname,'./Productos/Registro/Registro'));
@@ -44,7 +45,13 @@ function App(){
 }
 /*------------------------------------------------------*/
 
-
+DB.conectarBD("UnoStock.db").then(db => {
+        // Aquí puedes usar el objeto db para consultas
+        // Por ejemplo, crear tablas, insertar datos, etc.
+    })
+    .catch(err => {
+        console.error('No se pudo conectar a la base de datos:', err);
+    });
 
 /*------------------------------------------------------*/
 /****Manejo de productos*****/

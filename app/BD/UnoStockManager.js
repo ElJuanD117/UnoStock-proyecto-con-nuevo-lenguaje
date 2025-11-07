@@ -1,4 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
+const path = require('path')
+const fs = require('fs')
 /*--------------------------------------------------*/
 
 class UnoStockDB {
@@ -8,7 +10,7 @@ class UnoStockDB {
     }
 
     // Verifica si la base de datos existe, si no la crea y ejecuta un callback para crear tablas
-    async verificarOCrearDB(callbackCrearTablas) {
+    verificarOCrearDB(callbackCrearTablas) {
         const existe = fs.existsSync(this.dbPath);
         this.db = new sqlite3.Database(this.dbPath, (err) => {
             if (err) {
@@ -22,6 +24,20 @@ class UnoStockDB {
         });
         return existe;
     }
+
+    conectarBD(rutaDB = 'UnoStock.db') {
+        return new Promise((resolve, reject) => {
+            const db = new sqlite3.Database(rutaDB, (err) => {
+                if (err) {
+                    console.error('Error al conectar con la base de datos:', err.message);
+                    reject(err);
+                } else {
+                    console.log('Conexión exitosa a la base de datos:', rutaDB);
+                    resolve(db);
+                }
+                    });
+                });
+        }
 
     // Crear una tabla (ejemplo)
     crearTabla(sql){
@@ -126,3 +142,32 @@ class UnoStockDB {
 }
 
 module.exports = UnoStockDB;
+/*******************************************/
+/****
+
+
+
+db.verificarOCrearDB(async (dbInstance) => {
+    // Crear tabla si la base de datos es nueva
+    await dbInstance.crearTabla(`CREATE TABLE IF NOT EXISTS productos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nombre TEXT,
+        cantidad INTEGER
+    )`);
+    console.log('Tabla productos creada.');
+}).then((existe) => {
+    if (existe) {
+        console.log('La base de datos ya existía.');
+    } else {
+        console.log('La base de datos fue creada y se inicializó.');
+    }
+});
+
+
+db.verificarOCrearDB().then(() => {
+    db.limpiarTablas()
+      .then(() => console.log('¡Todas las tablas han sido vaciadas!'))
+      .catch(err => console.error('Error al limpiar tablas:', err));
+});
+
+*****/
