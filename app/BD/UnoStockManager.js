@@ -4,43 +4,26 @@ const fs = require('fs')
 /*--------------------------------------------------*/
 
 class UnoStockDB {
-  constructor(dbPath = 'UnoStock.db') {
+    constructor(dbPath = 'UnoStock.db') {
         this.dbPath = dbPath;
         this.db = null;
     }
 
-    // Verifica si la base de datos existe, si no la crea y ejecuta un callback para crear tablas
-    verificarOCrearDB(callbackCrearTablas) {
-        const existe = fs.existsSync(this.dbPath);
-        this.db = new sqlite3.Database(this.dbPath, (err) => {
-            if (err) {
-                console.error('Error al conectar con la base de datos:', err.message);
-            } else {
-                if (!existe && typeof callbackCrearTablas === 'function') {
-                    // Si no existía, ejecuta el callback para crear las tablas iniciales
-                    callbackCrearTablas(this);
-                }
-            }
-        });
-        return existe;
-    }
-
-    conectarBD(rutaDB = 'UnoStock.db') {
+    // Conectar a la base de datos (crea el archivo si no existe)
+    conectar() {
         return new Promise((resolve, reject) => {
-            const db = new sqlite3.Database(rutaDB, (err) => {
+            this.db = new sqlite3.Database(this.dbPath, (err) => {
                 if (err) {
-                    console.error('Error al conectar con la base de datos:', err.message);
                     reject(err);
                 } else {
-                    console.log('Conexión exitosa a la base de datos:', rutaDB);
-                    resolve(db);
+                    resolve(true);
                 }
-                    });
-                });
-        }
+            });
+        });
+    }
 
-    // Crear una tabla (ejemplo)
-    crearTabla(sql){
+    // Crear tabla con SQL (ejemplo: CREATE TABLE IF NOT EXISTS ...)
+    crearTabla(sql) {
         return new Promise((resolve, reject) => {
             this.db.run(sql, function(err) {
                 if (err) reject(err);
@@ -49,8 +32,8 @@ class UnoStockDB {
         });
     }
 
-    // Crear (Insertar)
-    Insertar(sql, params = []) {
+    // Insertar datos (CREATE)
+    crear(sql, params = []) {
         return new Promise((resolve, reject) => {
             this.db.run(sql, params, function(err) {
                 if (err) reject(err);
@@ -59,7 +42,7 @@ class UnoStockDB {
         });
     }
 
-    // Leer (Obtener todos)
+    // Leer varios registros (READ)
     leer(sql, params = []) {
         return new Promise((resolve, reject) => {
             this.db.all(sql, params, (err, rows) => {
@@ -69,7 +52,7 @@ class UnoStockDB {
         });
     }
 
-    // Buscar (Obtener uno)
+    // Buscar un solo registro (READ)
     buscar(sql, params = []) {
         return new Promise((resolve, reject) => {
             this.db.get(sql, params, (err, row) => {
@@ -79,7 +62,7 @@ class UnoStockDB {
         });
     }
 
-    // Actualizar
+    // Actualizar registros (UPDATE)
     actualizar(sql, params = []) {
         return new Promise((resolve, reject) => {
             this.db.run(sql, params, function(err) {
@@ -89,7 +72,7 @@ class UnoStockDB {
         });
     }
 
-    // Borrar
+    // Borrar registros (DELETE)
     borrar(sql, params = []) {
         return new Promise((resolve, reject) => {
             this.db.run(sql, params, function(err) {
@@ -99,44 +82,43 @@ class UnoStockDB {
         });
     }
 
-    // Cerrar conexión
-    cerrar() {
-        this.db.close((err) => {
-            if (err) {
-                console.error('Error al cerrar la base de datos:', err.message);
-            } else {
-                console.log('Conexión cerrada.');
-            }
+    // Listar todas las tablas existentes en la base de datos
+    listarTablas() {
+        return new Promise((resolve, reject) => {
+            const query = "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';";
+            this.db.all(query, [], (err, rows) => {
+                if (err) reject(err);
+                else resolve(rows.map(row => row.name));
+            });
         });
     }
-    //Limpiar tablas
+
+    // Limpiar (vaciar) todas las tablas (sin borrar estructura)
     limpiarTablas() {
         return new Promise((resolve, reject) => {
-            // Obtener la lista de tablas del esquema
-            this.db.all(
-                "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';",
-                [],
-                (err, rows) => {
-                    if (err) {
-                        reject(err);
-                        return;
-                    }
-                    // Ejecutar DELETE para cada tabla
-                    const tablas = rows.map(row => row.name);
+            this.listarTablas()
+                .then(tablas => {
+                    if (tablas.length === 0) return resolve();
                     let pendientes = tablas.length;
-                    if (pendientes === 0) resolve();
                     tablas.forEach(tabla => {
                         this.db.run(`DELETE FROM ${tabla};`, [], (err) => {
-                            if (err) {
-                                reject(err);
-                                return;
-                            }
+                            if (err) reject(err);
                             pendientes--;
                             if (pendientes === 0) resolve();
                         });
                     });
-                }
-            );
+                })
+                .catch(reject);
+        });
+    }
+
+    // Cerrar la conexión a la base de datos
+    cerrar() {
+        return new Promise((resolve, reject) => {
+            this.db.close((err) => {
+                if (err) reject(err);
+                else resolve(true);
+            });
         });
     }
 }

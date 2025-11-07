@@ -45,13 +45,36 @@ function App(){
 }
 /*------------------------------------------------------*/
 
-DB.conectarBD("UnoStock.db").then(db => {
+DB.conectar("UnoStock.db").then(db => {
         // Aquí puedes usar el objeto db para consultas
         // Por ejemplo, crear tablas, insertar datos, etc.
+        //crearTabla("")
+(async () => { 
+ await DB.conectar();
+ // Listar tablas
+        const tablas = await DB.listarTablas();
+        console.log('Tablas en la base de datos:', tablas);
+  //******//
+          const productos = await DB.leer('SELECT * FROM productos');
+        console.log('Productos:', productos);
+        /*----------------------*/
+
+// Insertar un producto
+/*
+  const nuevoId = await DB.crear('INSERT INTO productos (nombre, cantidad) VALUES (?, ?)', ['Teclado', 10]);
+  console.log('Producto insertado con ID:', nuevoId);
+*/
+
+        /*---------------------------*/
+ await DB.cerrar();
+})();
+
+
     })
     .catch(err => {
         console.error('No se pudo conectar a la base de datos:', err);
     });
+
 
 /*------------------------------------------------------*/
 /****Manejo de productos*****/
