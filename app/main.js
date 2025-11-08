@@ -59,7 +59,7 @@ DB.conectar("UnoStock.db").then(async db => {
         console.log("creando tablas...")
         await DB.conectar();
 
-        await DB.crearTabla("CREATE TABLE IF NOT EXISTS productos (key INTEGER PRIMARY KEY AUTOINCREMENT, cod TEXT UNIQUE NOT NULL, cod_Empresa TEXT, nombre TEXT NOT NULL, precio REAL NOT NULL, iva REAL DEFAULT 0.00, descuento REAL DEFAULT 0.00, image TEXT, categoria TEXT, cant INTEGER NOT NULL DEFAULT 0, time_registro DATETIME DEFAULT CURRENT_TIMESTAMP, informacion_adicional TEXT )")
+        await DB.crearTabla("CREATE TABLE IF NOT EXISTS productos (key INTEGER PRIMARY KEY AUTOINCREMENT, cod TEXT UNIQUE NOT NULL, cod_Empresa TEXT, nombre TEXT NOT NULL, precio REAL NOT NULL, iva REAL DEFAULT 0.00, descuento REAL DEFAULT 0.00, image TEXT, categoria TEXT, cant INTEGER NOT NULL DEFAULT 0, time_registro DATETIME DEFAULT CURRENT_TIMESTAMP )")
         await DB.crearTabla("CREATE TABLE IF NOT EXISTS usuarios (key INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL, email TEXT UNIQUE, edad INTEGER )")
         await DB.crearTabla("CREATE TABLE IF NOT EXISTS proveedores (key INTEGER PRIMARY KEY AUTOINCREMENT, cod_Empresa TEXT NOT NULL UNIQUE, Nombre TEXT NOT NULL, Direccion TEXT, correo TEXT UNIQUE, Telefono TEXT )") 
         await DB.crearTabla("CREATE TABLE IF NOT EXISTS detalle_venta (id_detalle INTEGER PRIMARY KEY AUTOINCREMENT, id_venta INTEGER, id_producto INTEGER, cantidad INTEGER NOT NULL, precio_venta_usd REAL NOT NULL, FOREIGN KEY(id_venta) REFERENCES ventas(id_venta), FOREIGN KEY(id_producto) REFERENCES productos(id_producto) )") 
@@ -69,6 +69,8 @@ DB.conectar("UnoStock.db").then(async db => {
         await DB.cerrar();
       }
 
+
+
 })
 .catch(err => {
     console.error('No se pudo conectar a la base de datos:', err);
@@ -77,6 +79,21 @@ DB.conectar("UnoStock.db").then(async db => {
 
 /*------------------------------------------------------*/
 /****Manejo de productos*****/
+ipcMain.on('solicitud-data-productos', (event) => {
+
+     (async () => {
+     await DB.conectar();
+      /*------------------------------*/
+        const productos = await DB.leer('SELECT * FROM productos');
+        //await console.log('Productos:',productos);
+        mainWindow.send('productos-data',productos)
+      /*------------------------------*/
+     await DB.cerrar();
+    })();
+
+})
+
+
 ipcMain.on('Buscar-input-text-producto', (event) => {
 
   console.log('Buscar-input-text-producto')
@@ -105,11 +122,11 @@ ipcMain.on('open-Actualizar-producto', (event) => {
 
 })
 
-ipcMain.on('open-Info-producto', (event) => {
+ipcMain.on('open-Info-producto', (event,data) => {
 
 
-  console.log("abriendo Informacion producto")
-  Info_Producto()
+  console.log("abriendo Informacion producto",data)
+  Info_Producto(data)
 
 
 })

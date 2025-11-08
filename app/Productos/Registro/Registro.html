@@ -166,8 +166,8 @@ grid-template-areas:'serial   serial   serial  name    name     name'
     grid-template-rows: 32px 1fr;
     grid-column-gap: 3px;
     grid-row-gap: 3px;
-    grid-template-areas: 'Title Title Title Title'
-        'Name Addres Phone Email';
+    grid-template-areas: 'Title Title Title Title  Title'
+                         'Riff  Name  Addres Phone Email';
     margin-bottom: 10px;
     width: 100%;
     background: white;
@@ -177,17 +177,20 @@ grid-area:Title;
 text-align: center;
 color: #6a6969;
     }
+.Riff-Product-input-Supplier{
+grid-area:Riff;
+    }
 
-    .Name-Product-input-Supplier{
+.Name-Product-input-Supplier{
 grid-area:Name;
     }
 
-    .Addres-Product-input-Supplier{
+.Addres-Product-input-Supplier{
 
 grid-area:Addres;
     }
 
-    .Phone-Product-input-Supplier{
+.Phone-Product-input-Supplier{
 grid-area:Phone;
         }
 
@@ -232,7 +235,7 @@ grid-area:Phone;
 .Iva-Product {
     height: 35px;
     text-align: center;
-    width: 91%;
+    width: 80%;
 }
 /*------------------------------*/
 .Price-Product-containner {
@@ -240,7 +243,7 @@ grid-area:Phone;
 }
 
 .Price-Product {
-    width: 90%;
+    width: 80%;
 }
 /*-----------------------*/
 .Discount-Product-containner {
@@ -248,7 +251,7 @@ grid-area:Phone;
 }
 
 .Discount-Product{
-    width: 100%;
+    width: 80%;
 }
 </style>
 
@@ -267,17 +270,17 @@ grid-area:Phone;
 
                     <label class="containner-input Name-Product-input">
                             <span id="Name_procduct_span">Nombre Producto</span>
-                            <input type="text" name="Name Product" id="Name_Product"  class="Name-Product" placeholder="Name Product" required>
+                            <input type="text" name="Name Product" id="Name_Product"  class="Name-Product" placeholder="Nombre Producto" required>
                     </label>
 
                     <label class="containner-input Category-Product-input">
                             <span id="Category_Product_span">Categoria</span>
-                            <input type="text" name="Category Product" id="Category_Product"  class="Category-Product" placeholder="Category Product" required>
+                            <input type="text" name="Category Product" id="Category_Product"  class="Category-Product" placeholder="Categoria" required>
                     </label>
 
                     <label class="containner-input  Amount-Product-input">
                             <span id="Amount_Product_span">Cantidad</span>
-                            <input type="number" name="Amount Product" id="Amount_Product"  class="Amount-Product" placeholder="Amount Product" min="0" required>
+                            <input type="number" name="Amount Product" id="Amount_Product"  class="Amount-Product" placeholder="Cantidad" min="0" required>
                     </label>
                    
                     <label class="containner-input Time-Product-input">
@@ -288,7 +291,7 @@ grid-area:Phone;
                     <label class="containner-input  Iva-Product-input">
                         <span id="Iva_Product_span">Iva producto</span>
                         <span class="Iva-Product-containner" >
-                            <input type="number" name="Iva Product" id="Iva_Product"  class="input-value-product Iva-Product" placeholder="Iva Product" min="0" required>
+                            <input type="number" name="Iva Product" id="Iva_Product"  class="input-value-product Iva-Product" placeholder="Iva" min="0" required>
                             <span class="moneda" >%</span>                                        
                         </span>
                     </label>
@@ -296,7 +299,7 @@ grid-area:Phone;
                     <label class="containner-input  Price-Product-input">
                        <span id="Price_Product_span">Precio</span>                
                        <span class="Price-Product-containner" >
-                                <input type="number" name="Price Product" id="Price_Product"  class="input-value-product Price-Product" placeholder="Price Product" min="0"required>
+                                <input type="number" name="Price Product" id="Price_Product"  class="input-value-product Price-Product" placeholder="Precio" min="0"required>
                                 <span class="moneda" id="type_moneda">Bs</span>
                         </span>                     
                     </label> 
@@ -304,7 +307,8 @@ grid-area:Phone;
                     <label class="containner-input Discount-Product-input">
                         <span id="Discount_Product_price_span">Descuento</span> 
                             <span class="Discount-Product-containner" >
-                                <input type="number" name="Discount Product" id="Discount_Product_price"  class="input-value-product Discount-Product" placeholder="Discount Product" min="0" required>                                           
+                                <input type="number" name="Discount Product" id="Discount_Product_price"  class="input-value-product Discount-Product" placeholder="Descuento" min="0" required>  
+                                <span class="moneda" id="type_moneda">Bs</span>                                         
                             </span>                                                         
                     </label>
             
@@ -318,24 +322,31 @@ grid-area:Phone;
         <section  class="section-area2">
             <h2 class="Title-registre-Supplier" id="Supplier">Proveedor</h2>
 
+
+            <label class="containner-input Riff-Product-input-Supplier">
+            <span id="Riff_Supplier_span">Riff</span>
+            <input type="text" name="Riff Product" id="Riff_Product_Supplier"  class="Riff-Product-Supplier" placeholder="Riff" required>
+            </label>
+
+
             <label class="containner-input Name-Product-input-Supplier">
             <span id="Name_Supplier_span">Nombre</span>
-            <input type="text" name="Name Product" id="Name_Product_Supplier"  class="Name-Product-Supplier" placeholder="Name Product" required>
+            <input type="text" name="Name Product" id="Name_Product_Supplier"  class="Name-Product-Supplier" placeholder="Nombre" required>
             </label>
 
             <label class="containner-input Addres-Product-input-Supplier">
             <span id="Addres_Product_Supplier_span">Dirección</span>
-            <input type="text" name="Addres Supplier Product" id="Addres_Product_Supplier"  class="Addres-Product-Supplier" placeholder="Addres Product" required>
+            <input type="text" name="Addres Supplier Product" id="Addres_Product_Supplier"  class="Addres-Product-Supplier" placeholder="Dirección" required>
             </label>
 
             <label class="containner-input Email-Product-input-Supplier">
             <span id="Email_Product_Supplier_span">Correo</span>
-            <input type="email" name="Email Supplier Product" id="Email_Product_Supplier"  class="Email-Product-Supplier" placeholder="Email Product" required>
+            <input type="email" name="Email Supplier Product" id="Email_Product_Supplier"  class="Email-Product-Supplier" placeholder="Correo" required>
             </label>
 
             <label class="containner-input Phone-Product-input-Supplier">
             <span id="Phone_Product_Supplier_span">Telefono</span>
-            <input type="tel" name="Phone Supplier Product" id="Phone_Product_Supplier"  class="Phone-Product-Supplier" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="Phone Product" required>
+            <input type="tel" name="Phone Supplier Product" id="Phone_Product_Supplier"  class="Phone-Product-Supplier" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="Telefono" required>
             </label>
         </section>
         <!--------->
@@ -348,6 +359,155 @@ grid-area:Phone;
     </form>     
 </div>
 <script type="text/javascript">
+var data_new_obj;
+
+let permission_product=false;
+let permission_supplier_product=false;
+/////product
+let data_Serial_Product=document.getElementById("Serial_Product");
+let data_Name_Product=document.getElementById("Name_Product");
+let data_Price_Product=document.getElementById("Price_Product");
+let data_Iva_Product=document.getElementById("Iva_Product");
+let data_Category_Product=document.getElementById("Category_Product");
+let data_Amount_Product=document.getElementById("Amount_Product");
+let data_Time_Product=document.getElementById("Time_Product");
+    data_Time_Product.value=TimeSelect();
+let data_type_moneda=document.getElementById("type_moneda");
+let data_Discount_Product_price=document.getElementById("Discount_Product_price");
+/*supplicer*/
+let data_Riff_Product_Supplier=document.getElementById("Riff_Product_Supplier");
+let data_Name_Product_Supplier=document.getElementById("Name_Product_Supplier");
+let data_Addres_Product_Supplier=document.getElementById("Addres_Product_Supplier");
+let data_Email_Product_Supplier=document.getElementById("Email_Product_Supplier");
+let data_Phone_Product_Supplier=document.getElementById("Phone_Product_Supplier");
+let data_Price_Unitario_Product_Supplier=document.getElementById("Price_Unitario_Product_Supplier");
+let data_Majority_Price_Product_Supplier=document.getElementById("Majority_Price_Product_Supplier");
+let image_pre_wiev = document.getElementById("imagen_product");
+
+
+function open_dialog(){
+
+     api.send("Select_image_product")
+
+     console.log("open imag")
+
+} /* open select image*/
+
+
+
+/************get information image*********************/
+api.receive('get-select-image-product', (event,imagenproduct) => {
+                                             
+        image_pre_wiev.src=imagenproduct;
+
+})
+
+function TimeSelect(){
+
+        const fechaActual = new Date();
+        // Formatea la fecha y hora para el input (YYYY-MM-DDTHH:MM)
+        const year = fechaActual.getFullYear();
+        const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
+        const day = String(fechaActual.getDate()).padStart(2, '0');
+        const hours = String(fechaActual.getHours()).padStart(2, '0');
+        const minutes = String(fechaActual.getMinutes()).padStart(2, '0');
+
+        return `${year}-${month}-${day}T${hours}:${minutes}`;
+
+}
+
+function capture_new_data(){
+
+
+
+
+    if(data_Serial_Product.value!="" && data_Name_Product.value!=" " && data_Category_Product.value!=" " && data_Price_Product.value!=" " && data_Iva_Product.value!=" " && data_Discount_Product_price.value!=" " && data_Amount_Product.value!=" ") {
+
+                                permission_product=true;
+
+                        }
+                        else{
+                                        
+                                permission_product=false;
+
+                            }
+
+                /**************************************************************************/   
+
+                if(  data_Name_Product_Supplier.value!="" &&
+                        data_Addres_Product_Supplier.value!="" && 
+                        data_Email_Product_Supplier.value!="" && 
+                        data_Phone_Product_Supplier.value!=""
+                        ){ 
+                                 permission_supplier_product=true;
+
+
+                                        }
+                                        else{
+                                                        permission_supplier_product=false;
+                                                }
+
+
+        if(permission_product==true && permission_supplier_product==true){
+
+            data_new_obj={                       
+                code:data_Serial_Product.value,
+                name:(data_Name_Product.value).toLowerCase(),
+                sale_price:data_Price_Product.value,
+                iva_product:data_Iva_Product.value,
+                discount_Product_price:data_Discount_Product_price.value,
+                image:image_pre_wiev.src,
+                category:data_Category_Product.value,
+                amount:data_Amount_Product.value,
+                Registration_Time:TimeSelect(),
+                riff_Supplier:data_Riff_Product_Supplier.value,
+                name_Supplier:data_Name_Product_Supplier.value,
+                addres_Supplier:data_Addres_Product_Supplier.value,
+                email_Supplier:data_Email_Product_Supplier.value,
+                phone_Supplier:data_Phone_Product_Supplier.value
+
+            }
+            console.log('save_data_product',data_new_obj)
+            api.send('save_data_product',data_new_obj);
+
+            window.close();                   
+        }
+        else{
+
+            //alert(traslate_lenguge(clave_lenguaje,"campos en el area vacios del producto o proveedor"))
+
+            //api.send("alert_new_product",traslate_lenguge(clave_lenguaje,"campos en el area vacios del producto o proveedor"))
+        }
+
+}
+
+
+/***************BUTTON DATA*************************/
+let btn_save = document.getElementById("btn_save");
+
+btn_save.addEventListener('click', function(evt){
+
+    evt.preventDefault();
+
+    capture_new_data()                    
+  
+})
+
+let btn_exit = document.getElementById("btn_exit");
+
+btn_exit.addEventListener('click', function(evt){
+
+        setTimeout(function(){window.close() },1500)
+})
+
+
+let btn_reset = document.getElementById("btn_reset");
+
+btn_reset.addEventListener('click', function(evt){
+
+        ///api.send("reset-image-product") 
+
+})
 
 </script>
  

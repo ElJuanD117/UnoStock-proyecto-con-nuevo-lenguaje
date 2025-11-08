@@ -18,10 +18,10 @@ let Registro_Producto_Window;
 function Registro_Producto(Action){
 
                 Registro_Producto_Window = new BrowserWindow({
-                        width:630,
-                        height:440,
-                        maxWidth:630,     
-                        maxHeight:440, 
+                        width:720,
+                        height:426,
+                        maxWidth:720,   
+                        maxHeight:426, 
                         resizable:true,   
                         frame: false, 
                         webPreferences: {
@@ -48,28 +48,80 @@ console.log("Action",Action)
 }
 
 
-/*
-ipcMain.on('get_language_info_product',(event,arg) => {              
-    Info_Product_Window.send("change_language_info_product",Setting_App_control.type_language)
+ipcMain.on('Select_image_product',(event,arg) => {              
+    
+        var  options = {  
+
+                title:'Select Image Product',
+                buttonLabel:'Select Image', 
+                filters: [ { name: 'Images', extensions:  ['jpg', 'png', 'gif', "jpeg", "gif"] } ],             
+                properties:['openFile','showHiddenFiles','promptToCreate']              
+
+        }
+
+        dialog.showOpenDialog(null,options).then(result => {
+
+               
+                let Addres_image_select = result.filePaths.toString();
+
+                /***DIRECCION DE ACCESO DESDE EL SERVIDOR*/
+
+                Registro_Producto_Window.webContents.send("get-select-image-product",Addres_image_select);
+
+                /*****MOSTRAR IMAGEN SELECCIONADA*/     
+                            
+        });
+
 });
 
 
-*/
-
 ipcMain.on('save_data_product',(event,data_producto) => {  
       
-      console.log(data_producto)
-/*
+     //console.log('save_data_product',data_producto)
+
       (async () => { 
        await DB.conectar();
 
-        const nuevoId = await DB.crear('INSERT INTO productos (nombre, categoria, stock, precio_usd) VALUES ( ?, ?, ?, ?)', ["Arros","granos",20,7.00]);
-        await console.log('Producto insertado con ID:', nuevoId);
+        const nuevoId = await DB.crear('INSERT INTO productos (cod, cod_Empresa, nombre, precio, iva, descuento, image, categoria, cant, time_registro) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',[ data_producto.code, data_producto.riff_Supplier, data_producto.name, data_producto.sale_price, data_producto.iva_product, data_producto.discount_Product_price, data_producto.image, data_producto.category, data_producto.amount, data_producto.Registration_Time]);
+        //await console.log('Producto insertado con ID:', nuevoId);
      
        await DB.cerrar();
       })();
-*/
+
 })
+/*
+
+    cod, cod_Empresa, nombre, precio, iva, descuento, image, categoria, cant, time_registro
+*/
+
+/**
+
+
+data_producto.code
+data_producto.riff_Supplier
+data_producto.name
+data_producto.sale_price
+data_producto.iva_product
+data_producto.discount_Product_price
+data_producto.image
+data_producto.category
+data_producto.amount
+data_producto.Registration_Time
+
+[ data_producto.code, data_producto.riff_Supplier, data_producto.name, data_producto.sale_price, data_producto.iva_product, data_producto.discount_Product_price, data_producto.image, data_producto.category, data_producto.amount, data_producto.Registration_Time] /*------------------------*
+
+data_producto.riff_Supplier
+data_producto.name_Supplier
+data_producto.addres_Supplier
+data_producto.email_Supplier
+data_producto.phone_Supplier
+
+[data_producto.riff_Supplier, data_producto.name_Supplier, data_producto.addres_Supplier, data_producto.email_Supplier, data_producto.phone_Supplier]
+
+
+
+**/
+
 
 module.exports = {
    Registro_Producto:Registro_Producto,

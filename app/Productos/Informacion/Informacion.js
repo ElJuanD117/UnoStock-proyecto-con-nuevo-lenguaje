@@ -4,15 +4,23 @@ const fs = require('fs')
 const os_system = require('os')
 const { v4: uuidv4 } = require('uuid');
 
+/*----------------------------------------------------*/
+const UnoStockDB = require(path.join(__dirname,'../../BD/UnoStockManager.js'))
+let DB_Path = path.join(__dirname,'../../BD/UnoStock.db');
+const DB = new UnoStockDB(DB_Path);
+/*---------------------------------------------------------------*/
+
+
 let Info_Producto_Window;
+let id_product;
 function Info_Producto(id){
 
                 Info_Producto_Window = new BrowserWindow({
-                        width:630,
-                        height:400,
-                        maxWidth:630,     
-                        maxHeight:440, 
-                        resizable:false,   
+                        width:720,
+                        height:380,
+                        maxWidth:720,   
+                        maxHeight:380, 
+                        resizable:false,  
                         frame: false,
                         webPreferences: {
                             nodeIntegration: false, // is default value after Electron v5
@@ -23,8 +31,10 @@ function Info_Producto(id){
 
                 })
 
+                id_product=id
 
-                console.log(path.join(__dirname,'../../preload.js'))
+
+                console.log('Info_Producto',id)
 
                 Info_Producto_Window.loadFile("app/Productos/Informacion/Informacion.html")      
             
@@ -37,6 +47,31 @@ function Info_Producto(id){
 
       
 }
+
+/*---------------------------------------------------------------------------*/
+
+
+ipcMain.on("get-Informacion-productos",(event, arg) => {
+
+
+    (async () => { 
+       await DB.conectar();
+
+        const data_product = await DB.buscar('SELECT * FROM productos WHERE cod = ?', [id_product]);
+        await console.log('Producto select con ID:',data_product);
+        
+    await Info_Producto_Window.webContents.send("Informacion-productos",data_product)
+       await DB.cerrar();
+    })();
+    //
+
+
+})
+//
+
+
+
+/*---------------------------------------------------------------------------*/
 
 module.exports = {
    Info_Producto:Info_Producto,

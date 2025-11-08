@@ -9,11 +9,11 @@ let Actualizar_Producto_Window;
 function Actualizar_Producto(Action){
 
                 Actualizar_Producto_Window = new BrowserWindow({
-                        width:630,
-                        height:440,
-                        maxWidth:630,     
-                        maxHeight:440, 
-                        resizable:true,   
+                        width:720,
+                        height:426,
+                        maxWidth:720,   
+                        maxHeight:426, 
+                        resizable:true, 
                         frame: false,
                         webPreferences: {
                             nodeIntegration: false, // is default value after Electron v5

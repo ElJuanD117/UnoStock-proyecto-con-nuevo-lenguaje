@@ -18,10 +18,11 @@ let Html_Producto=`
 	</div>
 </section>`;
 
+
 function Productos(id){
 
 	document.getElementById(id).innerHTML=Html_Producto;
-
+/*
 	for(let i=0; i<20;i++){
 
 		document.getElementById("list_product").innerHTML+=`<article class="articlulo-product">
@@ -44,12 +45,13 @@ function Productos(id){
 				</div>
 		</article>`;
 	}
-
+*/
 	for(let a=0; a<10; a++){
 
 		document.getElementById("containner_categoria_lista").innerHTML+=`<label class="item-categoria" id="categoria" onclick="Busqueda_Categoria_producto(${a})">item</label>`;
 		
 	}
+
 
 	/*----------------------*/
 	let input_search = document.getElementById("inputSearch")
@@ -57,7 +59,6 @@ function Productos(id){
 	let btn_retiro = document.getElementById("btn-Ingreso")
 	let btn_Retiro = document.getElementById("btn-Retiro")
 	/*------------*/
-
 
                 input_search.addEventListener("search", function(e) { 
 
@@ -96,7 +97,54 @@ function Productos(id){
 
 
                 })
+
+                api.send("solicitud-data-productos")
 }
+
+api.receive("productos-data",(event, data)=>{
+
+	//console.log('productos-data',data)
+
+	    let containner_product = document.getElementById("list_product");
+
+        containner_product.innerHTML+="";
+
+        while(containner_product.hasChildNodes()){
+
+            containner_product.removeChild(containner_product.firstChild);
+                                        
+        }
+
+	data.forEach((producto, index)=>{
+
+		console.log('productos-data',producto)
+
+		containner_product.innerHTML+=`<article class="articlulo-product">
+					<div class="container-imagen-product">
+						<img class="data-image-product" id="data-producto-image" alt="imagen-data" src="${producto.image}">
+					</div>
+					<div class="container-data-producto">
+						<h3 id="Nombre_producto_data">Nombre <span id="data-npmbre">${producto.nombre}</span></h3>
+						<label id="cant_producto_data">Cant.<span>${producto.cant}</span></label>
+						<label id="categoria_producto_data">Categoria <span>${producto.categoria}</span></label>
+						<label id="precio_producto_data">
+							<span id="precio">Precio <span>${producto.precio}</span>
+							<span id="simbolo">Bs</span>
+						</label>
+					</div>
+					<div class="container-btn-action-producto">
+							<button class="btn-action-producto actualizar icon-spinner9" onclick="Actualizar_producto('${producto.cod}')">actualizar</button>
+							<button class="btn-action-producto informacion icon-notification" onclick="Info_producto('${producto.cod}')">informacion</button>
+							<button class="btn-action-producto borrar icon-bin2" onclick="Borrar_producto('${producto.cod}')">borrar</button>
+						</div>
+				</article>`;
+
+
+	})
+
+
+
+})
 
 
 /*-----------------FUNCIONES CATEGORIA------------------------------*/
@@ -108,8 +156,6 @@ function Busqueda_Categoria_producto(id){
 
 
 }
-
-
 
 /*-----------------FUNCIONES BTN PRODUCTO------------------------------*/
 

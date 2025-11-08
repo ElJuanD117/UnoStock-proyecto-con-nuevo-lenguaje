@@ -62,6 +62,15 @@ class UnoStockDB {
         });
     }
 
+    buscarTodo(sql, params = []) {
+        return new Promise((resolve, reject) => {
+            this.db.all(sql, params, (err, row) => {
+                if (err) reject(err);
+                else resolve(row);
+            });
+        });
+    }
+
     // Actualizar registros (UPDATE)
     actualizar(sql, params = []) {
         return new Promise((resolve, reject) => {

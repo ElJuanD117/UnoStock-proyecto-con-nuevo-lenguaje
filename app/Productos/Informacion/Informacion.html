@@ -162,8 +162,8 @@ grid-template-areas:'serial   serial   serial  name    name     name'
     grid-template-rows: 32px 1fr;
     grid-column-gap: 3px;
     grid-row-gap: 3px;
-    grid-template-areas: 'Title Title Title Title'
-        'Name Addres Phone Email';
+    grid-template-areas: 'Title Title Title Title  Title'
+                         'Riff  Name  Addres Phone Email';
     margin-bottom: 10px;
     width: 100%;
     background: white;
@@ -173,17 +173,20 @@ grid-area:Title;
 text-align: center;
 color: #6a6969;
     }
+.Riff-Product-input-Supplier{
+grid-area:Riff;
+    }
 
-    .Name-Product-input-Supplier{
+.Name-Product-input-Supplier{
 grid-area:Name;
     }
 
-    .Addres-Product-input-Supplier{
+.Addres-Product-input-Supplier{
 
 grid-area:Addres;
     }
 
-    .Phone-Product-input-Supplier{
+.Phone-Product-input-Supplier{
 grid-area:Phone;
         }
 
@@ -203,7 +206,7 @@ grid-area:Phone;
     justify-content: space-around;
 }
 .btn-product {
-    width: 33%;
+    width: 80%;
     height: 40px;
     color: white;
     border-radius: 5px;
@@ -223,28 +226,28 @@ grid-area:Phone;
 }
 /*-------------------------------*/
 .Iva-Product-containner {
-    /*width: 100%;*/
+    width: 100%;
 }
 .Iva-Product {
     height: 35px;
     text-align: center;
-    width: 91%;
+    width: 80%;
 }
 /*------------------------------*/
 .Price-Product-containner {
-   /* width: 100%;*/
+    width: 100%;
 }
 
 .Price-Product {
-    width: 90%;
+    width: 80%;
 }
 /*-----------------------*/
 .Discount-Product-containner {
-  /*  width: 100%;*/
+    width: 100%;
 }
 
 .Discount-Product{
-    width: 100%;
+    width: 80%;
 }
 </style>
 
@@ -313,10 +316,14 @@ grid-area:Phone;
         <!--------->
         <section  class="section-area2">
             <h2 class="Title-registre-Supplier" id="Supplier">Proveedor</h2>
+            <label class="containner-input Riff-Product-input-Supplier">
+                <span id="Riff_Supplier_span">Riff</span>
+                <label id="Riff_Product_Supplier"  class="Riff-Product-Supplier">Riff</label>
+            </label>
             <label class="containner-input Name-Product-input-Supplier">
                 <span id="Name_Supplier_span">Nombre</span>
                 <label id="Name_Product_Supplier"  class="Name-Product-Supplier">Polar</label>
-                </label>
+            </label>
             <label class="containner-input Addres-Product-input-Supplier">
                 <span id="Addres_Product_Supplier_span">Dirección</span>
                 <label  id="Addres_Product_Supplier"  class="Addres-Product-Supplier" >Caracas Venezuela</label>
@@ -332,13 +339,66 @@ grid-area:Phone;
         </section>
         <!--------->
         <section class="containner-btn">
-            <button class="btn-product save" type="submit" value="save" id="btn_save" >Guardar</button>
             <button class="btn-product exit " id="btn_exit">Salir</button>      
         <section >
     <!--------->
     </form>     
 </div>
 <script type="text/javascript">
+/////product
+let data_Serial_Product=document.getElementById("Serial_Product");
+let data_Name_Product=document.getElementById("Name_Product");
+let data_Price_Product=document.getElementById("Price_Product");
+let data_Iva_Product=document.getElementById("Iva_Product");
+let data_Category_Product=document.getElementById("Category_Product");
+let data_Amount_Product=document.getElementById("Amount_Product");
+let data_Time_Product=document.getElementById("Time_Product");
+let data_type_moneda=document.getElementById("type_moneda");
+let data_Discount_Product_price=document.getElementById("Discount_Product_price");
+/*supplicer*/
+let data_Riff_Product_Supplier=document.getElementById("Riff_Product_Supplier");
+let data_Name_Product_Supplier=document.getElementById("Name_Product_Supplier");
+let data_Addres_Product_Supplier=document.getElementById("Addres_Product_Supplier");
+let data_Email_Product_Supplier=document.getElementById("Email_Product_Supplier");
+let data_Phone_Product_Supplier=document.getElementById("Phone_Product_Supplier");
+let data_Price_Unitario_Product_Supplier=document.getElementById("Price_Unitario_Product_Supplier");
+let data_Majority_Price_Product_Supplier=document.getElementById("Majority_Price_Product_Supplier");
+let image_pre_wiev = document.getElementById("imagen_product");
+/*---------------------------------------------------------*/
+api.send("get-Informacion-productos")
 
+api.receive("Informacion-productos",(event,producto)=>{
+
+    console.log("Informacion-productos",producto)
+
+
+    document.getElementById("Serial_Product").innerHTML=producto.cod;
+    document.getElementById("Name_Product").innerHTML=producto.nombre;
+    document.getElementById("Price_Product").innerHTML=producto.precio;
+    document.getElementById("Iva_Product").innerHTML=producto.iva;
+    document.getElementById("Category_Product").innerHTML=producto.categoria;
+    document.getElementById("Amount_Product").innerHTML=producto.cant;
+    document.getElementById("Time_Product").innerHTML=producto.time_registro;
+    //document.getElementById("type_moneda").innerHTML=producto.;
+    document.getElementById("Discount_Product_price").innerHTML=producto.descuento;
+
+
+})
+
+
+
+        /*supplicer*/
+        /*
+        document.getElementById("Riff_Product_Supplier").innerHTML=producto.;
+        document.getElementById("Name_Product_Supplier").innerHTML=producto.;
+        document.getElementById("Addres_Product_Supplier").innerHTMLproducto.;
+        document.getElementById("Email_Product_Supplier").innerHTML=producto.;
+        document.getElementById("Phone_Product_Supplier").innerHTML=producto.;
+        document.getElementById("Price_Unitario_Product_Supplier".innerHTML=producto.;
+        document.getElementById("Majority_Price_Product_Supplier").innerHTML=producto.;
+        document.getElementById("imagen_product").src=producto.imagen;
+        */
+
+/*---------------------------------------------------------*/
 </script>
  
