@@ -1,119 +1,199 @@
+    * {
+        margin: 0px;
+        padding: 0;
+    }
 
-.Movimiento-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 50px) repeat(1, 1fr);
-    grid-column-gap: 8px;
-    grid-row-gap: 8px;
-    background-color: grey;
-    height: 80vh;
-   
-}
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Calibri, sans-serif;
+        background-color: #d2d6e0;
+        height: 100vh;
+    }
 
+    .Movimiento-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 50px) repeat(1, 1fr);
+        grid-column-gap: 8px;
+        grid-row-gap: 8px;
+        background-color: #d2d6e0;
+        height: 98vh;
+        padding: 4px;
+    }
 
-.sub_card_Movimiento {
-    background: white;
-    width: 92%;
-    border-radius: 11px;
-    display: grid;
-    grid-template-columns: 14fr 40px;
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    padding: 9px;
-}
-.section_Movimiento1 { grid-area: 1 / 1 / 3 / 2; }
-.section_Movimiento2 { grid-area: 1 / 2 / 3 / 3; }
-.section_Movimiento3 { grid-area: 1 / 3 / 3 / 4; }
-.section_Movimiento4 { grid-area: 1 / 4 / 3 / 5; }
-/*--------------------------------------------*/
-.section_Movimiento5 { grid-area: 3 / 1 / 5 / 5; }
+    .section_Movimiento1 {
+        grid-area: 1 / 1 / 3 / 2;
+    }
 
-/*----------------------------------------------*/
+    .section_Movimiento2 {
+        grid-area: 1 / 2 / 3 / 3;
+    }
 
-.title_sub_card { grid-area: 1 / 1 / 2 / 3;  font-size: 16px; font-weight: bold;}
-.number_estado_sub_card  { grid-area: 2 / 1 / 3 / 2; }
-.info_sub_card  { grid-area: 3 / 1 / 4 / 2; }
-.image_sub_card {
-    /* grid-area: 2 / 2 / 4 / 3; */
-    font-size: 39px;
-}
-.icon-arrow-up{ color:green; }
-.icon-arrow-down{ color:red; }
-.iconUnoStock-balanza {color: pink; } 
-.iconUnoStock-lista{ color:purple; }
-/*-------------------------------------------------*/
-/*-----------------------------------------*/
-.containner_historial_Movimientos_Recientes {
-    background: white;
-    padding: 7px;
-    /* width: 100%; */
-}
-.title_historial_Movimientos_Recientes{
-/*border-bottom: 2px solid #000;*/
-    width: 100%;
-    display: block;
-    width: 95%;
-    font-size: 25px;
-    font-weight: bold;
-}
-.container-registro-movimiento {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr) 0.5fr;
-    grid-template-rows: 31px 1fr;
-    grid-column-gap: 4px;
-    grid-row-gap: 0px;
-    background: #d7d4d4;
-    align-items: center;
-    padding: 1px;
-}
-.data-item1 { grid-area: 1 / 1 / 2 / 2; }
-.data-item2 { grid-area: 1 / 2 / 2 / 3; }
-.data-item3 { grid-area: 1 / 3 / 2 / 4; }
-.data-item4 { grid-area: 1 / 4 / 2 / 5; }
-.data-item5 { grid-area: 1 / 5 / 2 / 6; }
-.data-item6 { grid-area: 1 / 6 / 2 / 7; }
+    .section_Movimiento3 {
+        grid-area: 1 / 3 / 3 / 4;
+    }
 
-.list-data {
-    grid-area: 2 / 1 / 3 / 7;
-    width: 100%;
-    padding: 2px;
-    background: #d7d4d4;
-    overflow-y: scroll;
-    height: 46vh;
-}
-.item-list-historial-movimiento{
-    color: black;
-    font-weight: bold;
-}
+    .section_Movimiento4 {
+        grid-area: 1 / 4 / 3 / 5;
+    }
 
-.data-item {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr) 0.5fr;
-    grid-template-rows: 1fr;
-    grid-column-gap: 2px;
-    grid-row-gap: 0px;
-    margin-bottom: 2px;
-}
-.data-item>span {
-    background: white;
-    padding: 5px;
-}
-.span-action {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.btn-action-history {
-    width: 46%;
-    border-style: none;
-    background: white;
-}
-.iconUnoStock-edit{
+    /*--------------------------------------------*/
+    .section_Movimiento5 {
+        grid-area: 3 / 1 / 5 / 5;
+    }
 
-color:blue;
-}
-.iconUnoStock-delete{
-color:red;
+    /*----------------------------------------------*/
+    .sub_card_Movimiento {
+        margin-top: 10px;
+        background: white;
+        width: 94%;
+        border-radius: 11px;
+        display: grid;
+        grid-template-columns: 14fr 40px;
+        grid-template-rows: repeat(3, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        padding: 9px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
 
-}
+    .title_sub_card {
+        grid-area: 1 / 1 / 2 / 3;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .number_estado_sub_card {
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    .info_sub_card {
+        grid-area: 3 / 1 / 4 / 2;
+    }
+
+    .image_sub_card {
+        font-size: 39px;
+    }
+
+    .icon-arrow-up {
+        color: green;
+    }
+
+    .icon-arrow-down {
+        color: red;
+    }
+
+    .iconUnoStock-balanza {
+        color: rgb(8, 136, 255);
+    }
+
+    .iconUnoStock-lista {
+        color: rgb(179, 2, 179);
+    }
+
+    /*-------------------------------------------------*/
+    /*-----------------------------------------*/
+    .containner_historial_Movimientos_Recientes {
+        margin-top: 10px;
+        border-radius: 10px;
+        background: white;
+        padding: 7px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        /* width: 100%; */
+    }
+
+    .title_historial_Movimientos_Recientes {
+        /*border-bottom: 2px solid #000;*/
+        width: 100%;
+        display: block;
+        width: 95%;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .container-registro-movimiento {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr) 0.5fr;
+        grid-template-rows: 31px 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        background-color: #cacdd6;
+        border: 2px solid #c1c5de;
+        align-items: center;
+        padding: 2px;
+    }
+
+    .data-item1 {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+    .data-item2 {
+        grid-area: 1 / 2 / 2 / 3;
+    }
+
+    .data-item3 {
+        grid-area: 1 / 3 / 2 / 4;
+    }
+
+    .data-item4 {
+        grid-area: 1 / 4 / 2 / 5;
+    }
+
+    .data-item5 {
+        grid-area: 1 / 5 / 2 / 6;
+    }
+
+    .data-item6 {
+        grid-area: 1 / 6 / 2 / 7;
+    }
+
+    .list-data {
+        grid-area: 2 / 1 / 3 / 7;
+        width: 100%;
+        padding: 2px;
+        background: #d7d4d4;
+        overflow-y: scroll;
+        height: 58vh;
+    }
+
+    .item-list-historial-movimiento {
+        color: black;
+        font-weight: bold;
+    }
+
+    .data-item {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr) 0.5fr;
+        grid-template-rows: 1fr;
+        grid-column-gap: 2px;
+        grid-row-gap: 0px;
+        margin-bottom: 2px;
+    }
+
+    .data-item>span {
+        background: white;
+        padding: 5px;
+    }
+
+    .span-action {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btn-action-history {
+        width: 46%;
+        border-style: none;
+        background: white;
+    }
+
+    .iconUnoStock-edit {
+
+        color: blue;
+    }
+
+    .iconUnoStock-delete {
+        color: red;
+
+    }

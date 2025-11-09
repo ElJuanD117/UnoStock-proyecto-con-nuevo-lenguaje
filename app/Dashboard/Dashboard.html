@@ -1,407 +1,540 @@
- <link rel="stylesheet" type="text/css" href="../assets/icoMoon/style.css">
- <link rel="stylesheet" type="text/css" href="../assets/UnoStock-v1.0/style.css">
+<link rel="stylesheet" type="text/css" href="../assets/icoMoon/style.css">
+<link rel="stylesheet" type="text/css" href="../assets/UnoStock-v1.0/style.css">
 <style type="text/css">
-*{
-	margin: 0px;
-	padding: 0px;
-}
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
 
-body{
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Calibri, sans-serif;
+        background-color: #d2d6e0;
+        height: 100vh;
+    }
 
-}
+    .Dashboard {
+        background-color: #d2d6e0;
+        height: 97vh;
+        padding: 4px;
+        overflow-y: scroll;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.4fr 43vh 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 7px;
+    }
 
-.Dashboard {
-    background-color: grey;
-    height: 97vh;
-    padding: 4px;
-    overflow-y: scroll;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.4fr 43vh 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 7px;
-}
+    .containner_Tarjetas_dashboard {
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 4px;
+        grid-row-gap: 0px;
 
-.containner_Tarjetas_dashboard {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 4px;
-    grid-row-gap: 0px;
-}
+    }
 
-.Tarjeta_dashboard1 { grid-area: 1 / 1 / 2 / 2; }
-.Tarjeta_dashboard2 { grid-area: 1 / 2 / 2 / 3; }
-.Tarjeta_dashboard3 { grid-area: 1 / 3 / 2 / 4; }
-.Tarjeta_dashboard4 { grid-area: 1 / 4 / 2 / 5; }
+    .Tarjeta_dashboard1 {
+        grid-area: 1 / 1 / 2 / 2;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
 
-/*-------------------------------*/
-.container_Productos_Acciones_rapida {
-    display: grid;
-    grid-template-columns: 1fr 0.5fr;
-    grid-template-rows: 1fr;
-    grid-column-gap: 6px;
-    grid-row-gap: 0px;
-}
+    .Tarjeta_dashboard2 {
+        grid-area: 1 / 2 / 2 / 3;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
 
-.containner_Productos_con_bajo_Stock { grid-area: 1 / 1 / 2 / 2; }
-.containner_Acciones_Rapidas{ grid-area: 1 / 2 / 2 / 3; }
+    .Tarjeta_dashboard3 {
+        grid-area: 1 / 3 / 2 / 4;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
 
-/*-----------------------------------------------*/
-.containner_Movimientos_Recientes_dasboard{}
-.containner_Precios_Ajustados_dasboard{}
-.containner_Proveedores_Recientes_dasboard{}
+    .Tarjeta_dashboard4 {
+        grid-area: 1 / 4 / 2 / 5;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
 
-/*------------------sub_card_Dashboard--------------------------------*/
-.sub_card_Dashboard {
-    background: white;
-    border-radius: 11px;
-    display: grid;
-    grid-template-columns: 14fr 40px;
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    padding: 9px;
-}
-.title_sub_card { grid-area: 1 / 1 / 2 / 3;  font-size: 16px; font-weight: bold;}
-.number_estado_sub_card  { grid-area: 2 / 1 / 3 / 2; }
-.info_sub_card  { grid-area: 3 / 1 / 4 / 2; }
-.image_sub_card {font-size: 39px; }
-.iconUnoStock-Movimientos{ color:orange; }
-.iconUnoStock-advertencia{ color:red; }
-.icon-cotainer {
-    background: green;
-    border-radius: 64px;
-    width: 39px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-}
-.icon-coin-dollar {
-    color: white;
-    font-size: 37px;
-}
-.iconUnoStock-Movimientos{ color:purple; }
+    /*-------------------------------*/
+    .container_Productos_Acciones_rapida {
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: 1fr 0.5fr;
+        grid-template-rows: 1fr;
+        grid-column-gap: 6px;
+        grid-row-gap: 0px;
+    }
 
-/*----------------containner_Acciones_Rapidas-------------------------------*/
-.containner_Acciones_Rapidas {
-    background: white;
-    padding: 5px;
-}
-.title_Acciones_Rapidas{
-	border-bottom: 2px solid #000;
-    width: 100%;
-    display: block;
-    width: 95%;
-    font-size: 15px;
-    font-weight: bold;
-}
-.sub_containner_Acciones_Rapidas {
-    display: flex;
-    flex-direction: column;
-    height: 93%;
-    justify-content: space-evenly;
-    align-items: center;
-}
-.btn_Acciones_Rapidas {
-    width: 98%;
-    height: 32px;
-    border-style: none;
-    border-radius: 5px;
-}
-/*------------------------------------------------------------*/
-/*-----------historial_movimiento_dashboard-------------------*/
-.containner_Movimientos_Recientes_dasboard {
-    background: white;
-    padding: 7px;
-}
-.title_Movimientos_Recientes_dasboard{
-border-bottom: 2px solid #000;
-    width: 100%;
-    display: block;
-    font-size: 18px;
-    font-weight: bold;
-}
-.container_registro_movimiento_para_dasboard{
+    .containner_Productos_con_bajo_Stock {
+        border-radius: 10px;
+        grid-area: 1 / 1 / 2 / 2;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
 
-}
+    .containner_Acciones_Rapidas {
+        border-radius: 10px;
+        grid-area: 1 / 2 / 2 / 3;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
 
-.container_historial_movimiento_dashboard {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr);
-    grid-template-rows: 24px 1fr;
-    grid-column-gap: 4px;
-    grid-row-gap: 0px;
-    background: #d7d4d4;
-    align-items: center;
-    padding: 1px;
-    margin-bottom: 4px;
-}
+    /*-----------------------------------------------*/
+    .containner_Movimientos_Recientes_dasboard {
+        margin-top: 10px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
 
-.item_list_historial_movimiento_dasboard {
-    font-weight: bold;
-}
+    .containner_Precios_Ajustados_dasboard {
+        margin-top: 10px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .containner_Proveedores_Recientes_dasboard {
+        margin-top: 10px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    /*------------------sub_card_Dashboard--------------------------------*/
+    .sub_card_Dashboard {
+        background: white;
+        border-radius: 11px;
+        display: grid;
+        grid-template-columns: 14fr 40px;
+        grid-template-rows: repeat(3, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        padding: 9px;
+    }
+
+    .title_sub_card {
+        grid-area: 1 / 1 / 2 / 3;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .number_estado_sub_card {
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    .info_sub_card {
+        grid-area: 3 / 1 / 4 / 2;
+    }
+
+    .image_sub_card {
+        font-size: 39px;
+    }
+
+    .iconUnoStock-Movimientos {
+        color: orange;
+    }
+
+    .iconUnoStock-advertencia {
+        color: red;
+    }
+
+    .icon-cotainer {
+        background: green;
+        border-radius: 64px;
+        width: 39px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .icon-coin-dollar {
+        color: white;
+        font-size: 37px;
+    }
+
+    .iconUnoStock-Movimientos {
+        color: purple;
+    }
+
+    /*----------------containner_Acciones_Rapidas-------------------------------*/
+    .containner_Acciones_Rapidas {
+        background: white;
+        padding: 5px;
+    }
+
+    .title_Acciones_Rapidas {
+        border-bottom: 2px #9394a0 solid;
+        width: 100%;
+        display: block;
+        width: 95%;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .sub_containner_Acciones_Rapidas {
+        display: flex;
+        flex-direction: column;
+        height: 93%;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .btn_Acciones_Rapidas_Nuevo_Producto {
+        padding: 15px;
+        padding-block-end: 32px;
+        width: 98%;
+        height: 32px;
+        border-style: none;
+        background-color: #cf4f00;
+        color: #ffffff;
+        border-radius: 10px;
+    }
+
+    .btn_Acciones_Rapidas_Nuevo_Producto:hover {
+        background-color: #a84100;
+    }
+
+    .btn_Acciones_Rapidas_Nuevo_Movimiento {
+        padding: 15px;
+        padding-block-end: 32px;
+        width: 98%;
+        height: 32px;
+        border-style: none;
+        background-color: #007cb4;
+        color: #ffffff;
+        border-radius: 10px;
+    }
+
+    .btn_Acciones_Rapidas_Nuevo_Movimiento:hover {
+        background-color: #005983;
+    }
+
+    .btn_Acciones_Rapidas_Ajuste_Precio {
+        padding: 15px;
+        padding-block-end: 32px;
+        width: 98%;
+        height: 32px;
+        border-style: none;
+        background-color: #50af00;
+        color: #ffffff;
+        border-radius: 10px;
+    }
+
+    .btn_Acciones_Rapidas_Ajuste_Precio:hover {
+        background-color: #439401;
+    }
+
+    .btn_Acciones_Rapidas_Generar_Reporte {
+        padding: 15px;
+        padding-block-end: 32px;
+        width: 98%;
+        height: 32px;
+        border-style: none;
+        background-color: #9c00ff;
+        color: #ffffff;
+        border-radius: 10px;
+    }
+
+    .btn_Acciones_Rapidas_Generar_Reporte:hover {
+        background-color: #7f00ce;
+    }
+
+    /*------------------------------------------------------------*/
+    /*-----------historial_movimiento_dashboard-------------------*/
+    .containner_Movimientos_Recientes_dasboard {
+        background: white;
+        padding: 7px;
+    }
+
+    .title_Movimientos_Recientes_dasboard {
+        border-bottom: 2px #9394a0 solid;
+        width: 100%;
+        display: block;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .container_registro_movimiento_para_dasboard {}
+
+    .container_historial_movimiento_dashboard {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr);
+        grid-template-rows: 24px 1fr;
+        grid-column-gap: 4px;
+        grid-row-gap: 0px;
+        background-color: #b6b9c0;
+        border: 2px solid #afb2c7;
+        align-items: center;
+        padding: 1px;
+        margin-bottom: 4px;
+    }
+
+    .item_list_historial_movimiento_dasboard {
+        font-weight: bold;
+    }
 
 
-.list_data_historial_movimiento_dashboard {
-    overflow-y: scroll;
-    width: 100%;
-    height: 18vh;
-    background: #d7d4d4;
-    padding: 1.5px;
-}
+    .list_data_historial_movimiento_dashboard {
+        overflow-y: scroll;
+        width: 100%;
+        height: 18vh;
+        background: #d7d4d4;
+        padding: 1.5px;
+    }
 
-.data_item_historial_movimiento_dashboard{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr);
-     grid-template-rows: 29px 1fr;
-    grid-column-gap: 3px;
-    grid-row-gap: 2px;
-    padding: 0.5px;
-}
+    .data_item_historial_movimiento_dashboard {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr);
+        grid-template-rows: 29px 1fr;
+        grid-column-gap: 3px;
+        grid-row-gap: 2px;
+        padding: 0.5px;
+    }
 
-.data_item_historial_movimiento_dashboard>span{
-    padding: 2px;
-    background: white;
-}
+    .data_item_historial_movimiento_dashboard>span {
+        padding: 2px;
+        background: white;
+    }
 
-.btn_action_historial_movimiento_dashboard{
+    .btn_action_historial_movimiento_dashboard {}
 
+    .btn_action_historial_movimiento_dashboard>button {
+        border-style: none;
+        background: white;
+        cursor: pointer;
+        width: 45%;
+    }
 
-}
-.btn_action_historial_movimiento_dashboard>button {
-    border-style: none;
-    background: white;
-    cursor: pointer;
-    width: 45%;
-}
-/*------------Productos_con_bajo_Stock----------------*/
-.containner_Productos_con_bajo_Stock{
-    background: white;
-    padding: 7px;
-}
+    /*------------Productos_con_bajo_Stock----------------*/
+    .containner_Productos_con_bajo_Stock {
+        background: white;
+        padding: 7px;
+    }
 
-.Title_Productos_con_bajo_Stock {
-    border-bottom: 2px solid #000;
-    display: block;
-    width: 100%;
-    font-size: 18px;
-    font-weight: bold;
-}
+    .Title_Productos_con_bajo_Stock {
+        border-bottom: 2px #9394a0 solid;
+        display: block;
+        width: 100%;
+        font-size: 18px;
+        font-weight: bold;
+    }
 
-.container_registro_stock_para_dasboard{
+    .container_registro_stock_para_dasboard {}
 
-}
+    .container_stock_dashboard {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 29px 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        background-color: #b6b9c0;
+        border: 2px solid #afb2c7;
+        font-weight: bold;
+        align-items: center;
+    }
 
-.container_stock_dashboard {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 29px 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    background: #d9d9d9;
-    font-weight: bold;
-    align-items: center;
-}
+    .item_list_stock_dasboard {
+        font-size: 14px;
+        margin-right: 2px;
+    }
 
-.item_list_stock_dasboard {
-    font-size: 14px;
-    margin-right: 2px;
-}
+    .list_data_stock_dashboard {
+        height: 29vh;
+        overflow-y: scroll;
+        background: #d9d9d9;
+    }
 
-.list_data_stock_dashboard {
-    height: 29vh;
-    overflow-y: scroll;
-    background: #d9d9d9;
-}
+    .data_item_historial_Proveedores_dashboard {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 29px 1fr;
+        grid-column-gap: 3px;
+        grid-row-gap: 2px;
+        padding: 0.5px;
+    }
 
-.data_item_historial_Proveedores_dashboard {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 29px 1fr;
-    grid-column-gap: 3px;
-    grid-row-gap: 2px;
-    padding: 0.5px;
-}
-.data_item_historial_Proveedores_dashboard>span{
-    padding: 2px;
-    background: white;
-}
+    .data_item_historial_Proveedores_dashboard>span {
+        padding: 2px;
+        background: white;
+    }
 
-.btn_action_stock__dashboard{
-   
-}
-.btn_action_stock__dashboard>button {
-    border-style: none;
-    background: #ffffff;
-    cursor: pointer;
-    width: 45%;
-    height: 100%;
-    font-size: 18px;
-}
-/*-------------------------Precios_Ajustados_dasboard------------------------------------*/
-.containner_Precios_Ajustados_dasboard {
-    background: white;
-    padding: 7px;
-}
+    .btn_action_stock__dashboard {}
 
-.title_Precios_Ajustados_dasboard{
-    border-bottom: 2px solid #000;
-    width: 100%;
-    display: block;
-    font-size: 18px;
-    font-weight: bold;
-}
+    .btn_action_stock__dashboard>button {
+        border-style: none;
+        background: #ffffff;
+        cursor: pointer;
+        width: 45%;
+        height: 100%;
+        font-size: 18px;
+    }
 
-.container_registro_Precios_Ajustados_dasboard{
+    /*-------------------------Precios_Ajustados_dasboard------------------------------------*/
+    .containner_Precios_Ajustados_dasboard {
+        background: white;
+        padding: 7px;
+    }
 
-}
+    .title_Precios_Ajustados_dasboard {
+        border-bottom: 2px #9394a0 solid;
+        width: 100%;
+        display: block;
+        font-size: 18px;
+        font-weight: bold;
+    }
 
-.container_Precios_Ajustados_dasboard{
+    .container_registro_Precios_Ajustados_dasboard {}
 
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 29px 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    background: #d9d9d9;
-    font-weight: bold;
-    align-items: center;
+    .container_Precios_Ajustados_dasboard {
 
-}
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: 29px 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        background-color: #b6b9c0;
+        border: 2px solid #afb2c7;
+        font-weight: bold;
+        align-items: center;
 
-.item_list_Precios_Ajustados_dasboard{
+    }
 
-    font-size: 14px;
-    margin-right: 2px;
+    .item_list_Precios_Ajustados_dasboard {
 
-}
-.list_data_Precios_Ajustados_dashboard{
-  height: 18vh;
-    overflow-y: scroll;
-    background: #d9d9d9;
+        font-size: 14px;
+        margin-right: 2px;
 
-}
-.data_item_Precios_Ajustados_dashboard {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 29px 1fr;
-    grid-column-gap: 3px;
-    grid-row-gap: 2px;
-    padding: 0.5px;
-}
-.data_item_Precios_Ajustados_dashboard>span{
+    }
 
-    padding: 2px;
-    background: white;
-}
+    .list_data_Precios_Ajustados_dashboard {
+        height: 18vh;
+        overflow-y: scroll;
+        background: #d9d9d9;
 
-/**---------------------Proveedores_Recientes_dasboard---------------------------**/
+    }
 
-.containner_Proveedores_Recientes_dasboard {
-    background: white;
-    padding: 7px;
-}
+    .data_item_Precios_Ajustados_dashboard {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: 29px 1fr;
+        grid-column-gap: 3px;
+        grid-row-gap: 2px;
+        padding: 0.5px;
+    }
 
-.title_Proveedores_Recientes_dasboard{
-    border-bottom: 2px solid #000;
-    width: 100%;
-    display: block;
-    font-size: 18px;
-    font-weight: bold;
-}
+    .data_item_Precios_Ajustados_dashboard>span {
 
-.container_registro_Proveedores_Recientes_dasboard{
+        padding: 2px;
+        background: white;
+    }
 
-}
+    /**---------------------Proveedores_Recientes_dasboard---------------------------**/
 
-.container_Proveedores_Recientes_dasboard{
+    .containner_Proveedores_Recientes_dasboard {
+        background: white;
+        padding: 7px;
+    }
 
-    display: grid;
-    grid-template-columns:0.5fr  0.5fr 1fr;
-    grid-template-rows: 29px 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    background: #d9d9d9;
-    font-weight: bold;
-    align-items: center;
+    .title_Proveedores_Recientes_dasboard {
+        border-bottom: 2px #9394a0 solid;
+        width: 100%;
+        display: block;
+        font-size: 18px;
+        font-weight: bold;
+    }
 
-}
+    .container_registro_Proveedores_Recientes_dasboard {}
 
-.item_list_Proveedores_Recientes_dasboard{
+    .container_Proveedores_Recientes_dasboard {
 
-    font-size: 14px;
-    margin-right: 2px;
+        display: grid;
+        grid-template-columns: 0.5fr 0.5fr 1fr;
+        grid-template-rows: 29px 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        background-color: #b6b9c0;
+        border: 2px solid #afb2c7;
+        font-weight: bold;
+        align-items: center;
 
-}
-.list_data_Proveedores_Recientes_dashboard{
-  height: 18vh;
-    overflow-y: scroll;
-    background: #d9d9d9;
+    }
 
-}
-.data_item_Proveedores_Recientes_dashboard {
-    display: grid;
-    grid-template-columns:0.5fr  0.5fr 1fr;
-    grid-template-rows: 29px 1fr;
-    grid-column-gap: 3px;
-    grid-row-gap: 2px;
-    padding: 0.5px;
-}
-.data_item_Proveedores_Recientes_dashboard>span{
+    .item_list_Proveedores_Recientes_dasboard {
 
-      padding: 2px;
-    background: white;
-}
+        font-size: 14px;
+        margin-right: 2px;
+
+    }
+
+    .list_data_Proveedores_Recientes_dashboard {
+        height: 18vh;
+        overflow-y: scroll;
+        background: #d9d9d9;
+
+    }
+
+    .data_item_Proveedores_Recientes_dashboard {
+        display: grid;
+        grid-template-columns: 0.5fr 0.5fr 1fr;
+        grid-template-rows: 29px 1fr;
+        grid-column-gap: 3px;
+        grid-row-gap: 2px;
+        padding: 0.5px;
+    }
+
+    .data_item_Proveedores_Recientes_dashboard>span {
+
+        padding: 2px;
+        background: white;
+    }
 </style>
 <section class="Dashboard">
     <section class="containner_Tarjetas_dashboard">
-    	<div class="Tarjeta_dashboard1 sub_card_Dashboard"> 
-    		<label class="title_sub_card">Total de Productos</label>
-    		<div class="number_estado_sub_card">50</div>
-    		<span class="info_sub_card">info2 </span>
-    		<span class="image_sub_card iconUnoStock-Productos_2"></span>
-    	</div>
-    	<div class="Tarjeta_dashboard2 sub_card_Dashboard">
-    		<label class="title_sub_card">Total de Productos</label>
-    		<div class="number_estado_sub_card">50</div>
-    		<span class="info_sub_card">info2 </span>
-    		<span class="image_sub_card iconUnoStock-advertencia"></span>
-    	</div>
-    	<div class="Tarjeta_dashboard3 sub_card_Dashboard"> 
-    		<label class="title_sub_card">Total de Productos</label>
-    		<div class="number_estado_sub_card">50</div>
-    		<span class="info_sub_card">info2 </span>
-    		<span class="image_sub_card icon-cotainer"><p class="icon-coin-dollar"></p></span>
-    	</div>
-    	<div class="Tarjeta_dashboard4 sub_card_Dashboard"> 
-    		<label class="title_sub_card">Total de Productos</label>
-    		<div class="number_estado_sub_card">50</div>
-    		<span class="info_sub_card">info2 </span>
-    		<span class="image_sub_card iconUnoStock-Movimientos"></span>
-    	</div>
+        <div class="Tarjeta_dashboard1 sub_card_Dashboard">
+            <label class="title_sub_card">Total de Productos</label>
+            <div class="number_estado_sub_card">50</div>
+            <span class="info_sub_card">info2 </span>
+            <span class="image_sub_card iconUnoStock-Productos_2"></span>
+        </div>
+        <div class="Tarjeta_dashboard2 sub_card_Dashboard">
+            <label class="title_sub_card">Total de Productos</label>
+            <div class="number_estado_sub_card">50</div>
+            <span class="info_sub_card">info2 </span>
+            <span class="image_sub_card iconUnoStock-advertencia"></span>
+        </div>
+        <div class="Tarjeta_dashboard3 sub_card_Dashboard">
+            <label class="title_sub_card">Total de Productos</label>
+            <div class="number_estado_sub_card">50</div>
+            <span class="info_sub_card">info2 </span>
+            <span class="image_sub_card icon-cotainer">
+                <p class="icon-coin-dollar"></p>
+            </span>
+        </div>
+        <div class="Tarjeta_dashboard4 sub_card_Dashboard">
+            <label class="title_sub_card">Total de Productos</label>
+            <div class="number_estado_sub_card">50</div>
+            <span class="info_sub_card">info2 </span>
+            <span class="image_sub_card iconUnoStock-Movimientos"></span>
+        </div>
     </section>
     <section class="container_Productos_Acciones_rapida">
         <div class="containner_Productos_con_bajo_Stock">
             <label class="Title_Productos_con_bajo_Stock">Productos con bajo Stock</label>
             <div class="container_registro_stock_para_dasboard">
-            <div class="container_stock_dashboard">
-                <div class="item_list_stock_dasboard data_item1">Producto</div>
-                <div class="item_list_stock_dasboard data_item2">Categoria</div>
-                <div class="item_list_stock_dasboard data_item3">Stock Actual</div>
-                <div class="item_list_stock_dasboard data_item4">Estado</div>
+                <div class="container_stock_dashboard">
+                    <div class="item_list_stock_dasboard data_item1">Producto</div>
+                    <div class="item_list_stock_dasboard data_item2">Categoria</div>
+                    <div class="item_list_stock_dasboard data_item3">Stock Actual</div>
+                    <div class="item_list_stock_dasboard data_item4">Estado</div>
+                </div>
+                <div class="list_data_stock_dashboard" id="data_list_data_stock_dashboard">
+                </div>
             </div>
-            <div class="list_data_stock_dashboard" id="data_list_data_stock_dashboard">
-            </div>
-        </div>
         </div>
         <div class="containner_Acciones_Rapidas">
             <label class="title_Acciones_Rapidas">Acciones Rapidas</label>
             <div class="sub_containner_Acciones_Rapidas">
-                <button class="btn_Acciones_Rapidas" style="color:white; background:red;">+ Nuevo Producto</button> 
-                <button class="btn_Acciones_Rapidas" style="color:white; background:blue;">+ Nuevo Movimento</button> 
-                <button class="btn_Acciones_Rapidas" style="color:white; background:green;">Ajuste de Precio</button> 
-                <button class="btn_Acciones_Rapidas" style="color:white; background:purple;">Generar Reporte</button>
+                <button class="btn_Acciones_Rapidas_Nuevo_Producto">+ Nuevo Producto</button>
+                <button class="btn_Acciones_Rapidas_Nuevo_Movimiento">+ Nuevo Movimento</button>
+                <button class="btn_Acciones_Rapidas_Ajuste_Precio">Ajuste de Precio</button>
+                <button class="btn_Acciones_Rapidas_Generar_Reporte">Generar Reporte</button>
             </div>
         </div>
     </section>
@@ -442,7 +575,7 @@ border-bottom: 2px solid #000;
             <div class="container_Proveedores_Recientes_dasboard">
                 <div class="item_list_Proveedores_dasboard data_item1">Proveedor</div>
                 <div class="item_list_Proveedores_dasboard data_item2">Descripción</div>
-                <div class="item_list_Proveedores_dasboard data_item3">Contacto</div>
+                <div class="item_list_Proveedores_dasboard data_item3">Número de teléfono</div>
             </div>
             <div class="list_data_Proveedores_Recientes_dashboard" id="data_list_Proveedores_Recientes_dashboard">
             </div>
@@ -453,36 +586,36 @@ border-bottom: 2px solid #000;
 <script type="text/javascript" src="../assets/UnoStock-v1.0/selection.json"></script>
 
 <script type="text/javascript">
-    
-function Dashboard(){
-    
-    CargarDataMovimiento()
-    CargarDatastock_dashboard()
-    CargarDataPrecios_Ajustados_dashboard()
-    CargarDataProveedores_Recientes__dashboard()
-}
 
- Dashboard()
+    function Dashboard() {
 
-function CargarDatastock_dashboard(){
-    let cant = 10;
-    for(let i=0; i<cant;i++){
+        CargarDataMovimiento()
+        CargarDatastock_dashboard()
+        CargarDataPrecios_Ajustados_dashboard()
+        CargarDataProveedores_Recientes__dashboard()
+    }
 
-    document.getElementById("data_list_data_stock_dashboard").innerHTML+=`
+    Dashboard()
+
+    function CargarDatastock_dashboard() {
+        let cant = 10;
+        for (let i = 0; i < cant; i++) {
+
+            document.getElementById("data_list_data_stock_dashboard").innerHTML += `
     <div class="data_item_historial_Proveedores_dashboard">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
         </div>`
+        }
     }
-}
 
-function CargarDataMovimiento(){
-    let cant = 5;
-    for(let i=0; i<cant;i++){
+    function CargarDataMovimiento() {
+        let cant = 5;
+        for (let i = 0; i < cant; i++) {
 
-    document.getElementById("data_list_historial_movimiento_dashboard").innerHTML+=`
+            document.getElementById("data_list_historial_movimiento_dashboard").innerHTML += `
         <div class="data_item_historial_movimiento_dashboard">
             <span></span>
             <span></span>
@@ -490,13 +623,13 @@ function CargarDataMovimiento(){
             <span></span>
             <span></span>
         </div>`
+        }
     }
-}
-function CargarDataPrecios_Ajustados_dashboard(){
-    let cant = 5;
-    for(let i=0; i<cant;i++){
+    function CargarDataPrecios_Ajustados_dashboard() {
+        let cant = 5;
+        for (let i = 0; i < cant; i++) {
 
-    document.getElementById("data_list_Precios_Ajustados_dashboard").innerHTML+=`
+            document.getElementById("data_list_Precios_Ajustados_dashboard").innerHTML += `
         <div class="data_item_Precios_Ajustados_dashboard">
             <span></span>
             <span></span>
@@ -505,18 +638,18 @@ function CargarDataPrecios_Ajustados_dashboard(){
             <span></span>
             <span></span>
         </div>`
+        }
     }
-}
-function CargarDataProveedores_Recientes__dashboard(){
-    let cant = 5;
-    for(let i=0; i<cant;i++){
+    function CargarDataProveedores_Recientes__dashboard() {
+        let cant = 5;
+        for (let i = 0; i < cant; i++) {
 
-    document.getElementById("data_list_Proveedores_Recientes_dashboard").innerHTML+=`
+            document.getElementById("data_list_Proveedores_Recientes_dashboard").innerHTML += `
         <div class="data_item_Proveedores_Recientes_dashboard">
             <span></span>
             <span></span>
             <span></span>
         </div>`
+        }
     }
-}
 </script>

@@ -1,4 +1,4 @@
-let Html_Dashboard=`<section class="Dashboard">
+let Html_Dashboard = `<section class="Dashboard">
     <section class="containner_Tarjetas_dashboard">
         <div class="Tarjeta_dashboard1 sub_card_Dashboard"> 
             <label class="title_sub_card">Total de Productos</label>
@@ -42,10 +42,10 @@ let Html_Dashboard=`<section class="Dashboard">
         <div class="containner_Acciones_Rapidas">
             <label class="title_Acciones_Rapidas">Acciones Rapidas</label>
             <div class="sub_containner_Acciones_Rapidas">
-                <button class="btn_Acciones_Rapidas" style="color:white; background:red;">+ Nuevo Producto</button> 
-                <button class="btn_Acciones_Rapidas" style="color:white; background:blue;">+ Nuevo Movimento</button> 
-                <button class="btn_Acciones_Rapidas" style="color:white; background:green;">Ajuste de Precio</button> 
-                <button class="btn_Acciones_Rapidas" style="color:white; background:purple;">Generar Reporte</button>
+                <button class="btn_Acciones_Rapidas_Nuevo_Producto">+ Nuevo Producto</button>
+                <button class="btn_Acciones_Rapidas_Nuevo_Movimiento">+ Nuevo Movimento</button>
+                <button class="btn_Acciones_Rapidas_Ajuste_Precio">Ajuste de Precio</button>
+                <button class="btn_Acciones_Rapidas_Generar_Reporte">Generar Reporte</button>
             </div>
         </div>
     </section>
@@ -94,10 +94,10 @@ let Html_Dashboard=`<section class="Dashboard">
     </section>
 </section>`;
 
-function Dashboard(id){
-    
+function Dashboard(id) {
 
-    document.getElementById(id).innerHTML=Html_Dashboard;
+
+    document.getElementById(id).innerHTML = Html_Dashboard;
 
     CargarDataMovimiento()
     CargarDatastock_dashboard()
@@ -106,11 +106,11 @@ function Dashboard(id){
 }
 
 
-function CargarDatastock_dashboard(){
+function CargarDatastock_dashboard() {
     let cant = 10;
-    for(let i=0; i<cant;i++){
+    for (let i = 0; i < cant; i++) {
 
-    document.getElementById("data_list_data_stock_dashboard").innerHTML+=`
+        document.getElementById("data_list_data_stock_dashboard").innerHTML += `
     <div class="data_item_historial_Proveedores_dashboard">
             <span></span>
             <span></span>
@@ -120,11 +120,11 @@ function CargarDatastock_dashboard(){
     }
 }
 
-function CargarDataMovimiento(){
+function CargarDataMovimiento() {
     let cant = 5;
-    for(let i=0; i<cant;i++){
+    for (let i = 0; i < cant; i++) {
 
-    document.getElementById("data_list_historial_movimiento_dashboard").innerHTML+=`
+        document.getElementById("data_list_historial_movimiento_dashboard").innerHTML += `
         <div class="data_item_historial_movimiento_dashboard">
             <span></span>
             <span></span>
@@ -134,11 +134,11 @@ function CargarDataMovimiento(){
         </div>`
     }
 }
-function CargarDataPrecios_Ajustados_dashboard(){
+function CargarDataPrecios_Ajustados_dashboard() {
     let cant = 5;
-    for(let i=0; i<cant;i++){
+    for (let i = 0; i < cant; i++) {
 
-    document.getElementById("data_list_Precios_Ajustados_dashboard").innerHTML+=`
+        document.getElementById("data_list_Precios_Ajustados_dashboard").innerHTML += `
         <div class="data_item_Precios_Ajustados_dashboard">
             <span></span>
             <span></span>
@@ -149,11 +149,11 @@ function CargarDataPrecios_Ajustados_dashboard(){
         </div>`
     }
 }
-function CargarDataProveedores_Recientes__dashboard(){
+function CargarDataProveedores_Recientes__dashboard() {
     let cant = 5;
-    for(let i=0; i<cant;i++){
+    for (let i = 0; i < cant; i++) {
 
-    document.getElementById("data_list_Proveedores_Recientes_dashboard").innerHTML+=`
+        document.getElementById("data_list_Proveedores_Recientes_dashboard").innerHTML += `
         <div class="data_item_Proveedores_Recientes_dashboard">
             <span></span>
             <span></span>
