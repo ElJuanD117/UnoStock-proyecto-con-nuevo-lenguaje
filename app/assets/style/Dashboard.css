@@ -1,8 +1,19 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
 
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Calibri, sans-serif;
+    background-color: #d2d6e0;
+    height: 100vh;
+}
 
 .Dashboard {
-    background-color: grey;
-    height: 80vh;
+    background-color: #d2d6e0;
+    height: 97vh;
     padding: 4px;
     overflow-y: scroll;
     display: grid;
@@ -13,6 +24,7 @@
 }
 
 .containner_Tarjetas_dashboard {
+    margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;
@@ -20,27 +32,67 @@
     grid-row-gap: 0px;
 }
 
-.Tarjeta_dashboard1 { grid-area: 1 / 1 / 2 / 2; }
-.Tarjeta_dashboard2 { grid-area: 1 / 2 / 2 / 3; }
-.Tarjeta_dashboard3 { grid-area: 1 / 3 / 2 / 4; }
-.Tarjeta_dashboard4 { grid-area: 1 / 4 / 2 / 5; }
+.Tarjeta_dashboard1 {
+    grid-area: 1 / 1 / 2 / 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.Tarjeta_dashboard2 {
+    grid-area: 1 / 2 / 2 / 3;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.Tarjeta_dashboard3 {
+    grid-area: 1 / 3 / 2 / 4;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.Tarjeta_dashboard4 {
+    grid-area: 1 / 4 / 2 / 5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
 
 /*-------------------------------*/
 .container_Productos_Acciones_rapida {
+    margin-top: 10px;
     display: grid;
     grid-template-columns: 1fr 0.5fr;
     grid-template-rows: 1fr;
     grid-column-gap: 6px;
     grid-row-gap: 0px;
+
 }
 
-.containner_Productos_con_bajo_Stock { grid-area: 1 / 1 / 2 / 2; }
-.containner_Acciones_Rapidas{ grid-area: 1 / 2 / 2 / 3; }
+.containner_Productos_con_bajo_Stock {
+    border-radius: 10px;
+    grid-area: 1 / 1 / 2 / 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.containner_Acciones_Rapidas {
+    border-radius: 10px;
+    grid-area: 1 / 2 / 2 / 3;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
 
 /*-----------------------------------------------*/
-.containner_Movimientos_Recientes_dasboard{}
-.containner_Precios_Ajustados_dasboard{}
-.containner_Proveedores_Recientes_dasboard{}
+.containner_Movimientos_Recientes_dasboard {
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.containner_Precios_Ajustados_dasboard {
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.containner_Proveedores_Recientes_dasboard {
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
 
 /*------------------sub_card_Dashboard--------------------------------*/
 .sub_card_Dashboard {
@@ -53,12 +105,33 @@
     grid-row-gap: 0px;
     padding: 9px;
 }
-.title_sub_card { grid-area: 1 / 1 / 2 / 3;  font-size: 16px; font-weight: bold;}
-.number_estado_sub_card  { grid-area: 2 / 1 / 3 / 2; }
-.info_sub_card  { grid-area: 3 / 1 / 4 / 2; }
-.image_sub_card {font-size: 39px; }
-.iconUnoStock-Movimientos{ color:orange; }
-.iconUnoStock-advertencia{ color:red; }
+
+.title_sub_card {
+    grid-area: 1 / 1 / 2 / 3;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.number_estado_sub_card {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.info_sub_card {
+    grid-area: 3 / 1 / 4 / 2;
+}
+
+.image_sub_card {
+    font-size: 39px;
+}
+
+.iconUnoStock-Movimientos {
+    color: orange;
+}
+
+.iconUnoStock-advertencia {
+    color: red;
+}
+
 .icon-cotainer {
     background: green;
     border-radius: 64px;
@@ -67,25 +140,31 @@
     display: flex;
     justify-content: center;
 }
+
 .icon-coin-dollar {
     color: white;
     font-size: 37px;
 }
-.iconUnoStock-Movimientos{ color:purple; }
+
+.iconUnoStock-Movimientos {
+    color: purple;
+}
 
 /*----------------containner_Acciones_Rapidas-------------------------------*/
 .containner_Acciones_Rapidas {
     background: white;
     padding: 5px;
 }
-.title_Acciones_Rapidas{
-    border-bottom: 2px solid #000;
+
+.title_Acciones_Rapidas {
+    border-bottom: 2px #9394a0 solid;
     width: 100%;
     display: block;
     width: 95%;
     font-size: 15px;
     font-weight: bold;
 }
+
 .sub_containner_Acciones_Rapidas {
     display: flex;
     flex-direction: column;
@@ -93,28 +172,83 @@
     justify-content: space-evenly;
     align-items: center;
 }
-.btn_Acciones_Rapidas {
+
+.btn_Acciones_Rapidas_Nuevo_Producto {
+    padding: 15px;
+    padding-block-end: 32px;
     width: 98%;
     height: 32px;
     border-style: none;
-    border-radius: 5px;
+    background-color: #cf4f00;
+    color: #ffffff;
+    border-radius: 10px;
 }
+
+.btn_Acciones_Rapidas_Nuevo_Producto:hover {
+    background-color: #a84100;
+}
+
+.btn_Acciones_Rapidas_Nuevo_Movimiento {
+    padding: 15px;
+    padding-block-end: 32px;
+    width: 98%;
+    height: 32px;
+    border-style: none;
+    background-color: #007cb4;
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+.btn_Acciones_Rapidas_Nuevo_Movimiento:hover {
+    background-color: #005983;
+}
+
+.btn_Acciones_Rapidas_Ajuste_Precio {
+    padding: 15px;
+    padding-block-end: 32px;
+    width: 98%;
+    height: 32px;
+    border-style: none;
+    background-color: #50af00;
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+.btn_Acciones_Rapidas_Ajuste_Precio:hover {
+    background-color: #439401;
+}
+
+.btn_Acciones_Rapidas_Generar_Reporte {
+    padding: 15px;
+    padding-block-end: 32px;
+    width: 98%;
+    height: 32px;
+    border-style: none;
+    background-color: #9c00ff;
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+.btn_Acciones_Rapidas_Generar_Reporte:hover {
+    background-color: #7f00ce;
+}
+
 /*------------------------------------------------------------*/
 /*-----------historial_movimiento_dashboard-------------------*/
 .containner_Movimientos_Recientes_dasboard {
     background: white;
     padding: 7px;
 }
-.title_Movimientos_Recientes_dasboard{
-border-bottom: 2px solid #000;
+
+.title_Movimientos_Recientes_dasboard {
+    border-bottom: 2px #9394a0 solid;
     width: 100%;
     display: block;
     font-size: 18px;
     font-weight: bold;
 }
-.container_registro_movimiento_para_dasboard{
 
-}
+.container_registro_movimiento_para_dasboard {}
 
 .container_historial_movimiento_dashboard {
     display: grid;
@@ -122,7 +256,8 @@ border-bottom: 2px solid #000;
     grid-template-rows: 24px 1fr;
     grid-column-gap: 4px;
     grid-row-gap: 0px;
-    background: #d7d4d4;
+    background-color: #b6b9c0;
+    border: 2px solid #afb2c7;
     align-items: center;
     padding: 1px;
     margin-bottom: 4px;
@@ -141,47 +276,44 @@ border-bottom: 2px solid #000;
     padding: 1.5px;
 }
 
-.data_item_historial_movimiento_dashboard{
+.data_item_historial_movimiento_dashboard {
     display: grid;
     grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr);
-     grid-template-rows: 29px 1fr;
+    grid-template-rows: 29px 1fr;
     grid-column-gap: 3px;
     grid-row-gap: 2px;
     padding: 0.5px;
 }
 
-.data_item_historial_movimiento_dashboard>span{
+.data_item_historial_movimiento_dashboard>span {
     padding: 2px;
     background: white;
 }
 
-.btn_action_historial_movimiento_dashboard{
+.btn_action_historial_movimiento_dashboard {}
 
-
-}
 .btn_action_historial_movimiento_dashboard>button {
     border-style: none;
     background: white;
     cursor: pointer;
     width: 45%;
 }
+
 /*------------Productos_con_bajo_Stock----------------*/
-.containner_Productos_con_bajo_Stock{
+.containner_Productos_con_bajo_Stock {
     background: white;
     padding: 7px;
 }
 
 .Title_Productos_con_bajo_Stock {
-    border-bottom: 2px solid #000;
+    border-bottom: 2px #9394a0 solid;
     display: block;
     width: 100%;
     font-size: 18px;
     font-weight: bold;
 }
 
-.container_registro_stock_para_dasboard{
-
-}
+.container_registro_stock_para_dasboard {}
 
 .container_stock_dashboard {
     display: grid;
@@ -189,7 +321,8 @@ border-bottom: 2px solid #000;
     grid-template-rows: 29px 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    background: #d9d9d9;
+    background-color: #b6b9c0;
+    border: 2px solid #afb2c7;
     font-weight: bold;
     align-items: center;
 }
@@ -213,14 +346,14 @@ border-bottom: 2px solid #000;
     grid-row-gap: 2px;
     padding: 0.5px;
 }
-.data_item_historial_Proveedores_dashboard>span{
+
+.data_item_historial_Proveedores_dashboard>span {
     padding: 2px;
     background: white;
 }
 
-.btn_action_stock__dashboard{
-   
-}
+.btn_action_stock__dashboard {}
+
 .btn_action_stock__dashboard>button {
     border-style: none;
     background: #ffffff;
@@ -229,49 +362,51 @@ border-bottom: 2px solid #000;
     height: 100%;
     font-size: 18px;
 }
+
 /*-------------------------Precios_Ajustados_dasboard------------------------------------*/
 .containner_Precios_Ajustados_dasboard {
     background: white;
     padding: 7px;
 }
 
-.title_Precios_Ajustados_dasboard{
-    border-bottom: 2px solid #000;
+.title_Precios_Ajustados_dasboard {
+    border-bottom: 2px #9394a0 solid;
     width: 100%;
     display: block;
     font-size: 18px;
     font-weight: bold;
 }
 
-.container_registro_Precios_Ajustados_dasboard{
+.container_registro_Precios_Ajustados_dasboard {}
 
-}
-
-.container_Precios_Ajustados_dasboard{
+.container_Precios_Ajustados_dasboard {
 
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 29px 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    background: #d9d9d9;
+    background-color: #b6b9c0;
+    border: 2px solid #afb2c7;
     font-weight: bold;
     align-items: center;
 
 }
 
-.item_list_Precios_Ajustados_dasboard{
+.item_list_Precios_Ajustados_dasboard {
 
     font-size: 14px;
     margin-right: 2px;
 
 }
-.list_data_Precios_Ajustados_dashboard{
-  height: 18vh;
+
+.list_data_Precios_Ajustados_dashboard {
+    height: 18vh;
     overflow-y: scroll;
     background: #d9d9d9;
 
 }
+
 .data_item_Precios_Ajustados_dashboard {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -280,7 +415,8 @@ border-bottom: 2px solid #000;
     grid-row-gap: 2px;
     padding: 0.5px;
 }
-.data_item_Precios_Ajustados_dashboard>span{
+
+.data_item_Precios_Ajustados_dashboard>span {
 
     padding: 2px;
     background: white;
@@ -293,53 +429,55 @@ border-bottom: 2px solid #000;
     padding: 7px;
 }
 
-.title_Proveedores_Recientes_dasboard{
-    border-bottom: 2px solid #000;
+.title_Proveedores_Recientes_dasboard {
+    border-bottom: 2px #9394a0 solid;
     width: 100%;
     display: block;
     font-size: 18px;
     font-weight: bold;
 }
 
-.container_registro_Proveedores_Recientes_dasboard{
+.container_registro_Proveedores_Recientes_dasboard {}
 
-}
-
-.container_Proveedores_Recientes_dasboard{
+.container_Proveedores_Recientes_dasboard {
 
     display: grid;
-    grid-template-columns:0.5fr  0.5fr 1fr;
+    grid-template-columns: 0.5fr 0.5fr 1fr;
     grid-template-rows: 29px 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    background: #d9d9d9;
+    background-color: #b6b9c0;
+    border: 2px solid #afb2c7;
     font-weight: bold;
     align-items: center;
 
 }
 
-.item_list_Proveedores_Recientes_dasboard{
+.item_list_Proveedores_Recientes_dasboard {
 
     font-size: 14px;
     margin-right: 2px;
 
 }
-.list_data_Proveedores_Recientes_dashboard{
-  height: 18vh;
+
+.list_data_Proveedores_Recientes_dashboard {
+    height: 18vh;
     overflow-y: scroll;
     background: #d9d9d9;
 
 }
+
 .data_item_Proveedores_Recientes_dashboard {
     display: grid;
-    grid-template-columns:0.5fr  0.5fr 1fr;
+    grid-template-columns: 0.5fr 0.5fr 1fr;
     grid-template-rows: 29px 1fr;
     grid-column-gap: 3px;
     grid-row-gap: 2px;
     padding: 0.5px;
 }
-.data_item_Proveedores_Recientes_dashboard>span{
 
-      padding: 2px;
+.data_item_Proveedores_Recientes_dashboard>span {
+
+    padding: 2px;
     background: white;
 }
