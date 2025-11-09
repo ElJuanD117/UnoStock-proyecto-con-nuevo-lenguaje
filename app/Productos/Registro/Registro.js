@@ -7,7 +7,6 @@ const { v4: uuidv4 } = require('uuid');
 /*----------------------------------------------------*/
 const UnoStockDB = require(path.join(__dirname,'../../BD/UnoStockManager.js'))
 let DB_Path = path.join(__dirname,'../../BD/UnoStock.db');
-//console.log("DBdesdeRegistre ",DB_Path)
 const DB = new UnoStockDB(DB_Path);
 /*---------------------------------------------------------------*/
 
@@ -19,10 +18,10 @@ function Registro_Producto(Action){
 
                 Registro_Producto_Window = new BrowserWindow({
                         width:720,
-                        height:426,
+                        height:320,
                         maxWidth:720,   
-                        maxHeight:426, 
-                        resizable:true,   
+                        maxHeight:320, 
+                        resizable:false,   
                         frame: false, 
                         webPreferences: {
                             nodeIntegration: false, // is default value after Electron v5
@@ -35,16 +34,14 @@ function Registro_Producto(Action){
 
                 Registro_Producto_Window.loadFile("app/Productos/Registro/Registro.html")
             
-                Registro_Producto_Window.webContents.openDevTools()
+               // Registro_Producto_Window.webContents.openDevTools()
                                 
                 Registro_Producto_Window.once('ready-to-show', () => {
                                   
                     Registro_Producto_Window.show()    
                 })
 
-
-console.log("Action",Action)
-      
+   
 }
 
 
@@ -88,6 +85,7 @@ ipcMain.on('save_data_product',(event,data_producto) => {
        await DB.cerrar();
       })();
 
+     
 })
 /*
 

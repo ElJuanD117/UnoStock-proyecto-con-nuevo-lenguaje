@@ -3,10 +3,10 @@
         margin: 0px;
         padding: 0px;
     }
-.containner-registre {
+.containner-registre-update {
     background: white;
 }
-.form-register-product {
+.form-register-update-product {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -255,8 +255,8 @@ grid-area:Phone;
 }
 </style>
 
-<div class="containner-registre">
-    <div class="form-register-product">
+<div class="containner-registre-update">
+    <form class="form-register-update-product">
     <!--------->
         <h1 class="title-registre-Product" id="title_pagina">Registro de Producto</h2>
         <section  class="section-area1">
@@ -280,7 +280,7 @@ grid-area:Phone;
 
                     <label class="containner-input  Amount-Product-input">
                             <span id="Amount_Product_span">Cantidad</span>
-                            <input type="number" name="Amount Product" id="Amount_Product"  class="Amount-Product" placeholder="Cantidad" min="0" value="0"  required>
+                            <input type="number" name="Amount Product" id="Amount_Product"  class="Amount-Product" placeholder="Cantidad" min="0" required>
                     </label>
                    
                     <label class="containner-input Time-Product-input">
@@ -291,7 +291,7 @@ grid-area:Phone;
                     <label class="containner-input  Iva-Product-input">
                         <span id="Iva_Product_span">Iva producto</span>
                         <span class="Iva-Product-containner" >
-                            <input type="number" name="Iva Product" id="Iva_Product"  class="input-value-product Iva-Product" placeholder="Iva" min="0" value="0" required>
+                            <input type="number" name="Iva Product" id="Iva_Product"  class="input-value-product Iva-Product" placeholder="Iva" min="0" required>
                             <span class="moneda" >%</span>                                        
                         </span>
                     </label>
@@ -299,7 +299,7 @@ grid-area:Phone;
                     <label class="containner-input  Price-Product-input">
                        <span id="Price_Product_span">Precio</span>                
                        <span class="Price-Product-containner" >
-                                <input type="number" name="Price Product" id="Price_Product"  class="input-value-product Price-Product" placeholder="Precio" min="0" value="0" required>
+                                <input type="number" name="Price Product" id="Price_Product"  class="input-value-product Price-Product" placeholder="Precio" min="0"required>
                                 <span class="moneda" id="type_moneda">Bs</span>
                         </span>                     
                     </label> 
@@ -307,7 +307,7 @@ grid-area:Phone;
                     <label class="containner-input Discount-Product-input">
                         <span id="Discount_Product_price_span">Descuento</span> 
                             <span class="Discount-Product-containner" >
-                                <input type="number" name="Discount Product" id="Discount_Product_price"  class="input-value-product Discount-Product" placeholder="Descuento" min="0" value="0"  required>  
+                                <input type="number" name="Discount Product" id="Discount_Product_price"  class="input-value-product Discount-Product" placeholder="Descuento" min="0" required>  
                                 <span class="moneda" id="type_moneda">Bs</span>                                         
                             </span>                                                         
                     </label>
@@ -325,7 +325,7 @@ grid-area:Phone;
             <button class="btn-product exit " id="btn_exit">Salir</button>      
         <section >
     <!--------->
-    </div>     
+    </form>     
 </div>
 <script type="text/javascript">
 var data_new_obj;
@@ -354,6 +354,15 @@ let data_Price_Unitario_Product_Supplier=document.getElementById("Price_Unitario
 let data_Majority_Price_Product_Supplier=document.getElementById("Majority_Price_Product_Supplier");
 */
 let image_pre_wiev = document.getElementById("imagen_product");
+
+
+function open_dialog(){
+
+     api.send("Select_image_product")
+
+     console.log("open imag")
+
+} /* open select image*/
 
 
 
@@ -430,28 +439,13 @@ function capture_new_data(){
 
 
 /***************BUTTON DATA*************************/
-let btn_select_image = document.getElementById("Image_Product");
-
-btn_select_image.addEventListener('click', function(evt){
-
-        evt.stopPropagation();
-      api.send("Select_image_product")    
-  
-})
-
-api.receive("get-select-image-product_update", (event,imagenproduct) => {
-                                             
-        image_pre_wiev.src=imagenproduct;
-
-})
 let btn_save = document.getElementById("btn_save");
 
 btn_save.addEventListener('click', function(evt){
 
     evt.preventDefault();
 
-    capture_new_data()
-
+    capture_new_data()                    
   
 })
 

@@ -22,7 +22,7 @@ let Html_Producto=`
 function Productos(id){
 
 	document.getElementById(id).innerHTML=Html_Producto;
-/*
+		/*
 	for(let i=0; i<20;i++){
 
 		document.getElementById("list_product").innerHTML+=`<article class="articlulo-product">
@@ -55,6 +55,7 @@ function Productos(id){
 
 	/*----------------------*/
 	let input_search = document.getElementById("inputSearch")
+	input_search.focus();
 	let btn_buscar = document.getElementById("btn-buscar")
 	let btn_retiro = document.getElementById("btn-Ingreso")
 	let btn_Retiro = document.getElementById("btn-Retiro")
@@ -66,12 +67,13 @@ function Productos(id){
                                   
                         if(input_search.value==""){
                                     
-                             console.log("input limpio")
+                            console.log("input limpio")
+                            api.send("solicitud-data-productos")
 
                         }else{
 
-                             console.log("inout lleno",input_search.value)
-                             api.send('Buscar-input-text-producto',input_search.value)
+                            console.log("inout lleno",input_search.value)
+                            api.send('Buscar-input-text-producto',input_search.value)
            
                         }                                       
                 })
@@ -103,7 +105,7 @@ function Productos(id){
 
 api.receive("productos-data",(event, data)=>{
 
-	//console.log('productos-data',data)
+	console.log('productos-data',data)
 
 	    let containner_product = document.getElementById("list_product");
 

@@ -16,11 +16,11 @@ let id_product;
 function Info_Producto(id){
 
                 Info_Producto_Window = new BrowserWindow({
-                        width:720,
-                        height:380,
-                        maxWidth:720,   
-                        maxHeight:380, 
-                        resizable:false,  
+                        width:740,
+                        height:340,
+                        maxWidth:740,   
+                        maxHeight:340, 
+                          resizable:false,
                         frame: false,
                         webPreferences: {
                             nodeIntegration: false, // is default value after Electron v5
@@ -38,7 +38,7 @@ function Info_Producto(id){
 
                 Info_Producto_Window.loadFile("app/Productos/Informacion/Informacion.html")      
             
-                Info_Producto_Window.webContents.openDevTools()
+               // Info_Producto_Window.webContents.openDevTools()
                                 
                 Info_Producto_Window.once('ready-to-show', () => {
                                   
@@ -53,7 +53,6 @@ function Info_Producto(id){
 
 ipcMain.on("get-Informacion-productos",(event, arg) => {
 
-
     (async () => { 
        await DB.conectar();
 
@@ -63,8 +62,6 @@ ipcMain.on("get-Informacion-productos",(event, arg) => {
     await Info_Producto_Window.webContents.send("Informacion-productos",data_product)
        await DB.cerrar();
     })();
-    //
-
 
 })
 //

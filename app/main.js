@@ -44,13 +44,26 @@ function App(){
       });
 
 }
+/*----------------------------------------------------------*/
+fs.watch(DB_Path, (eventType, filename) => {
+
+    (async () => {
+       await DB.conectar();
+        /*------------------------------*/
+          const productos = await DB.leer('SELECT * FROM productos');
+          //await console.log('Productos:',productos);
+          await mainWindow.send('productos-data',productos)
+        /*------------------------------*/
+       await DB.cerrar();
+    })();
+
+});
 /*------------------------------------------------------*/
 /*******CREA LA BASE DE DATOS SI NO ESTA Y SE CONECTA****************/
 DB.conectar("UnoStock.db").then(async db => {
 
   console.log("Conectado a una Base de Datos")
 
-  
       /*------------------------------*/
       const tablas = await DB.listarTablas();
       await console.log('Tablas en la base de datos:',tablas.length);
@@ -88,16 +101,42 @@ ipcMain.on('solicitud-data-productos', (event) => {
         //await console.log('Productos:',productos);
         mainWindow.send('productos-data',productos)
       /*------------------------------*/
-     await DB.cerrar();
-    })();
+       await DB.cerrar();
+      })();
 
 })
 
 
-ipcMain.on('Buscar-input-text-producto', (event) => {
+ipcMain.on('Buscar-input-text-producto', (event,valor) => {
 
-  console.log('Buscar-input-text-producto')
 
+if(!isNaN(valor)){
+
+      
+       (async () => { 
+       await DB.conectar();
+
+        const product = await DB.buscar('SELECT * FROM productos WHERE cod = ?', [valor]);
+        await console.log('Producto select con cod:',product);
+        
+        await mainWindow.send("productos-data",[product])
+       await DB.cerrar();
+    })();
+
+      } 
+      else{
+
+            (async () => { 
+       await DB.conectar();
+
+        const product = await DB.buscar('SELECT * FROM productos WHERE nombre = ?', [valor]);
+        await console.log('Producto select con nombre:',product);
+        
+          await mainWindow.send("productos-data",[product])
+       await DB.cerrar();
+    })();
+
+      }
 })
 
 ipcMain.on('Buscar-categoria-producto', (event) => {
@@ -114,39 +153,43 @@ ipcMain.on('open-registro-producto', (event) => {
 })
 
 
-ipcMain.on('open-Actualizar-producto', (event) => {
+ipcMain.on('open-Actualizar-producto', (event,code) => {
 
 
-  console.log("abriendo actualizar")
-  Actualizar_Producto()
+  console.log("abriendo actualizar",code)
+  Actualizar_Producto(code)
 
 })
 
-ipcMain.on('open-Info-producto', (event,data) => {
+ipcMain.on('open-Info-producto', (event,code) => {
 
 
-  console.log("abriendo Informacion producto",data)
-  Info_Producto(data)
+  console.log("abriendo Informacion producto",code)
+  Info_Producto(code)
 
+
+})
+
+ipcMain.on('open-Borrar-producto', (event,code) => {
+
+     (async () => {
+     await DB.conectar();
+      /*------------------------------*/
+        const filasBorradas = await DB.borrar('DELETE FROM productos WHERE cod = ?', [code]);
+        await console.log('Filas borradas:', filasBorradas);
+      /*------------------------------*/
+     //await DB.cerrar();
+    })();
 
 })
 
 ipcMain.on('open-retiro-producto', (event) => {
 
 
-  console.log("abriendo retiro")
-
-
 
 })
 
-ipcMain.on('open-Borrar-producto', (event) => {
 
-
-console.log("abriendo retiro")
-
-
-})
 
 /****Manejo de productos*****/
 /*------------------------------------------------------*/
@@ -162,14 +205,14 @@ ipcMain.on("quit",(event,arg) => {
     app.quit();
 
 });
-
+/*
 ipcMain.on('reset',(event,arg) => { 
 
 	console.log("RESET APP");
     app.relaunch();
     app.quit();
 
-});
+});*/
 
 // Evento cuando la app está lista para crear ventanas
 app.on('ready', App,  Menu.setApplicationMenu(null) );

@@ -207,10 +207,10 @@ grid-area:Phone;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 .btn-product {
-    width: 33%;
+    width: 48%;
     height: 40px;
     color: white;
     border-radius: 5px;
@@ -256,7 +256,7 @@ grid-area:Phone;
 </style>
 
 <div class="containner-update">
-    <form class="form-update-product">
+    <div class="form-update-product">
     <!--------->
         <h1 class="title-registre-Product" id="title_pagina">Actualización de Producto</h2>
         <!--------->
@@ -281,7 +281,7 @@ grid-area:Phone;
 
                     <label class="containner-input  Amount-Product-input">
                             <span id="Amount_Product_span">Cantidad</span>
-                            <input type="number" name="Amount Product" id="Amount_Product"  class="Amount-Product" placeholder="Amount Product" min="0" required>
+                            <input type="number" name="Amount Product" id="Amount_Product"  class="Amount-Product" placeholder="Amount Product" min="0" value="0"  required>
                     </label>
                    
                     <label class="containner-input Time-Product-input">
@@ -292,7 +292,7 @@ grid-area:Phone;
                     <label class="containner-input  Iva-Product-input">
                         <span id="Iva_Product_span">Iva producto</span>
                         <span class="Iva-Product-containner" >
-                            <input type="number" name="Iva Product" id="Iva_Product"  class="input-value-product Iva-Product" placeholder="Iva Product" min="0" required>
+                            <input type="number" name="Iva Product" id="Iva_Product"  class="input-value-product Iva-Product" placeholder="Iva Product" min="0" value="0" required>
                             <span class="moneda" >%</span>                                        
                         </span>
                     </label>
@@ -300,7 +300,7 @@ grid-area:Phone;
                     <label class="containner-input  Price-Product-input">
                        <span id="Price_Product_span">Precio</span>                
                        <span class="Price-Product-containner" >
-                                <input type="number" name="Price Product" id="Price_Product"  class="input-value-product Price-Product" placeholder="Price Product" min="0"required>
+                                <input type="number" name="Price Product" id="Price_Product"  class="input-value-product Price-Product" placeholder="Price Product" min="0" value="0" required>
                                 <span class="moneda" id="type_moneda">Bs</span>
                         </span>                     
                     </label> 
@@ -308,17 +308,17 @@ grid-area:Phone;
                     <label class="containner-input Discount-Product-input">
                         <span id="Discount_Product_price_span">Descuento</span> 
                             <span class="Discount-Product-containner" >
-                                <input type="number" name="Discount Product" id="Discount_Product_price"  class="input-value-product Discount-Product" placeholder="Discount Product" min="0" required>                                           
+                                <input type="number" name="Discount Product" id="Discount_Product_price"  class="input-value-product Discount-Product" placeholder="Discount Product" min="0" value="0" required>                                           
                             </span>                                                         
                     </label>
             
                 </div>
                 <div class="containner-Image-Product">
                     <img src="producto.png" class="image-product" id="imagen_product">
-                    <button id="Image_Product" class="btn_send_image" onclick="open_dialog()">Seleccionar Imagen</button>   
+                    <button id="Image_Product" class="btn_send_image">Seleccionar Imagen</button>   
                 </div>
         </section>
-        <!--------->
+        <!-----
         <section  class="section-area2">
             <h2 class="Title-registre-Supplier" id="Supplier">Proveedor</h2>
 
@@ -347,14 +347,13 @@ grid-area:Phone;
             <input type="tel" name="Phone Supplier Product" id="Phone_Product_Supplier"  class="Phone-Product-Supplier" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="Telefono" required>
             </label>
         </section>
-        <!--------->
+   ------>
         <section class="containner-btn">
             <button class="btn-product save" type="submit" value="save" id="btn_save" >Guardar</button>
-            <button class="btn-product reset" type="reset" id="btn_reset">Limpiar</button>
             <button class="btn-product exit " id="btn_exit">Salir</button>      
         <section >
     <!--------->
-    </form>     
+    </div>     
 </div>
 <script type="text/javascript">
 var data_new_obj;
@@ -372,7 +371,9 @@ let data_Time_Product=document.getElementById("Time_Product");
     data_Time_Product.value=TimeSelect();
 let data_type_moneda=document.getElementById("type_moneda");
 let data_Discount_Product_price=document.getElementById("Discount_Product_price");
-/*supplicer*/
+let image_pre_wiev = document.getElementById("imagen_product");
+
+/*supplicer
 let data_Riff_Product_Supplier=document.getElementById("Riff_Product_Supplier");
 let data_Name_Product_Supplier=document.getElementById("Name_Product_Supplier");
 let data_Addres_Product_Supplier=document.getElementById("Addres_Product_Supplier");
@@ -380,25 +381,28 @@ let data_Email_Product_Supplier=document.getElementById("Email_Product_Supplier"
 let data_Phone_Product_Supplier=document.getElementById("Phone_Product_Supplier");
 let data_Price_Unitario_Product_Supplier=document.getElementById("Price_Unitario_Product_Supplier");
 let data_Majority_Price_Product_Supplier=document.getElementById("Majority_Price_Product_Supplier");
-let image_pre_wiev = document.getElementById("imagen_product");
+*/
+
+api.send("get-Informacion-producto-actualizar")
+api.receive("Informacion-producto-actualizar",(event,producto)=>{
+
+  console.log("Actualizar-productos",producto)
+
+    document.getElementById("Serial_Product").value=producto.cod;
+    document.getElementById("Name_Product").value=producto.nombre;
+    document.getElementById("Price_Product").value=producto.precio;
+    document.getElementById("Iva_Product").value=producto.iva;
+    document.getElementById("Category_Product").value=producto.categoria;
+    document.getElementById("Amount_Product").value=producto.cant;
+    document.getElementById("Time_Product").value=producto.time_registro;
+    document.getElementById("Discount_Product_price").value=producto.descuento;
+    document.getElementById("imagen_product").src=producto.image;
 
 
-function open_dialog(){
-
-     api.send("Select_image_product")
-
-     console.log("open imag")
-
-} /* open select image*/
-
+})
 
 
 /************get information image*********************/
-api.receive('get-select-image-product', (event,imagenproduct) => {
-                                             
-        image_pre_wiev.src=imagenproduct;
-
-})
 
 function TimeSelect(){
 
@@ -413,11 +417,9 @@ function TimeSelect(){
         return `${year}-${month}-${day}T${hours}:${minutes}`;
 
 }
+/*****************************************************/
 
 function capture_new_data(){
-
-
-
 
     if(data_Serial_Product.value!="" && data_Name_Product.value!=" " && data_Category_Product.value!=" " && data_Price_Product.value!=" " && data_Iva_Product.value!=" " && data_Discount_Product_price.value!=" " && data_Amount_Product.value!=" ") {
 
@@ -430,45 +432,26 @@ function capture_new_data(){
 
                             }
 
-                /**************************************************************************/   
+   /**************************************************************************/   
 
-                if(  data_Name_Product_Supplier.value!="" &&
-                        data_Addres_Product_Supplier.value!="" && 
-                        data_Email_Product_Supplier.value!="" && 
-                        data_Phone_Product_Supplier.value!=""
-                        ){ 
-                                 permission_supplier_product=true;
+        if(permission_product==true){
 
+                    data_new_obj={                       
+                        code:data_Serial_Product.value,
+                        name:(data_Name_Product.value).toLowerCase(),
+                        sale_price:data_Price_Product.value,
+                        iva_product:data_Iva_Product.value,
+                        discount_Product_price:data_Discount_Product_price.value,
+                        image:image_pre_wiev.src,
+                        category:data_Category_Product.value,
+                        amount:data_Amount_Product.value,
+                        Registration_Time:TimeSelect(),
+                    }
+                    console.log('save_update_product',data_new_obj)
+                    
+                    api.send('save_update_product',data_new_obj);
 
-                                        }
-                                        else{
-                                                        permission_supplier_product=false;
-                                                }
-
-
-        if(permission_product==true && permission_supplier_product==true){
-
-            data_new_obj={                       
-                code:data_Serial_Product.value,
-                name:(data_Name_Product.value).toLowerCase(),
-                sale_price:data_Price_Product.value,
-                iva_product:data_Iva_Product.value,
-                discount_Product_price:data_Discount_Product_price.value,
-                image:image_pre_wiev.src,
-                category:data_Category_Product.value,
-                amount:data_Amount_Product.value,
-                Registration_Time:TimeSelect(),
-                riff_Supplier:data_Riff_Product_Supplier.value,
-                name_Supplier:data_Name_Product_Supplier.value,
-                addres_Supplier:data_Addres_Product_Supplier.value,
-                email_Supplier:data_Email_Product_Supplier.value,
-                phone_Supplier:data_Phone_Product_Supplier.value
-
-            }
-            console.log('save_data_product',data_new_obj)
-            api.send('save_data_product',data_new_obj);
-
-            window.close();                   
+                    window.close();                   
         }
         else{
 
@@ -479,13 +462,30 @@ function capture_new_data(){
 
 }
 
-
 /***************BUTTON DATA*************************/
+let btn_select_image = document.getElementById("Image_Product");
+
+btn_select_image.addEventListener('click', function(evt){
+
+   evt.stopPropagation();
+         api.send('Select_image_product_update')
+                  
+  
+})
+
+api.receive("get-select-image-product_update", (event,imagenproduct) => {
+                                             
+        image_pre_wiev.src=imagenproduct;
+
+})
+/*---------------------------------------------------------------------*/
+
 let btn_save = document.getElementById("btn_save");
 
 btn_save.addEventListener('click', function(evt){
 
     evt.preventDefault();
+    
 
     capture_new_data()                    
   
@@ -498,13 +498,5 @@ btn_exit.addEventListener('click', function(evt){
         setTimeout(function(){window.close() },1500)
 })
 
-
-let btn_reset = document.getElementById("btn_reset");
-
-btn_reset.addEventListener('click', function(evt){
-
-        ///api.send("reset-image-product") 
-
-})
 </script>
  
