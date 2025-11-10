@@ -1,0 +1,124 @@
+<link rel="stylesheet" type="text/css" href="../../assets/icoMoon/style.css">
+<style type="text/css">
+	*{
+		margin: 0px;
+		padding: 0px;
+	}
+
+	h1{
+		color: grey;
+	}
+.container-categoria {
+    display: flex;
+    flex-direction: column;
+    width: 97%;
+    height: auto;
+    background: white;
+    align-items: center;
+    padding: 6px;
+    justify-content: center;
+}
+
+.containner-button {
+    width: 100%;
+    height: 27px;
+    display: grid;
+    grid-template-columns: 1fr 80px;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    padding: 3px;
+}
+	.btn-guardar-categoria{
+		background: green;
+		color:white;
+
+	}
+
+	.input-new-category{
+			text-align:center;
+	}
+
+	/*-----------------------------*/
+.list-categoria {
+    background: grey;
+    width: 98%;
+    height: 69vh;
+    padding: 4px;
+}
+
+.article-categoria {
+    background: white;
+    margin-bottom: 4.5px;
+    display: grid;
+    grid-template-columns: 1fr 46px;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    padding: 3px;
+}
+	.article-categoria>label{
+		
+	}
+	.article-categoria>button{
+		background: red;
+		color:white;
+	}
+
+	/*-----------------------------*/
+.btn-cerrar-ventana-categoria {
+    background: red;
+    width: 100%;
+    color: white;
+    padding: 6px;
+    font-size: 16px;
+    font-weight: bold;
+}
+</style>
+<body class="container-categoria">
+	<h1>Nueva Categoria</h1>
+	<div class="containner-button">
+		<input  class="input-new-category" id="input_new_category" type="text" placeholder="Agregar Nombre de Categoria">
+		<button class="btn-guardar-categoria" onclick="Guardar_categoria()">Guardar</button>
+	</div>
+	<div class="list-categoria" id="list_categoria">
+
+		
+	</div>
+	<button class="btn-cerrar-ventana-categoria" id="btn_exit">cerrar</button>
+</body>
+<script type="text/javascript" src="../../assets/icoMoon/selection.json"></script>
+<script type="text/javascript">
+
+api.send("Informacion-categoria-lista")	
+api.receive("Informacion-obtenida-categoria-lista",(event,data)=>{
+
+	document.getElementById("list_categoria").innerHTML="";
+	data.forEach((categoria,index)=>{
+
+		document.getElementById("list_categoria").innerHTML+=`<article class="article-categoria">
+			<label>${categoria.nombre}</label>
+			<button class="icon-bin2" onclick="borrarcategoria(${categoria.key})"></button>
+		</article>`;
+
+	})
+
+})
+
+
+function Guardar_categoria(){
+	let nombre = document.getElementById("input_new_category").value;
+
+	api.send("guardar-nueva-categoria",nombre)
+}
+
+function borrarcategoria(code){
+		api.send("borrar-categoria",code)
+}
+
+let btn_exit = document.getElementById("btn_exit");
+btn_exit.addEventListener('click', function(evt){
+
+        setTimeout(function(){window.close() },1500)
+})
+</script>

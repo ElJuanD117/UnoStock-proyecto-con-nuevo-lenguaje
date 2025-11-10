@@ -34,7 +34,7 @@ function Registro_Producto(Action){
 
                 Registro_Producto_Window.loadFile("app/Productos/Registro/Registro.html")
             
-               // Registro_Producto_Window.webContents.openDevTools()
+               //Registro_Producto_Window.webContents.openDevTools()
                                 
                 Registro_Producto_Window.once('ready-to-show', () => {
                                   
@@ -43,6 +43,20 @@ function Registro_Producto(Action){
 
    
 }
+
+ipcMain.on("Informacion-categoria-lista-para-nuevo-producto",(event, arg) => {
+
+    (async () => { 
+       await DB.conectar();
+
+        const categoria_list = await DB.leer('SELECT * FROM categoria');
+        await Registro_Producto_Window.webContents.send("Informacion-obtenida-categoria-lista-nuevo-producto",categoria_list)
+       await DB.cerrar();
+    })();
+
+})
+
+/*---------------------------*/
 
 
 ipcMain.on('Select_image_product',(event,arg) => {              
@@ -85,8 +99,11 @@ ipcMain.on('save_data_product',(event,data_producto) => {
        await DB.cerrar();
       })();
 
-     
+
 })
+
+
+
 /*
 
     cod, cod_Empresa, nombre, precio, iva, descuento, image, categoria, cant, time_registro

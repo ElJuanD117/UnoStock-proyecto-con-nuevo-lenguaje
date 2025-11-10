@@ -103,8 +103,9 @@ grid-template-areas:'serial   serial   serial  name    name     name'
     text-align: center;
     margin-top: 2px;
     border-style: none;
+    font-weight: bold;
+    font-size: 20px;
 }
-
 .Serial-input{
     grid-area:serial;
 }
@@ -253,6 +254,10 @@ grid-area:Phone;
 .Discount-Product{
     width: 80%;
 }
+
+.select-category {
+    width: 80%;
+}
 </style>
 
 <div class="containner-update">
@@ -275,8 +280,8 @@ grid-area:Phone;
                     </label>
 
                     <label class="containner-input Category-Product-input">
-                            <span id="Category_Product_span">Categoria</span>
-                            <input type="text" name="Category Product" id="Category_Product"  class="Category-Product" placeholder="Category Product" required>
+                        <span id="Category_Product_span">Categoria</span>
+                        <select class="select-category" id="Category_Product"></select>
                     </label>
 
                     <label class="containner-input  Amount-Product-input">
@@ -399,6 +404,19 @@ api.receive("Informacion-producto-actualizar",(event,producto)=>{
     document.getElementById("imagen_product").src=producto.image;
 
 
+})
+
+
+/*--------------------------------*/
+api.receive("Informacion-obtenida-categoria-lista-actualizar-producto",(event,data)=>{
+
+    console.log(data)
+    document.getElementById("Category_Product").innerHTML="";
+    data.forEach((categoria,index)=>{
+
+        document.getElementById("Category_Product").innerHTML+=`<option value="${categoria.nombre}">${categoria.nombre}</option>`;
+
+    })
 })
 
 

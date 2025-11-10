@@ -1,165 +1,251 @@
- <link rel="stylesheet" type="text/css" href="../assets/icoMoon/style.css">
- <link rel="stylesheet" type="text/css" href="../assets/UnoStock-v1.0/style.css">
+<link rel="stylesheet" type="text/css" href="../assets/icoMoon/style.css">
+<link rel="stylesheet" type="text/css" href="../assets/UnoStock-v1.0/style.css">
 <style type="text/css">
-.Movimiento-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 50px) repeat(1, 1fr);
-    grid-column-gap: 8px;
-    grid-row-gap: 8px;
-    background-color: grey;
-    height: 98vh;
-    padding: 4px;
-}
+    * {
+        margin: 0px;
+        padding: 0;
+    }
 
-.section_Movimiento1 { grid-area: 1 / 1 / 3 / 2; }
-.section_Movimiento2 { grid-area: 1 / 2 / 3 / 3; }
-.section_Movimiento3 { grid-area: 1 / 3 / 3 / 4; }
-.section_Movimiento4 { grid-area: 1 / 4 / 3 / 5; }
-/*--------------------------------------------*/
-.section_Movimiento5 { grid-area: 3 / 1 / 5 / 5; }
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Calibri, sans-serif;
+        background-color: #d2d6e0;
+        height: 100vh;
+    }
 
-/*----------------------------------------------*/
-.sub_card_Movimiento {
-    background: white;
-    width: 94%;
-    border-radius: 11px;
-    display: grid;
-    grid-template-columns: 14fr 40px;
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    padding: 9px;
-}
-.title_sub_card { grid-area: 1 / 1 / 2 / 3;  font-size: 16px; font-weight: bold;}
-.number_estado_sub_card  { grid-area: 2 / 1 / 3 / 2; }
-.info_sub_card  { grid-area: 3 / 1 / 4 / 2; }
-.image_sub_card {font-size: 39px; } 
+    .Movimiento-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 50px) repeat(1, 1fr);
+        grid-column-gap: 8px;
+        grid-row-gap: 8px;
+        background-color: #d2d6e0;
+        height: 98vh;
+        padding: 4px;
+    }
 
-.icon-arrow-up{ color:green; }
-.icon-arrow-down{ color:red; }
-.iconUnoStock-balanza {color: pink; } 
-.iconUnoStock-lista{ color:purple; }
-/*-------------------------------------------------*/
-/*-----------------------------------------*/
-.containner_historial_Movimientos_Recientes {
-    background: white;
-    padding: 7px;
-    /* width: 100%; */
-}
-.title_historial_Movimientos_Recientes{
-/*border-bottom: 2px solid #000;*/
-    width: 100%;
-    display: block;
-    width: 95%;
-    font-size: 25px;
-    font-weight: bold;
-}
-.container-registro-movimiento {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr) 0.5fr;
-    grid-template-rows: 31px 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    background: #d7d4d4;
-    align-items: center;
-    padding: 2px;
-}
-.data-item1 { grid-area: 1 / 1 / 2 / 2; }
-.data-item2 { grid-area: 1 / 2 / 2 / 3; }
-.data-item3 { grid-area: 1 / 3 / 2 / 4; }
-.data-item4 { grid-area: 1 / 4 / 2 / 5; }
-.data-item5 { grid-area: 1 / 5 / 2 / 6; }
-.data-item6 { grid-area: 1 / 6 / 2 / 7; }
-.list-data {
-    grid-area: 2 / 1 / 3 / 7;
-    width: 100%;
-    padding: 2px;
-    background: #d7d4d4;
-    overflow-y: scroll;
-    height: 58vh;
-}
-.item-list-historial-movimiento{
-    color: black;
-    font-weight: bold;
-}
+    .section_Movimiento1 {
+        grid-area: 1 / 1 / 3 / 2;
+    }
 
-.data-item {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr) 0.5fr;
-    grid-template-rows: 1fr;
-    grid-column-gap: 2px;
-    grid-row-gap: 0px;
-    margin-bottom: 2px;
-}
-.data-item>span {
-    background: white;
-    padding: 5px;
-}
-.span-action {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.btn-action-history {
-    width: 46%;
-    border-style: none;
-    background: white;
-}
-.iconUnoStock-edit{
+    .section_Movimiento2 {
+        grid-area: 1 / 2 / 3 / 3;
+    }
 
-color:blue;
-}
-.iconUnoStock-delete{
-color:red;
+    .section_Movimiento3 {
+        grid-area: 1 / 3 / 3 / 4;
+    }
 
-}
+    .section_Movimiento4 {
+        grid-area: 1 / 4 / 3 / 5;
+    }
+
+    /*--------------------------------------------*/
+    .section_Movimiento5 {
+        grid-area: 3 / 1 / 5 / 5;
+    }
+
+    /*----------------------------------------------*/
+    .sub_card_Movimiento {
+        margin-top: 10px;
+        background: white;
+        width: 94%;
+        border-radius: 11px;
+        display: grid;
+        grid-template-columns: 14fr 40px;
+        grid-template-rows: repeat(3, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        padding: 9px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .title_sub_card {
+        grid-area: 1 / 1 / 2 / 3;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .number_estado_sub_card {
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    .info_sub_card {
+        grid-area: 3 / 1 / 4 / 2;
+    }
+
+    .image_sub_card {
+        font-size: 39px;
+    }
+
+    .icon-arrow-up {
+        color: green;
+    }
+
+    .icon-arrow-down {
+        color: red;
+    }
+
+    .iconUnoStock-balanza {
+        color: rgb(8, 136, 255);
+    }
+
+    .iconUnoStock-lista {
+        color: rgb(179, 2, 179);
+    }
+
+    /*-------------------------------------------------*/
+    /*-----------------------------------------*/
+    .containner_historial_Movimientos_Recientes {
+        margin-top: 10px;
+        border-radius: 10px;
+        background: white;
+        padding: 7px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        /* width: 100%; */
+    }
+
+    .title_historial_Movimientos_Recientes {
+        /*border-bottom: 2px solid #000;*/
+        width: 100%;
+        display: block;
+        width: 95%;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .container-registro-movimiento {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr) 0.5fr;
+        grid-template-rows: 31px 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        background-color: #cacdd6;
+        border: 2px solid #c1c5de;
+        align-items: center;
+        padding: 2px;
+    }
+
+    .data-item1 {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+    .data-item2 {
+        grid-area: 1 / 2 / 2 / 3;
+    }
+
+    .data-item3 {
+        grid-area: 1 / 3 / 2 / 4;
+    }
+
+    .data-item4 {
+        grid-area: 1 / 4 / 2 / 5;
+    }
+
+    .data-item5 {
+        grid-area: 1 / 5 / 2 / 6;
+    }
+
+    .data-item6 {
+        grid-area: 1 / 6 / 2 / 7;
+    }
+
+    .list-data {
+        grid-area: 2 / 1 / 3 / 7;
+        width: 100%;
+        padding: 2px;
+        background: #d7d4d4;
+        overflow-y: scroll;
+        height: 58vh;
+    }
+
+    .item-list-historial-movimiento {
+        color: black;
+        font-weight: bold;
+    }
+
+    .data-item {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr) 0.5fr;
+        grid-template-rows: 1fr;
+        grid-column-gap: 2px;
+        grid-row-gap: 0px;
+        margin-bottom: 2px;
+    }
+
+    .data-item>span {
+        background: white;
+        padding: 5px;
+    }
+
+    .span-action {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btn-action-history {
+        width: 46%;
+        border-style: none;
+        background: white;
+    }
+
+    .iconUnoStock-edit {
+
+        color: blue;
+    }
+
+    .iconUnoStock-delete {
+        color: red;
+
+    }
 </style>
 <section class="Movimiento-container">
-	<section class="section_Movimiento1 sub_card_Movimiento"> 
-		<label class="title_sub_card">Total de Productos</label>
-		<div class="number_estado_sub_card">50</div>
-		<span class="info_sub_card">info2 </span>
-		<span class="image_sub_card icon-arrow-up"></span>
-	</section>
-	<section class="section_Movimiento2 sub_card_Movimiento">
-		<label class="title_sub_card">Total de Productos</label>
-		<div class="number_estado_sub_card">50</div>
-		<span class="info_sub_card">info2 </span>
-		<span class="image_sub_card icon-arrow-down"></span>
-	</section>
-	<section class="section_Movimiento3 sub_card_Movimiento"> 
-		<label class="title_sub_card">Total de Productos</label>
-		<div class="number_estado_sub_card">50</div>
-		<span class="info_sub_card">info2 </span>
-		<span class="image_sub_card iconUnoStock-balanza"></span>
-	</section>
-	<section class="section_Movimiento4 sub_card_Movimiento"> 
-		<label class="title_sub_card">Total de Productos</label>
-		<div class="number_estado_sub_card">50</div>
-		<span class="info_sub_card">info2 </span>
-		<span class="image_sub_card iconUnoStock-lista"></span>
-	</section>
-	<section class="section_Movimiento5 containner_historial_Movimientos_Recientes">
-		<label class="title_historial_Movimientos_Recientes">Historial Movimientos</label>
-		<div class="container-registro-movimiento">
-			    <div class="item-list-historial-movimiento data-item1"> Fecha de Registro</div>
-                <div class="item-list-historial-movimiento data-item2">Tipo de Tansación </div>
-                <div class="item-list-historial-movimiento data-item3">Producto </div>
-                <div class="item-list-historial-movimiento data-item4">Cantidad </div>
-                <div class="item-list-historial-movimiento data-item5">Importe </div>
-                <div class="item-list-historial-movimiento data-item6">Acciones </div>
-                <div class="list-data" id="list_data_historial_movimiento"> </div>
-		</div>
-</section>
+    <section class="section_Movimiento1 sub_card_Movimiento">
+        <label class="title_sub_card">Total de Productos</label>
+        <div class="number_estado_sub_card">50</div>
+        <span class="info_sub_card">info2 </span>
+        <span class="image_sub_card icon-arrow-up"></span>
+    </section>
+    <section class="section_Movimiento2 sub_card_Movimiento">
+        <label class="title_sub_card">Total de Productos</label>
+        <div class="number_estado_sub_card">50</div>
+        <span class="info_sub_card">info2 </span>
+        <span class="image_sub_card icon-arrow-down"></span>
+    </section>
+    <section class="section_Movimiento3 sub_card_Movimiento">
+        <label class="title_sub_card">Total de Productos</label>
+        <div class="number_estado_sub_card">50</div>
+        <span class="info_sub_card">info2 </span>
+        <span class="image_sub_card iconUnoStock-balanza"></span>
+    </section>
+    <section class="section_Movimiento4 sub_card_Movimiento">
+        <label class="title_sub_card">Total de Productos</label>
+        <div class="number_estado_sub_card">50</div>
+        <span class="info_sub_card">info2 </span>
+        <span class="image_sub_card iconUnoStock-lista"></span>
+    </section>
+    <section class="section_Movimiento5 containner_historial_Movimientos_Recientes">
+        <label class="title_historial_Movimientos_Recientes">Historial Movimientos</label>
+        <div class="container-registro-movimiento">
+            <div class="item-list-historial-movimiento data-item1"> Fecha de Registro</div>
+            <div class="item-list-historial-movimiento data-item2">Tipo de Tansación </div>
+            <div class="item-list-historial-movimiento data-item3">Producto </div>
+            <div class="item-list-historial-movimiento data-item4">Cantidad </div>
+            <div class="item-list-historial-movimiento data-item5">Importe </div>
+            <div class="item-list-historial-movimiento data-item6">Acciones </div>
+            <div class="list-data" id="list_data_historial_movimiento"> </div>
+        </div>
+    </section>
 </section>
 <script type="text/javascript" src="../assets/icoMoon/selection.json"></script>
 <script type="text/javascript" src="../assets/UnoStock-v1.0/selection.json"></script>
 <script type="text/javascript">
     let cant = 20;
-    for(let i=0; i<cant;i++){
+    for (let i = 0; i < cant; i++) {
 
-    document.getElementById("list_data_historial_movimiento").innerHTML+=`<div class="data-item">
+        document.getElementById("list_data_historial_movimiento").innerHTML += `<div class="data-item">
             <span>item</span>
             <span>item</span>
             <span>item</span>
@@ -172,4 +258,3 @@ color:red;
         </div>`
     }
 </script>
-

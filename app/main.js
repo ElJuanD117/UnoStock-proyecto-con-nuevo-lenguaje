@@ -14,6 +14,7 @@ const DB = new UnoStockDB(DB_Path);
 const {Info_Producto} = require(path.join(__dirname,'./Productos/Informacion/Informacion'));
 const {Registro_Producto} = require(path.join(__dirname,'./Productos/Registro/Registro'));
 const {Actualizar_Producto} = require(path.join(__dirname,'./Productos/Actualizar/Actualizar'));
+const {Nueva_Categoria} = require(path.join(__dirname,'./Productos/NuevaCategoria/NuevaCategoria'));
 
 /*--------------------------------------*/
 
@@ -37,7 +38,7 @@ function App(){
   
       mainWindow.loadFile(path.join(__dirname,'index.html'));
 
-    	mainWindow.webContents.openDevTools();
+      mainWindow.webContents.openDevTools();
 
       mainWindow.on('close', (event) => {
 
@@ -51,9 +52,11 @@ fs.watch(DB_Path, (eventType, filename) => {
        await DB.conectar();
         /*------------------------------*/
           const productos = await DB.leer('SELECT * FROM productos');
-          //await console.log('Productos:',productos);
           await mainWindow.send('productos-data',productos)
         /*------------------------------*/
+        const categoria_list = await DB.leer('SELECT * FROM categoria');
+        await mainWindow.send("categoria-list-data-product",categoria_list)
+
        await DB.cerrar();
     })();
 
@@ -73,6 +76,7 @@ DB.conectar("UnoStock.db").then(async db => {
         await DB.conectar();
 
         await DB.crearTabla("CREATE TABLE IF NOT EXISTS productos (key INTEGER PRIMARY KEY AUTOINCREMENT, cod TEXT UNIQUE NOT NULL, cod_Empresa TEXT, nombre TEXT NOT NULL, precio REAL NOT NULL, iva REAL DEFAULT 0.00, descuento REAL DEFAULT 0.00, image TEXT, categoria TEXT, cant INTEGER NOT NULL DEFAULT 0, time_registro DATETIME DEFAULT CURRENT_TIMESTAMP )")
+        await DB.crearTabla("CREATE TABLE IF NOT EXISTS categoria (key INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT)")
         await DB.crearTabla("CREATE TABLE IF NOT EXISTS usuarios (key INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL, email TEXT UNIQUE, edad INTEGER )")
         await DB.crearTabla("CREATE TABLE IF NOT EXISTS proveedores (key INTEGER PRIMARY KEY AUTOINCREMENT, cod_Empresa TEXT NOT NULL UNIQUE, Nombre TEXT NOT NULL, Direccion TEXT, correo TEXT UNIQUE, Telefono TEXT )") 
         await DB.crearTabla("CREATE TABLE IF NOT EXISTS detalle_venta (id_detalle INTEGER PRIMARY KEY AUTOINCREMENT, id_venta INTEGER, id_producto INTEGER, cantidad INTEGER NOT NULL, precio_venta_usd REAL NOT NULL, FOREIGN KEY(id_venta) REFERENCES ventas(id_venta), FOREIGN KEY(id_producto) REFERENCES productos(id_producto) )") 
@@ -81,8 +85,6 @@ DB.conectar("UnoStock.db").then(async db => {
 
         await DB.cerrar();
       }
-
-
 
 })
 .catch(err => {
@@ -98,11 +100,13 @@ ipcMain.on('solicitud-data-productos', (event) => {
      await DB.conectar();
       /*------------------------------*/
         const productos = await DB.leer('SELECT * FROM productos');
-        //await console.log('Productos:',productos);
-        mainWindow.send('productos-data',productos)
+        await mainWindow.send('productos-data',productos)
       /*------------------------------*/
-       await DB.cerrar();
-      })();
+        const categoria_list = await DB.leer('SELECT * FROM categoria');
+        await mainWindow.send("categoria-list-data-product",categoria_list)
+      /*------------------------------*/
+      await DB.cerrar();
+    })();
 
 })
 
@@ -110,33 +114,33 @@ ipcMain.on('solicitud-data-productos', (event) => {
 ipcMain.on('Buscar-input-text-producto', (event,valor) => {
 
 
-if(!isNaN(valor)){
+    if(!isNaN(valor)){
 
-      
-       (async () => { 
-       await DB.conectar();
+          
+           (async () => { 
+           await DB.conectar();
 
-        const product = await DB.buscar('SELECT * FROM productos WHERE cod = ?', [valor]);
-        await console.log('Producto select con cod:',product);
-        
-        await mainWindow.send("productos-data",[product])
-       await DB.cerrar();
-    })();
+            const product = await DB.buscar('SELECT * FROM productos WHERE cod = ?', [valor]);
+            await console.log('Producto select con cod:',product);
+            
+            await mainWindow.send("productos-data",[product])
+           await DB.cerrar();
+        })();
 
-      } 
-      else{
+          } 
+          else{
 
-            (async () => { 
-       await DB.conectar();
+                (async () => { 
+           await DB.conectar();
 
-        const product = await DB.buscar('SELECT * FROM productos WHERE nombre = ?', [valor]);
-        await console.log('Producto select con nombre:',product);
-        
-          await mainWindow.send("productos-data",[product])
-       await DB.cerrar();
-    })();
+            const product = await DB.buscar('SELECT * FROM productos WHERE nombre = ?', [valor]);
+            await console.log('Producto select con nombre:',product);
+            
+              await mainWindow.send("productos-data",[product])
+           await DB.cerrar();
+        })();
 
-      }
+          }
 })
 
 ipcMain.on('Buscar-categoria-producto', (event) => {
@@ -179,7 +183,13 @@ ipcMain.on('open-Borrar-producto', (event,code) => {
         await console.log('Filas borradas:', filasBorradas);
       /*------------------------------*/
      //await DB.cerrar();
-    })();
+      })();
+
+})
+
+ipcMain.on("open-add-category", (event) => {
+
+Nueva_Categoria()
 
 })
 

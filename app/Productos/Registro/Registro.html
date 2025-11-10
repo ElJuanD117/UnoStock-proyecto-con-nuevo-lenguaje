@@ -103,6 +103,8 @@ grid-template-areas:'serial   serial   serial  name    name     name'
     text-align: center;
     margin-top: 2px;
     border-style: none;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .Serial-input{
@@ -253,6 +255,10 @@ grid-area:Phone;
 .Discount-Product{
     width: 80%;
 }
+
+.select-category {
+    width: 80%;
+}
 </style>
 
 <div class="containner-registre">
@@ -274,8 +280,8 @@ grid-area:Phone;
                     </label>
 
                     <label class="containner-input Category-Product-input">
-                            <span id="Category_Product_span">Categoria</span>
-                            <input type="text" name="Category Product" id="Category_Product"  class="Category-Product" placeholder="Categoria" required>
+                        <span id="Category_Product_span">Categoria</span>
+                        <select class="select-category" id="Category_Product"></select>
                     </label>
 
                     <label class="containner-input  Amount-Product-input">
@@ -315,7 +321,7 @@ grid-area:Phone;
                 </div>
                 <div class="containner-Image-Product">
                     <img src="producto.png" class="image-product" id="imagen_product">
-                    <button id="Image_Product" class="btn_send_image" onclick="open_dialog()">Seleccionar Imagen</button>   
+                    <button id="Image_Product" class="btn_send_image">Seleccionar Imagen</button>   
                 </div>
         </section>
         <!--------->
@@ -343,6 +349,8 @@ let data_Time_Product=document.getElementById("Time_Product");
     data_Time_Product.value=TimeSelect();
 let data_type_moneda=document.getElementById("type_moneda");
 let data_Discount_Product_price=document.getElementById("Discount_Product_price");
+let image_pre_wiev = document.getElementById("imagen_product");
+
 /*supplicer*/
 /*
 let data_Riff_Product_Supplier=document.getElementById("Riff_Product_Supplier");
@@ -353,16 +361,24 @@ let data_Phone_Product_Supplier=document.getElementById("Phone_Product_Supplier"
 let data_Price_Unitario_Product_Supplier=document.getElementById("Price_Unitario_Product_Supplier");
 let data_Majority_Price_Product_Supplier=document.getElementById("Majority_Price_Product_Supplier");
 */
-let image_pre_wiev = document.getElementById("imagen_product");
 
 
+api.send("Informacion-categoria-lista-para-nuevo-producto")
+
+api.receive("Informacion-obtenida-categoria-lista-nuevo-producto",(event,data)=>{
+
+    console.log(data)
+
+    document.getElementById("Category_Product").innerHTML="";
+    data.forEach((categoria,index)=>{
+
+        document.getElementById("Category_Product").innerHTML+=`<option value="${categoria.nombre}">${categoria.nombre}</option>`;
+
+    })
+})
 
 /************get information image*********************/
-api.receive('get-select-image-product', (event,imagenproduct) => {
-                                             
-        image_pre_wiev.src=imagenproduct;
 
-})
 
 function TimeSelect(){
 
@@ -380,7 +396,7 @@ function TimeSelect(){
 
 function capture_new_data(){
 
-    if(data_Serial_Product.value!="" && data_Name_Product.value!=" " && data_Category_Product.value!=" " && data_Price_Product.value!=" " && data_Iva_Product.value!=" " && data_Discount_Product_price.value!=" " && data_Amount_Product.value!=" ") {
+    if(data_Serial_Product.value!="" && data_Name_Product.value!=" " && data_Price_Product.value!=" " && data_Iva_Product.value!=" " && data_Discount_Product_price.value!=" " && data_Amount_Product.value!=" ") {
 
                                 permission_product=true;
 
@@ -391,7 +407,7 @@ function capture_new_data(){
 
                             }
 
-   /**************************************************************************/   
+        /**************************************************************************/   
 
         if(permission_product==true){
 
@@ -420,13 +436,13 @@ function capture_new_data(){
 
 }
 
-/******************
-                riff_Supplier:data_Riff_Product_Supplier.value,
-                name_Supplier:data_Name_Product_Supplier.value,
-                addres_Supplier:data_Addres_Product_Supplier.value,
-                email_Supplier:data_Email_Product_Supplier.value,
-                phone_Supplier:data_Phone_Product_Supplier.value
-************************/
+        /******************
+        riff_Supplier:data_Riff_Product_Supplier.value,
+        name_Supplier:data_Name_Product_Supplier.value,
+        addres_Supplier:data_Addres_Product_Supplier.value,
+        email_Supplier:data_Email_Product_Supplier.value,
+        phone_Supplier:data_Phone_Product_Supplier.value
+        ************************/
 
 
 /***************BUTTON DATA*************************/
@@ -439,11 +455,12 @@ btn_select_image.addEventListener('click', function(evt){
   
 })
 
-api.receive("get-select-image-product_update", (event,imagenproduct) => {
+api.receive('get-select-image-product', (event,imagenproduct) => {
                                              
         image_pre_wiev.src=imagenproduct;
 
 })
+
 let btn_save = document.getElementById("btn_save");
 
 btn_save.addEventListener('click', function(evt){

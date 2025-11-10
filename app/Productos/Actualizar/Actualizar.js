@@ -45,14 +45,16 @@ function Actualizar_Producto(code_product){
 ipcMain.on("get-Informacion-producto-actualizar",(event, arg) => {
 
    /*------------------------------*/
-       (async () => { 
-       await DB.conectar();
+    (async () => { 
+        await DB.conectar();
 
         const data_producto = await DB.buscar('SELECT * FROM productos WHERE cod = ?', [code_producto]);
-        //await console.log('Producto select con ID:',data_producto);
-        
-    await Actualizar_Producto_Window.webContents.send("Informacion-producto-actualizar",data_producto)
-       await DB.cerrar();
+        await Actualizar_Producto_Window.webContents.send("Informacion-producto-actualizar",data_producto)
+        /*------------------------------------*/
+        const categoria_list = await DB.leer('SELECT * FROM categoria');
+        await Actualizar_Producto_Window.webContents.send("Informacion-obtenida-categoria-lista-actualizar-producto",categoria_list)  
+
+        await DB.cerrar();
     })();
    /*-------------------------------------*/
 
