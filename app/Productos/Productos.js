@@ -31,60 +31,54 @@ function Productos(id){
 	let btn_Ingreso = document.getElementById("btn-Ingreso")
 	let btn_Retiro = document.getElementById("btn-Retiro")
 	let btn_Categoria = document.getElementById("btn-Categoria")
-	/*------------*/
+	/*----------------------*/
 
-                input_search.addEventListener("search", function(e) { 
-
-                    //console.log("Funcion de text")
-                                  
-                        if(input_search.value==""){
-                                    
-                            //console.log("input limpio")
-                            api.send("solicitud-data-productos")
-
-                        }else{
-
-                            //console.log("inout lleno",input_search.value)
-                            api.send('Buscar-input-text-producto',input_search.value)
-           
-                        }                                       
-                })
-
-                btn_buscar.addEventListener('click',function(evt){
-
-                            //console.log("btn buscar Producto",input_search.value)
-                            api.send('Buscar-input-text-producto',input_search.value)
-
-
-                })
-                btn_Ingreso.addEventListener('click',function(evt){
-
-                            //console.log("btn buscar Producto")
-                            api.send("open-registro-producto")
-
-
-                }) 
-                btn_Retiro.addEventListener('click',function(evt){
-
-                            //console.log("btn buscar Producto")
-                            api.send("open-retiro-producto")
-
-
-                })
-                btn_Categoria.addEventListener('click',function(evt){
-
-                            //console.log("btn buscar Producto")
-                            api.send("open-add-category")
-
-
-                })
+    input_search.addEventListener("search", function(e) { 
+                      
+            if(input_search.value==""){
 
                 api.send("solicitud-data-productos")
+
+            }else{
+
+                api.send('Buscar-input-text-producto',input_search.value)
+
+            }                                       
+    })
+
+    btn_buscar.addEventListener('click',function(evt){
+
+                //console.log("btn buscar Producto",input_search.value)
+                api.send('Buscar-input-text-producto',input_search.value)
+
+
+    })
+    btn_Ingreso.addEventListener('click',function(evt){
+
+                //console.log("btn buscar Producto")
+                api.send("open-registro-producto")
+
+
+    }) 
+    btn_Retiro.addEventListener('click',function(evt){
+
+                //console.log("btn buscar Producto")
+                api.send("open-retiro-producto")
+
+
+    })
+    btn_Categoria.addEventListener('click',function(evt){
+
+                //console.log("btn buscar Producto")
+                api.send("open-add-category")
+
+
+    })
+
+    api.send("solicitud-data-productos")
 }
 
-api.receive("categoria-list-data-product",(event, data)=>{
-
-	console.log(data)
+api.receive("categoria-list-data-product",(event,data_categoria)=>{
 
 	    let containner_categoria = document.getElementById("containner_categoria_lista");
 
@@ -95,74 +89,81 @@ api.receive("categoria-list-data-product",(event, data)=>{
             containner_categoria.removeChild(containner_categoria.firstChild);
                                         
         }
+        if(data_categoria.length>0){
 
-	data.forEach((categoria, index)=>{
+				data_categoria.forEach((categoria, index)=>{
 
-			containner_categoria.innerHTML+=`<div class="item-categoria" id="categoria" onclick="Busqueda_Categoria_producto(${categoria.key})">
+					containner_categoria.innerHTML+=`<div class="item-categoria" id="categoria" onclick="Busqueda_Categoria_producto('${categoria.nombre}')">
 					<span style="color:yellow" class="icon-folder-open"></span>
 					${categoria.nombre}
-				</div>`;
+					</div>`;
 
+				})
 
-	})
-
-
-
-
+        }
 })
 
-api.receive("productos-data",(event, data)=>{
+api.receive("productos-data",(event, data_producto)=>{
 
-	//console.log('productos-data',data)
+    let containner_product = document.getElementById("list_product");
 
-	    let containner_product = document.getElementById("list_product");
+    containner_product.innerHTML+="";
 
-        containner_product.innerHTML+="";
+    while(containner_product.hasChildNodes()){
 
-        while(containner_product.hasChildNodes()){
+        containner_product.removeChild(containner_product.firstChild);
+                                    
+    }
+    /*-------------------------------------*/
+		if(data_producto.length>0){
 
-            containner_product.removeChild(containner_product.firstChild);
-                                        
-        }
+			data_producto.forEach((producto, index)=>{
 
-	data.forEach((producto, index)=>{
+				//console.log('productos-data',producto)
 
-		//console.log('productos-data',producto)
-
-		containner_product.innerHTML+=`<article class="articlulo-product">
-					<div class="container-imagen-product">
-						<img class="data-image-product" id="data-producto-image" alt="imagen-data" src="${producto.image}">
-					</div>
-					<div class="container-data-producto">
-						<h3 id="Nombre_producto_data">Nombre: <span id="data-npmbre">${producto.nombre}</span></h3>
-						<label id="cant_producto_data">Cant:<span>${producto.cant}</span></label>
-						<label id="categoria_producto_data">Categoria: <span>${producto.categoria}</span></label>
-						<label id="precio_producto_data">
-							<span id="precio">Precio: <span>${producto.precio}</span>
-							<span id="simbolo">Bs</span>
-						</label>
-					</div>
-					<div class="container-btn-action-producto">
-							<button class="btn-action-producto actualizar " onclick="Actualizar_producto('${producto.cod}')"><span class="icon-spinner9"></span>actualizar</button>
-							<button class="btn-action-producto informacion " onclick="Info_producto('${producto.cod}')"><span class="icon-notification"></span>informacion</button>
-							<button class="btn-action-producto borrar " onclick="Borrar_producto('${producto.cod}')"><span class="icon-bin2"></span>borrar</button>
-						</div>
-				</article>`;
-
-
-	})
+				containner_product.innerHTML+=`<article class="articlulo-product">
+							<div class="container-imagen-product">
+								<img class="data-image-product" id="data-producto-image" alt="imagen-data" src="${producto.image}">
+							</div>
+							<div class="container-data-producto">
+								<h3 id="Nombre_producto_data">Nombre: <span id="data-npmbre">${producto.nombre}</span></h3>
+								<label id="cant_producto_data">Cant:<span>${producto.cant}</span></label>
+								<label id="categoria_producto_data">Categoria: <span>${producto.categoria}</span></label>
+								<label id="precio_producto_data">
+									<span id="precio">Precio: <span>${producto.precio}</span>
+									<span id="simbolo">Bs</span>
+								</label>
+							</div>
+							<div class="container-btn-action-producto">
+									<button class="btn-action-producto actualizar " onclick="Actualizar_producto('${producto.cod}')"><span class="icon-spinner9"></span>actualizar</button>
+									<button class="btn-action-producto informacion " onclick="Info_producto('${producto.cod}')"><span class="icon-notification"></span>informacion</button>
+									<button class="btn-action-producto borrar " onclick="Borrar_producto('${producto.cod}')"><span class="icon-bin2"></span>borrar</button>
+								</div>
+						</article>`;
 
 
+			})
+
+
+		}else{
+
+
+				containner_product.innerHTML=`<h1>No Datos de Producto</h1>`;
+
+					Notificacion("No datos localizados de productos")
+
+		}
+	/*-------------------------------------*/
 
 })
 
 
 /*-----------------FUNCIONES CATEGORIA------------------------------*/
 
-function Busqueda_Categoria_producto(id){
+function Busqueda_Categoria_producto(dato){
 
- // console.log('Buscar-categoria-producto',id)
-  api.send('Buscar-categoria-producto',id)
+  console.log('Buscar-categoria-producto',dato)
+  api.send('Buscar-categoria-producto',dato)
 
 
 }
@@ -191,4 +192,14 @@ function Borrar_producto(id){
 
      api.send('open-Borrar-producto',id)
                                                      
+}
+
+
+function Notificacion(NOTIFICATION_BODY){
+
+	const NOTIFICATION_TITLE = 'Notificación'
+	const CLICK_MESSAGE = 'clicked'
+
+	new Notification(NOTIFICATION_TITLE, { body: NOTIFICATION_BODY }).onclick =
+	() => console.log(CLICK_MESSAGE)
 }

@@ -25,7 +25,7 @@
     grid-area: 3 / 1 / 6 / 6;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
+    grid-template-rows: 0.5fr;
     grid-auto-rows: auto;
     grid-column-gap: 5px;
     grid-row-gap: 5px;
@@ -77,7 +77,7 @@
 }
 .item-categoria {
     padding: 3px;
-    background: #b1b1b18a;
+    background: #827f7f8a;
     width: auto;
     color: white;
     margin-left: 20px;
@@ -85,6 +85,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
 }
 .item-categoria>span{
 	

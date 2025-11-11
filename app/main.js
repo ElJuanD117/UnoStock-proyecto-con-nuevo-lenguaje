@@ -96,16 +96,18 @@ DB.conectar("UnoStock.db").then(async db => {
 /****Manejo de productos*****/
 ipcMain.on('solicitud-data-productos', (event) => {
 
-     (async () => {
-     await DB.conectar();
-      /*------------------------------*/
-        const productos = await DB.leer('SELECT * FROM productos');
-        await mainWindow.send('productos-data',productos)
-      /*------------------------------*/
-        const categoria_list = await DB.leer('SELECT * FROM categoria');
-        await mainWindow.send("categoria-list-data-product",categoria_list)
-      /*------------------------------*/
-      await DB.cerrar();
+    (async () => {
+        await DB.conectar();
+        /*------------------------------*/
+          const productos = await DB.leer('SELECT * FROM productos')
+
+          await mainWindow.send('productos-data',productos)
+        /*------------------------------*/
+          const categoria_list = await DB.leer('SELECT * FROM categoria');
+           await mainWindow.send("categoria-list-data-product",categoria_list)
+           
+        /*------------------------------*/
+        await DB.cerrar();
     })();
 
 })
@@ -113,46 +115,57 @@ ipcMain.on('solicitud-data-productos', (event) => {
 
 ipcMain.on('Buscar-input-text-producto', (event,valor) => {
 
-
     if(!isNaN(valor)){
-
           
-           (async () => { 
-           await DB.conectar();
+            (async () => { 
+               await DB.conectar();
 
-            const product = await DB.buscar('SELECT * FROM productos WHERE cod = ?', [valor]);
-            await console.log('Producto select con cod:',product);
-            
-            await mainWindow.send("productos-data",[product])
-           await DB.cerrar();
-        })();
+                const product = await DB.buscar('SELECT * FROM productos WHERE cod = ?', [valor]);
+                await console.log('Producto select con cod:',product);
+                
+                await mainWindow.send("productos-data",[product])
+               await DB.cerrar();
+            })();
 
-          } 
-          else{
+    } 
+    else{
 
-                (async () => { 
-           await DB.conectar();
+              (async () => { 
+                 await DB.conectar();
 
-            const product = await DB.buscar('SELECT * FROM productos WHERE nombre = ?', [valor]);
-            await console.log('Producto select con nombre:',product);
-            
-              await mainWindow.send("productos-data",[product])
-           await DB.cerrar();
-        })();
+                  const product = await DB.buscar('SELECT * FROM productos WHERE nombre = ?', [valor]);
+                  await console.log('Producto select con nombre:',product);
+                  
+                    await mainWindow.send("productos-data",[product])
+                 await DB.cerrar();
+              })();
 
-          }
+    }
+
 })
 
-ipcMain.on('Buscar-categoria-producto', (event) => {
+/*SELECT * FROM productos WHERE categoria = "helado"*/
 
-  console.log('Buscar-categoria-producto')
+ipcMain.on('Buscar-categoria-producto', (event,valor) => {
+
+  console.log('Buscar-categoria-producto', typeof valor);
+
+        (async () => { 
+           await DB.conectar();
+
+            const producto = await DB.buscar('SELECT * FROM productos WHERE categoria = ?',[valor]);
+            await console.log('categoria-producto',producto);
+            
+              await mainWindow.send("productos-data",[producto])
+           await DB.cerrar();
+        })();
 
 })
 
 
 ipcMain.on('open-registro-producto', (event) => {
 
-  //console.log("abriendo registro")
+       //console.log("abriendo registro")
        Registro_Producto()
 })
 
@@ -189,7 +202,7 @@ ipcMain.on('open-Borrar-producto', (event,code) => {
 
 ipcMain.on("open-add-category", (event) => {
 
-Nueva_Categoria()
+  Nueva_Categoria()
 
 })
 
