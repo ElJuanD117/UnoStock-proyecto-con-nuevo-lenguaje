@@ -11,16 +11,16 @@
         height: 100vh;
     }
 
-.Movimiento-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 50px) repeat(1, 1fr);
-    grid-column-gap: 8px;
-    grid-row-gap: 8px;
-    background-color: #d2d6e0;
-    height: 81vh;
-    padding: 4px;
-}
+    .Movimiento-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 50px) repeat(1, 1fr);
+        grid-column-gap: 8px;
+        grid-row-gap: 8px;
+        background-color: #d2d6e0;
+        height: 98vh;
+        padding: 4px;
+    }
 
     .section_Movimiento1 {
         grid-area: 1 / 1 / 3 / 2;
@@ -148,14 +148,14 @@
         grid-area: 1 / 6 / 2 / 7;
     }
 
-.list-data {
-    grid-area: 2 / 1 / 3 / 7;
-    width: 100%;
-    padding: 2px;
-    background: #d7d4d4;
-    overflow-y: scroll;
-    height: 40vh;
-}
+    .list-data {
+        grid-area: 2 / 1 / 3 / 7;
+        width: 100%;
+        padding: 2px;
+        background: #d7d4d4;
+        overflow-y: scroll;
+        height: 58vh;
+    }
 
     .item-list-historial-movimiento {
         color: black;
