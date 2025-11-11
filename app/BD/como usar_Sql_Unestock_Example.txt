@@ -237,3 +237,9 @@ INSERT INTO productos (
     'Pantalla de 32 pulgadas, 144Hz de tasa de refresco.' -- informacion_adicional (TEXT)
 );
 
+CREATE TABLE "CajaDinero" (
+    "key"   INTEGER,
+    "estado"    TEXT,
+    "dinero"    NUMERIC,
+    PRIMARY KEY("key" AUTOINCREMENT)
+);

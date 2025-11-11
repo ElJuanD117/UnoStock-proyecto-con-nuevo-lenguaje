@@ -15,9 +15,8 @@ const {Info_Producto} = require(path.join(__dirname,'./Productos/Informacion/Inf
 const {Registro_Producto} = require(path.join(__dirname,'./Productos/Registro/Registro'));
 const {Actualizar_Producto} = require(path.join(__dirname,'./Productos/Actualizar/Actualizar'));
 const {Nueva_Categoria} = require(path.join(__dirname,'./Productos/NuevaCategoria/NuevaCategoria'));
-
 /*--------------------------------------*/
-
+const {caja_control} = require(path.join(__dirname,'./caja_control/caja_control'));
 
 let  mainWindow;
 
@@ -38,11 +37,20 @@ function App(){
   
       mainWindow.loadFile(path.join(__dirname,'index.html'));
 
-      mainWindow.webContents.openDevTools();
+    //mainWindow.webContents.openDevTools();
 
-      mainWindow.on('close', (event) => {
 
-      });
+caja_control(mainWindow)
+
+
+mainWindow.on('close', () => {
+
+  console.log("cierre de App")
+   
+     caja_control(mainWindow)
+  
+});
+
 
 }
 /*----------------------------------------------------------*/
@@ -50,14 +58,14 @@ fs.watch(DB_Path, (eventType, filename) => {
 
     (async () => {
        await DB.conectar();
-        /*------------------------------*/
-          const productos = await DB.leer('SELECT * FROM productos');
-          await mainWindow.send('productos-data',productos)
-        /*------------------------------*/
-        const categoria_list = await DB.leer('SELECT * FROM categoria');
-        await mainWindow.send("categoria-list-data-product",categoria_list)
+            /*------------------------------*/
+              const productos = await DB.leer('SELECT * FROM productos');
+              await mainWindow.send('productos-data',productos)
+            /*------------------------------*/
+            const categoria_list = await DB.leer('SELECT * FROM categoria');
+            await mainWindow.send("categoria-list-data-product",categoria_list)
 
-       await DB.cerrar();
+        await DB.cerrar();
     })();
 
 });
@@ -77,12 +85,12 @@ DB.conectar("UnoStock.db").then(async db => {
 
         await DB.crearTabla("CREATE TABLE IF NOT EXISTS productos (key INTEGER PRIMARY KEY AUTOINCREMENT, cod TEXT UNIQUE NOT NULL, cod_Empresa TEXT, nombre TEXT NOT NULL, precio REAL NOT NULL, iva REAL DEFAULT 0.00, descuento REAL DEFAULT 0.00, image TEXT, categoria TEXT, cant INTEGER NOT NULL DEFAULT 0, time_registro DATETIME DEFAULT CURRENT_TIMESTAMP )")
         await DB.crearTabla("CREATE TABLE IF NOT EXISTS categoria (key INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT)")
-        await DB.crearTabla("CREATE TABLE IF NOT EXISTS usuarios (key INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL, email TEXT UNIQUE, edad INTEGER )")
         await DB.crearTabla("CREATE TABLE IF NOT EXISTS proveedores (key INTEGER PRIMARY KEY AUTOINCREMENT, cod_Empresa TEXT NOT NULL UNIQUE, Nombre TEXT NOT NULL, Direccion TEXT, correo TEXT UNIQUE, Telefono TEXT )") 
+        await DB.crearTabla("CREATE TABLE IF NOT EXISTS usuarios (key INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL, email TEXT UNIQUE, edad INTEGER )")
         await DB.crearTabla("CREATE TABLE IF NOT EXISTS detalle_venta (id_detalle INTEGER PRIMARY KEY AUTOINCREMENT, id_venta INTEGER, id_producto INTEGER, cantidad INTEGER NOT NULL, precio_venta_usd REAL NOT NULL, FOREIGN KEY(id_venta) REFERENCES ventas(id_venta), FOREIGN KEY(id_producto) REFERENCES productos(id_producto) )") 
         await DB.crearTabla("CREATE TABLE IF NOT EXISTS movimientos_stock (id_movimiento INTEGER PRIMARY KEY AUTOINCREMENT, id_producto INTEGER NOT NULL, tipo_movimiento TEXT NOT NULL, cantidad INTEGER NOT NULL, costo_unidad_usd REAL, fecha_hora TEXT NOT NULL, FOREIGN KEY(id_producto) REFERENCES productos(id_producto) )")
-        await DB.crearTabla("CREATE TABLE ventas (id_venta INTEGER PRIMARY KEY AUTOINCREMENT, fecha_hora TEXT NOT NULL, total_usd REAL NOT NULL, total_ves REAL NOT NULL )")
-
+        await DB.crearTabla("CREATE TABLE IF NOT EXISTS ventas (id_venta INTEGER PRIMARY KEY AUTOINCREMENT, fecha_hora TEXT NOT NULL, total_usd REAL NOT NULL, total_ves REAL NOT NULL )")
+        await DB.crearTabla("CREATE TABLE IF NOT EXISTS CajaDinero (key INTEGER PRIMARY KEY AUTOINCREMENT, estado TEXT,fecha TEXT, dinero NUMERIC)")
         await DB.cerrar();
       }
 
@@ -105,7 +113,7 @@ ipcMain.on('solicitud-data-productos', (event) => {
         /*------------------------------*/
           const categoria_list = await DB.leer('SELECT * FROM categoria');
            await mainWindow.send("categoria-list-data-product",categoria_list)
-           
+
         /*------------------------------*/
         await DB.cerrar();
     })();
@@ -222,21 +230,26 @@ ipcMain.on('app_version', (event) => {
 
 });
 
+
+
 ipcMain.on("quit",(event,arg) => { 
 
     console.log("Quit App")
     app.quit();
 
 });
-/*
+
 ipcMain.on('reset',(event,arg) => { 
 
 	console.log("RESET APP");
     app.relaunch();
     app.quit();
 
-});*/
+});
 
+
+
+  /*--------------------------------*/
 // Evento cuando la app está lista para crear ventanas
 app.on('ready', App,  Menu.setApplicationMenu(null) );
 

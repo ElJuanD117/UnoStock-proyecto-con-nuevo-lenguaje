@@ -31,7 +31,7 @@ function Actualizar_Producto(code_product){
 
                 Actualizar_Producto_Window.loadFile("app/Productos/Actualizar/Actualizar.html")
             
-             // Actualizar_Producto_Window.webContents.openDevTools()
+             //Actualizar_Producto_Window.webContents.openDevTools()
                                 
              Actualizar_Producto_Window.once('ready-to-show', () => {
                                   

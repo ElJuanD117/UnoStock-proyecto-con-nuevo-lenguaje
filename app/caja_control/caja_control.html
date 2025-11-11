@@ -1,0 +1,201 @@
+<html>
+<style type="text/css">
+	*{
+		margin: 0px;
+		padding: 0px;
+	}
+.containner-caja-money {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background: white;
+    height: 100vh;
+}
+.title-caja{
+
+}
+
+.container-indicador-cant-dinero{
+
+}
+.monto {
+    font-size: 30px;
+    font-weight: bold;
+}
+.tipo{
+	  font-size: 25px;
+    font-weight: bold;
+}
+
+.input-caja {
+    width: 57%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 0.5px solid grey;
+    text-align: center;
+}
+
+.btn-Guardar {
+    background: #4ec2f7;
+    color: white;
+    width: 60%;
+    padding: 9px;
+    border-radius: 5px;
+    border: 1px;
+    font-weight: bold;
+    font-size: 15px;
+}
+</style>
+<body class="containner-caja-money" id="containner-caja-money">
+
+</body>
+<script>
+
+api.send("solicitud-status-caja");
+api.receive("status-caja-dinero",(event,caja_status)=>{
+
+
+		console.log(caja_status)
+		if(caja_status[0].estado==null || caja_status[0].estado==undefined || caja_status[0].estado==" "){
+
+
+		document.getElementById("containner-caja-money").innerHTML=`
+			<h1 class="title-caja" id="title_caja">Error data</h1>
+			<button class="btn-Guardar" id="Guardar" onclick="Registrar()">Guardar</button>`;
+
+
+
+
+		}
+		/*----------------------------------------*/
+		if(caja_status[0].estado=="Registro"){
+
+			document.getElementById("containner-caja-money").innerHTML=`
+			<h1 class="title-caja" id="title_caja">Registrar Dinero</h1>
+			<input type="text" class="input-caja" id="input_registro" placeholder="Agregar Cantidad">
+			<button class="btn-Guardar" id="Guardar" onclick="Registrar()">Guardar</button>`;
+
+		}
+		/*---------------------------------------*/
+
+		if(caja_status[0].estado=="Abrir"){
+			document.getElementById("containner-caja-money").innerHTML=`
+			<h1 class="title-caja" id="title_caja">Cerrar Caja</h1>
+			<label class="container-indicador-cant-dinero">
+				<span class="monto" id="indicador_cantidad">${caja_status[0].dinero}</span>
+				<span class="tipo" id="tipo_dinero">Bs</span>
+			</label>
+			<button class="btn-Guardar" id="cerrar" onclick="Cerrar()">Cerrar</button>`;
+
+
+		}
+		/*---------------------------------------*/
+
+		if(caja_status[0].estado=="Cerrar"){
+
+			document.getElementById("containner-caja-money").innerHTML=`
+			<h1 class="title-caja" id="title_caja">Abrir Caja</h1>
+			<label class="container-indicador-cant-dinero">
+				<span class="monto" id="indicador_cantidad">${caja_status[0].dinero}</span>
+				<span class="tipo"  id="tipo_dinero">Bs</span>
+			</label>
+			<button class="btn-Guardar" id="Abrir" onclick="Abrir()">Abrir</button>`;
+
+
+		}
+
+
+
+})
+
+
+
+function Registrar(){
+
+	let status={
+		estado:"Abrir",
+		dinero:document.getElementById("input_registro").value,
+		fecha:TimeSelect()
+	}
+	api.send("guardar-status-caja",status)
+
+	setTimeout(()=>{
+		window.close();
+	})
+
+}
+
+
+function Abrir(){
+
+	let status={
+		estado:"Abrir",
+		dinero:document.getElementById("indicador_cantidad").innerHTML,
+		fecha:TimeSelect()
+	}
+	api.send("guardar-status-caja",status)
+
+	setTimeout(()=>{
+		window.close();
+	})
+
+}
+
+
+
+function Cerrar(){
+
+	let cant = obtenerNumeroAleatorio(100, 1000)
+
+	let status={
+		estado:"Cerrar",
+		dinero:cant,
+		fecha:TimeSelect()
+	}
+
+
+	api.send("Nuevo-monto-caja",7000)
+
+
+		api.send("guardar-status-caja-cierre",status)
+
+	setTimeout(()=>{
+		window.close();
+	})
+
+
+}
+
+
+function obtenerNumeroAleatorio(min, max) {
+	  // Aseguramos que min y max sean enteros.
+	  min = Math.ceil(min);
+	  max = Math.floor(max);
+
+	  // Math.random() devuelve un número flotante pseudoaleatorio entre [0, 1).
+	  // La fórmula para obtener un entero inclusivo entre [min, max] es:
+	  // Math.floor(Math.random() * (max - min + 1)) + min
+	  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+
+function TimeSelect(){
+
+        const fechaActual = new Date();
+        // Formatea la fecha y hora para el input (YYYY-MM-DDTHH:MM)
+        const year = fechaActual.getFullYear();
+        const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
+        const day = String(fechaActual.getDate()).padStart(2, '0');
+        const hours = String(fechaActual.getHours()).padStart(2, '0');
+        const minutes = String(fechaActual.getMinutes()).padStart(2, '0');
+
+        return `${year}-${month}-${day}T${hours}:${minutes}`;
+
+}
+
+
+
+</script>
+</html>
