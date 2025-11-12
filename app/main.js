@@ -40,17 +40,16 @@ function App(){
     //mainWindow.webContents.openDevTools();
 
 
-caja_control(mainWindow)
+  caja_control("Apertura",mainWindow)
 
 
-mainWindow.on('close', () => {
+  mainWindow.on('close', (event) => {
+      caja_control("Cierre",mainWindow)
+      event.preventDefault();
+  });
 
-  console.log("cierre de App")
-   
-     caja_control(mainWindow)
+
   
-});
-
 
 }
 /*----------------------------------------------------------*/
@@ -90,12 +89,13 @@ DB.conectar("UnoStock.db").then(async db => {
         await DB.crearTabla("CREATE TABLE IF NOT EXISTS detalle_venta (id_detalle INTEGER PRIMARY KEY AUTOINCREMENT, id_venta INTEGER, id_producto INTEGER, cantidad INTEGER NOT NULL, precio_venta_usd REAL NOT NULL, FOREIGN KEY(id_venta) REFERENCES ventas(id_venta), FOREIGN KEY(id_producto) REFERENCES productos(id_producto) )") 
         await DB.crearTabla("CREATE TABLE IF NOT EXISTS movimientos_stock (id_movimiento INTEGER PRIMARY KEY AUTOINCREMENT, id_producto INTEGER NOT NULL, tipo_movimiento TEXT NOT NULL, cantidad INTEGER NOT NULL, costo_unidad_usd REAL, fecha_hora TEXT NOT NULL, FOREIGN KEY(id_producto) REFERENCES productos(id_producto) )")
         await DB.crearTabla("CREATE TABLE IF NOT EXISTS ventas (id_venta INTEGER PRIMARY KEY AUTOINCREMENT, fecha_hora TEXT NOT NULL, total_usd REAL NOT NULL, total_ves REAL NOT NULL )")
-        await DB.crearTabla("CREATE TABLE IF NOT EXISTS CajaDinero (key INTEGER PRIMARY KEY AUTOINCREMENT, estado TEXT,fecha TEXT, dinero NUMERIC)")
+        await DB.crearTabla("CREATE TABLE IF NOT EXISTS Historial_de_caja (key INTEGER PRIMARY KEY AUTOINCREMENT, estado TEXT, fecha TEXT, dinero NUMERIC)")
+        await DB.crearTabla("CREATE TABLE IF NOT EXISTS Dinero_Almacenado (key INTEGER PRIMARY KEY AUTOINCREMENT,  cant  NUMERIC, fecha TEXT)")
+        
         await DB.cerrar();
       }
 
-})
-.catch(err => {
+}).catch(err => {
     console.error('No se pudo conectar a la base de datos:', err);
 });
 
@@ -232,14 +232,15 @@ ipcMain.on('app_version', (event) => {
 
 
 
-ipcMain.on("quit",(event,arg) => { 
+ipcMain.on("quit-app",(event,arg) => { 
 
     console.log("Quit App")
-    app.quit();
+     mainWindow.destroy();
+    //app.quit();
 
 });
 
-ipcMain.on('reset',(event,arg) => { 
+ipcMain.on('reset-app',(event,arg) => { 
 
 	console.log("RESET APP");
     app.relaunch();

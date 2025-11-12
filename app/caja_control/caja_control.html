@@ -52,21 +52,31 @@
 </body>
 <script>
 
-api.send("solicitud-status-caja");
-api.receive("status-caja-dinero",(event,caja_status)=>{
 
+api.receive("solicitar-status-caja-dinero",(event,status)=>{
 
-		console.log(caja_status)
+	if(status=="data-para-apertura"){
+
+			api.send("data-caja-dinero-apertura");
+
+	}
+	if(status=="data-para-cierre"){
+
+			api.send("data-caja-dinero-cierre");
+
+	}
+
+})
+
+api.receive("status-caja-dinero-apertura",(event,caja_status)=>{
+
+		console.log("status-caja-dinero-apertura",caja_status)
+
 		if(caja_status[0].estado==null || caja_status[0].estado==undefined || caja_status[0].estado==" "){
-
 
 		document.getElementById("containner-caja-money").innerHTML=`
 			<h1 class="title-caja" id="title_caja">Error data</h1>
 			<button class="btn-Guardar" id="Guardar" onclick="Registrar()">Guardar</button>`;
-
-
-
-
 		}
 		/*----------------------------------------*/
 		if(caja_status[0].estado=="Registro"){
@@ -79,36 +89,37 @@ api.receive("status-caja-dinero",(event,caja_status)=>{
 		}
 		/*---------------------------------------*/
 
-		if(caja_status[0].estado=="Abrir"){
-			document.getElementById("containner-caja-money").innerHTML=`
-			<h1 class="title-caja" id="title_caja">Cerrar Caja</h1>
-			<label class="container-indicador-cant-dinero">
-				<span class="monto" id="indicador_cantidad">${caja_status[0].dinero}</span>
-				<span class="tipo" id="tipo_dinero">Bs</span>
-			</label>
-			<button class="btn-Guardar" id="cerrar" onclick="Cerrar()">Cerrar</button>`;
-
-
-		}
-		/*---------------------------------------*/
-
 		if(caja_status[0].estado=="Cerrar"){
-
-			document.getElementById("containner-caja-money").innerHTML=`
-			<h1 class="title-caja" id="title_caja">Abrir Caja</h1>
-			<label class="container-indicador-cant-dinero">
-				<span class="monto" id="indicador_cantidad">${caja_status[0].dinero}</span>
-				<span class="tipo"  id="tipo_dinero">Bs</span>
-			</label>
-			<button class="btn-Guardar" id="Abrir" onclick="Abrir()">Abrir</button>`;
-
+		
+		 document.getElementById("containner-caja-money").innerHTML=`
+		            <h1 class="title-caja" id="title_caja">Abrir Caja</h1>
+		            <label class="container-indicador-cant-dinero">
+		                <span class="monto" id="indicador_cantidad">${caja_status[0].dinero}</span>
+		                <span class="tipo"  id="tipo_dinero">Bs</span>
+		            </label>
+		            <button class="btn-Guardar" id="Abrir" onclick="Abrir()">Abrir</button>`;
 
 		}
-
-
 
 })
 
+/*---------------------------------------------------------------------*/
+
+api.receive("status-caja-dinero-cierre",(event,data)=>{
+
+	console.log("status-caja-dinero-cierre",data)
+	
+	   document.getElementById("containner-caja-money").innerHTML=`
+	            <h1 class="title-caja" id="title_caja">Cerrar Caja</h1>
+	            <label class="container-indicador-cant-dinero">
+	                <span class="monto" id="indicador_cantidad">${data[0].cant}</span>
+	                <span class="tipo" id="tipo_dinero">Bs</span>
+	            </label>
+	            <button class="btn-Guardar" id="cerrar" onclick="Cerrar()">Cerrar</button>`;
+
+})
+
+/*---------------------------------------------------------------------*/
 
 
 function Registrar(){
@@ -118,7 +129,7 @@ function Registrar(){
 		dinero:document.getElementById("input_registro").value,
 		fecha:TimeSelect()
 	}
-	api.send("guardar-status-caja",status)
+	api.send("guardar-status-caja-apertura",status)
 
 	setTimeout(()=>{
 		window.close();
@@ -134,7 +145,7 @@ function Abrir(){
 		dinero:document.getElementById("indicador_cantidad").innerHTML,
 		fecha:TimeSelect()
 	}
-	api.send("guardar-status-caja",status)
+	api.send("guardar-status-caja-apertura",status)
 
 	setTimeout(()=>{
 		window.close();
@@ -146,24 +157,14 @@ function Abrir(){
 
 function Cerrar(){
 
-	let cant = obtenerNumeroAleatorio(100, 1000)
-
 	let status={
 		estado:"Cerrar",
-		dinero:cant,
+		dinero:obtenerNumeroAleatorio(100, 1000),
 		fecha:TimeSelect()
 	}
-
-
-	api.send("Nuevo-monto-caja",7000)
-
-
-		api.send("guardar-status-caja-cierre",status)
-
-	setTimeout(()=>{
-		window.close();
-	})
-
+	
+	console.log(status)
+	api.send("guardar-status-caja-cierre",status)
 
 }
 
@@ -179,8 +180,6 @@ function obtenerNumeroAleatorio(min, max) {
 	  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
-
 function TimeSelect(){
 
         const fechaActual = new Date();
@@ -195,6 +194,24 @@ function TimeSelect(){
 
 }
 
+/*-----------------------------------------*/
+api.receive("indicar-cierre-de-app",()=>{
+	console.log("quitar aplicacion")
+
+
+	setTimeout(()=>{
+
+			api.send("quit-app")
+
+	},2000)
+
+	setTimeout(()=>{
+
+			window.close();
+
+	},4000)
+	
+})
 
 
 </script>
