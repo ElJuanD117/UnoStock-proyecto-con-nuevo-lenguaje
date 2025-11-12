@@ -1,0 +1,501 @@
+<link rel="stylesheet" type="text/css" href="../../assets/icoMoon/style.css">
+<style type="text/css">
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+
+.productos-retiro {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 30px 47px auto 30px;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    padding: 0px;
+    height: 100vh;
+}
+
+
+.ventana-informativa {
+    grid-area: 1 / 1/ 2 / 6;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.ventana-info1{
+    margin-left: 5px;
+}
+
+.container-search-retiro {
+    grid-area: 2 / 1 / 2 / 6;
+    display: grid;
+    grid-template-columns: 1fr repeat(3, 68px);
+    grid-template-rows: 1fr;
+    grid-column-gap: 3px;
+    grid-row-gap: 3px;
+    background: white;
+    padding: 4px;
+    /* margin-top: 4px; */
+}
+
+.input-text{
+    padding: 4.5px;
+}
+
+.btn-product-retiro-action{
+
+}
+
+.Buscar{ color:white; background:orange;}
+.Aceptar{ color:white; background: blue;}
+.Cancelar{ color:white; background: red; }
+
+
+.container-list-product-retiro {
+    background: grey;
+    grid-area: 3 / 1 / 6 / 6;
+ 
+}
+
+.container-producto-item {
+    display: grid;
+    grid-template-columns: 0.3fr 0.5fr repeat(6, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 1px;
+    grid-row-gap: 0px;
+}
+
+
+.container-producto-item {
+    background: grey;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.container-list-product-article {
+    background: grey;
+    height: 79vh;
+
+}
+
+.article-product-data {
+    font-weight: bold;
+    margin-bottom: 2px;
+   display: grid;
+    grid-template-columns: 0.3fr 0.5fr repeat(6, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 1px;
+    grid-row-gap: 0px;
+}
+
+.item-product-data {
+    background: white;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.borrar-article{
+    background: red;
+    color: white;
+    width: 90%;
+    padding: 5px;
+   /* border-style: none;*/
+}
+
+.Resultado-data-compra {
+    grid-area: 4 / 1 / 6 / 6;
+    background: #ffffff;
+    padding: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.label-resultado {
+    font-weight: bold;
+    font-size: 27px;
+}
+/*--------------------------------------------------------*/
+    /* Fondo oscuro del modal */
+    .modal-overlay {
+      display: none; /* oculto por defecto */
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Contenedor principal */
+#container-producto-buscado {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+#container-producto-buscado>h1 {
+    font-size: 30px;
+    margin-bottom: 15px;
+} 
+
+.containner-data-nodal-retiro {
+    display: flex;
+    margin-bottom: 10px;
+    font-weight: bold;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nombre-modal-producto {
+    font-weight: normal;
+    margin-left: 5px;
+    color: #333;
+    font-size: 26px;
+}
+
+.cantidad {
+    width: 30%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 12px;
+}
+
+.btn-cerrar-modal {
+    margin-top: 15px;
+    padding: 7px 6px;
+    background: #409243;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18;
+}
+
+.btn-cerrar-modal:hover {
+    background: #005fa3;
+}
+
+.Precio-producto-modal {
+    margin-left: 9.2px;
+    font-size: 25px;
+}
+.Descuento-producto-modal{
+
+    margin-left: 6.5px;
+
+}
+.Precio-producto-modal-simbolo {
+    margin-left: 6.5px;
+}
+
+/*---------------------------------------------------*/
+</style>
+
+<section class="productos-retiro" id="productosdata">
+    <div class="ventana-informativa">
+
+        <div class="ventana-info1" id="data-ventana1-info">
+            
+        </div> 
+        <div class="ventana-info2">
+            
+        </div>
+        
+    </div>
+    <div class="container-search-retiro">
+        <input  id="inputSearch" class="input-text" placeholder="Codigo o Nombre de Producto" type="search">
+        <button class="btn-product-retiro-action Buscar icon-search" id="btn-Buscar">Bucar</button>
+        <button class="btn-product-retiro-action Aceptar icon-checkmark" id="btn-Aceptar">Acepar</button>
+        <button class="btn-product-retiro-action Cancelar icon-cross" id="btn-Limpiar">Cancelar</button>
+    </div>
+
+    <div class="container-list-product-retiro">
+        
+        <div class="container-producto-item">
+            <span class="item-product-data">N</span>
+            <span class="item-product-data">cod</span>
+            <span class="item-product-data">Nombre</span>
+            <span class="item-product-data">Precio</span>
+            <span class="item-product-data">Descuento</span>
+            <span class="item-product-data">cant</span>
+            <span class="item-product-data">Totalprecio</span>
+            <span class="item-product-data">Action</span>
+        </div>  
+       <!----->
+        <div class="container-list-product-article" id="list_product_retiro">
+             
+        </div>
+    </div>
+
+    <!----------------------------->
+    <div class="Resultado-data-compra">
+        <label class="label-resultado">
+            <span class="Precio_Total">Total</span>
+            <span class="Precio_Total" id="Precio_Total">0.00</span>
+            <span>Bs</span>
+        </label>        
+        <label class="label-resultado">
+            <span class="Cantidad_producto">cant.</span>
+            <span id="cantidad_total_producto">5</span>
+        </label>        
+    </div>
+
+<!----------------------------------->
+  <div class="modal-overlay" id="modalOverlay">
+        <div id="container-producto-buscado">
+      <h1>Producto seleccionado</h1>
+      
+      <label class="containner-data-nodal-retiro">
+        cod:
+        <span class="cod-modal-producto" id="cod_modal_producto">00000000</span>
+      </label>  
+      <label class="containner-data-nodal-retiro">
+        Nombre:
+        <span class="nombre-modal-producto" id="nombre_modal_producto">laptop</span>
+      </label>
+
+    <label class="containner-data-nodal-retiro">
+        Precio:
+        <span class="Precio-producto-modal" id="Precio_producto_modal">laptop</span>
+        <span class="Precio-producto-modal-simbolo" id="Simbolo_Precio_producto_modal">Bs</span>
+    </label>
+
+      <label class="containner-data-nodal-retiro">
+        Descuento:
+        <span class="Descuento-producto-modal" id="Descuento_producto_modal">0.00</span>
+        <span class="Precio-producto-modal-simbolo" id="Simbolo_Precio_producto_modal">Bs</span>
+      </label>  
+
+        <label class="containner-data-nodal-retiro">
+        Cantidad:
+        <input type="number" class="cantidad" id="cantidad" min="1" value="1">
+      </label> 
+
+        <label class="containner-data-nodal-retiro">
+            Precio:
+            <span class="Precio-producto-modal" id="Precio_total_producto_modal">0.00</span>
+            <span class="Precio-producto-modal-simbolo" id="Simbolo_Precio_producto_modal">Bs</span>
+        </label>
+      <button class="btn-cerrar-modal"onclick="cerrarModal()">Aceptar</button>
+    </div>
+  </div>
+<!----------------------------------->
+</section>
+<script type="text/javascript" src="../../assets/icoMoon/selection.json"></script>
+<script type="text/javascript">
+let List_Productos_retiro=[];
+
+    let btn_Buscar = document.getElementById("btn-Buscar");
+    btn_Buscar.focus();
+    btn_Buscar.addEventListener('click', function(evt){
+
+            console.log("buscar")
+
+            api.send("Buscar-producto-retiro",document.getElementById("inputSearch").value)
+    })
+    
+    /*-------------------------------------------------*/
+
+    document.getElementById("inputSearch").addEventListener("search", function(e) { 
+                      
+            if(document.getElementById("inputSearch").value==""){
+
+                
+
+            }else{
+
+                console.log("buscar")
+
+                api.send("Buscar-producto-retiro",document.getElementById("inputSearch").value)
+
+            }                                       
+    })
+
+
+    api.receive("productos-data-retiro",(event, data_producto)=>{
+
+            abrirModal(data_producto[0]);
+
+    })
+
+
+    let btn_Aceptar = document.getElementById("btn-Aceptar");
+
+    btn_Aceptar.addEventListener('click', function(evt){
+
+
+        console.log(List_Productos_retiro)
+        //api.send("guardar-informacion-en-movimientos",data)
+        /*--------------------------*/
+        List_Productos_retiro=[]
+        document.getElementById("list_product_retiro").innerHTML="";
+            document.getElementById("Precio_Total").innerHTML = 0.00
+    document.getElementById("cantidad_total_producto").innerHTML = 0
+    })
+
+
+    let btn_reset = document.getElementById("btn-Limpiar");
+
+    btn_reset.addEventListener('click', function(evt){
+
+        List_Productos_retiro=[]
+        document.getElementById("list_product_retiro").innerHTML="";
+
+    })
+
+
+/*----------------------------------------------------------------*/
+// Función para obtener el valor de 1 USD en bolívares
+async function obtenerCambioUSD() {
+  try {
+    const respuesta = await fetch("https://ve.dolarapi.com/v1/dolares/oficial");
+    const datos = await respuesta.json();
+
+    console.log(datos)
+
+        return datos.promedio;
+
+  } catch (error) {
+    console.error("Error al obtener el cambio:", error);
+    return null;
+  }
+}
+
+// Uso de la función
+obtenerCambioUSD().then(valor => {
+  //console.log(`1 USD = ${valor} Bs`);
+  document.getElementById("data-ventana1-info").innerHTML=`1 USD = ${valor} Bs`
+});
+
+
+function abrirModal(data) {
+
+    document.getElementById("modalOverlay").style.display = "flex";
+    document.getElementById("cantidad").focus();
+    /*------------------------------------------*/
+    document.getElementById("cod_modal_producto").innerHTML=data.cod;
+    document.getElementById("nombre_modal_producto").innerHTML=data.nombre;
+    document.getElementById("Descuento_producto_modal").innerHTML=data.descuento.toFixed(2);
+    document.getElementById("Precio_producto_modal").innerHTML=data.precio.toFixed(2);
+    /*--------------------------------*/
+
+    document.getElementById("cantidad").onclick=function(){
+       let cant = document.getElementById("cantidad").value
+
+        document.getElementById("Precio_total_producto_modal").innerHTML=((parseFloat(data.precio)-parseFloat(data.descuento))*parseFloat(cant)).toFixed(2);
+    }
+
+    document.getElementById("Precio_total_producto_modal").innerHTML=((parseFloat(data.precio)-parseFloat(data.descuento))*parseFloat(document.getElementById("cantidad").value)).toFixed(2);
+
+
+}
+
+document.getElementById("modalOverlay").addEventListener('keydown', manejarCierreConEnter);
+
+function manejarCierreConEnter(event) {
+  if (event.key === 'Enter' || event.keyCode === 13) {
+    
+    cerrarModal();
+
+  }
+}
+
+function cerrarModal(){
+
+      document.getElementById("modalOverlay").style.display = "none";
+
+      let producto ={
+            cod:document.getElementById("cod_modal_producto").innerHTML,
+            nombre:document.getElementById("nombre_modal_producto").innerHTML,
+            precio:document.getElementById("Precio_producto_modal").innerHTML,
+            descuento:document.getElementById("Descuento_producto_modal").innerHTML,
+            cant:document.getElementById("cantidad").value,
+            preciototal:document.getElementById("Precio_total_producto_modal").innerHTML
+      }
+
+      List_Productos_retiro.push(producto)
+      /*---------------------------------------*/
+      
+
+     
+
+
+        Render_data(List_Productos_retiro)
+        calculos_resultados(List_Productos_retiro)
+
+}
+
+
+function Render_data(List_Productos_retiro){
+document.getElementById("list_product_retiro").innerHTML="";
+     List_Productos_retiro.forEach((producto,index)=>{
+
+                document.getElementById("list_product_retiro").innerHTML+=`<article class="article-product-data">
+                        <span class="item-product-data">${index}</span>
+                        <span class="item-product-data">${producto.cod}</span>
+                        <span class="item-product-data">${producto.nombre}</span>
+                        <span class="item-product-data">${producto.precio}</span>
+                        <span class="item-product-data">${producto.descuento}</span>
+                        <span class="item-product-data">${producto.cant}</span>
+                        <span class="item-product-data">${producto.preciototal}</span>
+                        <span class="item-product-data action">
+                            <button class="btn-action-producto borrar-article icon-bin2" onclick="BorrarProducto('${producto.cod}')"></button> </span>
+                    </article>`;
+      })
+}
+
+function BorrarProducto(cod){
+
+    console.log(List_Productos_retiro)
+
+    let newarray = eliminarObjetoPorCod(List_Productos_retiro, cod)
+
+   List_Productos_retiro=newarray
+Render_data(List_Productos_retiro)
+ calculos_resultados(List_Productos_retiro)
+
+}
+
+function eliminarObjetoPorCod(array, codAEliminar) {
+
+    return array.filter(objeto => objeto.cod !== codAEliminar);
+}
+/*----------------------------------------------------------------*/
+
+let Total_producto = 0;
+let Total_cantidad = 0;
+
+function calculos_resultados(producto){
+
+    console.log(producto)
+
+    Total_producto = 0;
+    Total_cantidad = 0;
+
+    for(let i=0;i<producto.length;i++){
+
+        Total_producto = Total_producto+parseFloat(producto[i].preciototal)
+        Total_cantidad = Total_cantidad+parseFloat(producto[i].cant)
+
+    }
+
+    document.getElementById("Precio_Total").innerHTML = Total_producto
+    document.getElementById("cantidad_total_producto").innerHTML = Total_cantidad
+}
+
+
+
+</script>
+ 

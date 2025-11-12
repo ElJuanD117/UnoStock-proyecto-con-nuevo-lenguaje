@@ -46,6 +46,7 @@ function caja_control(status,) {
 
     caja_control_Window.loadFile("app/caja_control/caja_control.html");
     // Solo abre DevTools en entorno de desarrollo
+     
      //caja_control_Window.webContents.openDevTools(); 
                       
     caja_control_Window.once('ready-to-show', () => {

@@ -1,4 +1,3 @@
-
 let Html_Proveedores = `
 <section class="parent">
     <section class="section1 container-gestion">

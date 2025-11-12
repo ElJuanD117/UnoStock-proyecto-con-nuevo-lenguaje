@@ -13,8 +13,10 @@ const DB = new UnoStockDB(DB_Path);
 /*--------------------------------------*/
 const {Info_Producto} = require(path.join(__dirname,'./Productos/Informacion/Informacion'));
 const {Registro_Producto} = require(path.join(__dirname,'./Productos/Registro/Registro'));
+const {Retiro_Producto} = require(path.join(__dirname,'./Productos/Retiro/Retiro'));
 const {Actualizar_Producto} = require(path.join(__dirname,'./Productos/Actualizar/Actualizar'));
 const {Nueva_Categoria} = require(path.join(__dirname,'./Productos/NuevaCategoria/NuevaCategoria'));
+
 /*--------------------------------------*/
 const {caja_control} = require(path.join(__dirname,'./caja_control/caja_control'));
 
@@ -23,8 +25,8 @@ let  mainWindow;
 function App(){
 
       mainWindow = new BrowserWindow({
-        width: 1028,
-        height: 620,
+        width: 1030,
+        height: 630,
         icon:path.join(__dirname,'/favicon.ico'),
           webPreferences:{
             nodeIntegration: false, // Deshabilita la integración de Node.js para contenido remoto
@@ -37,7 +39,7 @@ function App(){
   
       mainWindow.loadFile(path.join(__dirname,'index.html'));
 
-    mainWindow.webContents.openDevTools();
+    //mainWindow.webContents.openDevTools();
 
 
   caja_control("Apertura",mainWindow)
@@ -216,7 +218,7 @@ ipcMain.on("open-add-category", (event) => {
 
 ipcMain.on('open-retiro-producto', (event) => {
 
-
+  Retiro_Producto()
 
 })
 
