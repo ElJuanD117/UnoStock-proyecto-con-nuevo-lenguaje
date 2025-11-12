@@ -13,7 +13,7 @@ body {
 
 .Dashboard {
     background-color: #d2d6e0;
-    height: 97vh;
+    height: 80vh;
     padding: 4px;
     overflow-y: scroll;
     display: grid;

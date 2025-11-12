@@ -39,11 +39,10 @@
 	}
 
 	.container-main {
-		background: #d2d6e0;
-		height: auto;
-		/* padding: 4px; */
+	    background: #d2d6e0;
+	    height: auto;
+	    padding: 2px;
 	}
-
 	/*------------aside_menu---------------*/
 
 	.aside_menu {
