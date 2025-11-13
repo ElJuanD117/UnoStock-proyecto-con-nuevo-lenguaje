@@ -18,7 +18,7 @@ function Retiro_Producto(){
 
                 Retiro_Producto_Window = new BrowserWindow({
                         width:740,
-                        height:420,
+                        height:550,
                         resizable:true,   
                         frame: true,
                         webPreferences: {

@@ -201,6 +201,86 @@
 }
 
 /*---------------------------------------------------*/
+ /*-------------------------MODAL2---------------------------------------*/
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed; /* Permanece fijo en la pantalla */
+            z-index: 1; /* Se superpone a otros elementos */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; /* Habilita el scroll si es necesario */
+            background-color: rgba(0,0,0,0.4); /* Fondo semi-transparente */
+            padding-top: 60px;
+        }
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 10px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Estilos para el formulario */
+        .modal-content label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .modal-content input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box; /* Asegura que padding no aumente el width */
+            border-radius: 4px;
+        }
+
+        .btn-abrir {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-abrir:hover {
+            background-color: #0056b3;
+        }
+
+.btn-guardar-venta {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    width: 100%;
+}
+ /*----------------------------------------------------------------*/
 </style>
 
 <section class="productos-retiro" id="productosdata">
@@ -234,9 +314,7 @@
             <span class="item-product-data">Action</span>
         </div>  
        <!----->
-        <div class="container-list-product-article" id="list_product_retiro">
-             
-        </div>
+        <div class="container-list-product-article" id="list_product_retiro"></div> 
     </div>
 
     <!----------------------------->
@@ -253,105 +331,126 @@
     </div>
 
 <!----------------------------------->
-  <div class="modal-overlay" id="modalOverlay">
-        <div id="container-producto-buscado">
-      <h1>Producto seleccionado</h1>
-      
-      <label class="containner-data-nodal-retiro">
+<div class="modal-overlay" id="modalOverlay">
+    <div id="container-producto-buscado">
+        <h1>Producto seleccionado</h1>
+        <label class="containner-data-nodal-retiro">
         cod:
         <span class="cod-modal-producto" id="cod_modal_producto">00000000</span>
-      </label>  
-      <label class="containner-data-nodal-retiro">
+        </label>  
+        <label class="containner-data-nodal-retiro">
         Nombre:
-        <span class="nombre-modal-producto" id="nombre_modal_producto">laptop</span>
-      </label>
+        <span class="nombre-modal-producto" id="nombre_modal_producto"></span>
+        </label>
 
-    <label class="containner-data-nodal-retiro">
+        <label class="containner-data-nodal-retiro">
         Precio:
-        <span class="Precio-producto-modal" id="Precio_producto_modal">laptop</span>
+        <span class="Precio-producto-modal" id="Precio_producto_modal">0.00</span>
         <span class="Precio-producto-modal-simbolo" id="Simbolo_Precio_producto_modal">Bs</span>
-    </label>
+        </label>
 
-      <label class="containner-data-nodal-retiro">
+        <label class="containner-data-nodal-retiro">
         Descuento:
         <span class="Descuento-producto-modal" id="Descuento_producto_modal">0.00</span>
         <span class="Precio-producto-modal-simbolo" id="Simbolo_Precio_producto_modal">Bs</span>
-      </label>  
+        </label>  
 
         <label class="containner-data-nodal-retiro">
         Cantidad:
         <input type="number" class="cantidad" id="cantidad" min="1" value="1">
-      </label> 
+        </label> 
 
         <label class="containner-data-nodal-retiro">
-            Precio:
-            <span class="Precio-producto-modal" id="Precio_total_producto_modal">0.00</span>
-            <span class="Precio-producto-modal-simbolo" id="Simbolo_Precio_producto_modal">Bs</span>
+        Precio:
+        <span class="Precio-producto-modal" id="Precio_total_producto_modal">0.00</span>
+        <span class="Precio-producto-modal-simbolo" id="Simbolo_Precio_producto_modal">Bs</span>
         </label>
-      <button class="btn-cerrar-modal"onclick="cerrarModal()">Aceptar</button>
+        <button class="btn-cerrar-modal"onclick="cerrarModal()">Aceptar</button>
     </div>
-  </div>
+</div>
+<!----------------------------------->
+<div id="miModal" class="modal">
+
+    <div class="modal-content">
+        <h2>Datos de la Persona</h2>
+        <form id="formularioPersona">
+            <div class="containner-label-comprador">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" name="nombre" required> 
+            </div>
+         
+            <div class="containner-label-comprador">
+                 <label for="ci">Cédula de Identidad (C.I.):</label>
+                 <input type="text" id="ci" name="ci" required>
+            </div>
+           
+            <div class="containner-label-comprador">
+                <label for="tlf">Teléfono (Tlf):</label>
+                <input type="text" id="tlf" name="tlf" required>
+            </div>
+           
+            <div class="containner-label-comprador" style="padding: 2px; display: flex; align-items: center; justify-content: center; ">
+             <button type="submit" class="btn-guardar-venta">Guardar Datos</button>
+            </div>
+            
+        </form>
+    </div>
+
+</div>
 <!----------------------------------->
 </section>
 <script type="text/javascript" src="../../assets/icoMoon/selection.json"></script>
 <script type="text/javascript">
 let List_Productos_retiro=[];
 
-    let btn_Buscar = document.getElementById("btn-Buscar");
+let btn_Buscar = document.getElementById("btn-Buscar");
     btn_Buscar.focus();
     btn_Buscar.addEventListener('click', function(evt){
 
-            console.log("buscar")
-
+        if(document.getElementById("inputSearch").value!==""){
+                       console.log("buscar")
+            console.log(document.getElementById("list_product_retiro").children.length)
             api.send("Buscar-producto-retiro",document.getElementById("inputSearch").value)
+            document.getElementById("inputSearch").value="";
+        }
     })
+
+/*-------------------------------------------------*/
+
+document.getElementById("inputSearch").addEventListener("search", function(e) { 
+              
+    if(document.getElementById("inputSearch").value==""){
+
+    }else{
     
-    /*-------------------------------------------------*/
-
-    document.getElementById("inputSearch").addEventListener("search", function(e) { 
-                      
-            if(document.getElementById("inputSearch").value==""){
-
-                
-
-            }else{
-
                 console.log("buscar")
-
                 api.send("Buscar-producto-retiro",document.getElementById("inputSearch").value)
-
-            }                                       
-    })
-
-
-    api.receive("productos-data-retiro",(event, data_producto)=>{
-
-            abrirModal(data_producto[0]);
-
-    })
+                document.getElementById("inputSearch").value="";
+        
+    }                                       
+})
 
 
-    let btn_Aceptar = document.getElementById("btn-Aceptar");
+api.receive("productos-data-retiro",(event, data_producto)=>{
 
+    abrirModal(data_producto[0]);
+
+})
+
+let btn_Aceptar = document.getElementById("btn-Aceptar");
     btn_Aceptar.addEventListener('click', function(evt){
 
-
-        console.log(List_Productos_retiro)
-        //api.send("guardar-informacion-en-movimientos",data)
-        /*--------------------------*/
-        List_Productos_retiro=[]
-        document.getElementById("list_product_retiro").innerHTML="";
-            document.getElementById("Precio_Total").innerHTML = 0.00
-    document.getElementById("cantidad_total_producto").innerHTML = 0
+        if(document.getElementById("list_product_retiro").children.length>0){
+            AbrirModalDatosComprador()
+        }
     })
 
 
-    let btn_reset = document.getElementById("btn-Limpiar");
-
+let btn_reset = document.getElementById("btn-Limpiar");
     btn_reset.addEventListener('click', function(evt){
 
-        List_Productos_retiro=[]
-        document.getElementById("list_product_retiro").innerHTML="";
+    List_Productos_retiro=[]
+    document.getElementById("list_product_retiro").innerHTML="";
 
     })
 
@@ -399,7 +498,6 @@ function abrirModal(data) {
 
     document.getElementById("Precio_total_producto_modal").innerHTML=((parseFloat(data.precio)-parseFloat(data.descuento))*parseFloat(document.getElementById("cantidad").value)).toFixed(2);
 
-
 }
 
 document.getElementById("modalOverlay").addEventListener('keydown', manejarCierreConEnter);
@@ -427,11 +525,6 @@ function cerrarModal(){
 
       List_Productos_retiro.push(producto)
       /*---------------------------------------*/
-      
-
-     
-
-
         Render_data(List_Productos_retiro)
         calculos_resultados(List_Productos_retiro)
 
@@ -439,7 +532,8 @@ function cerrarModal(){
 
 
 function Render_data(List_Productos_retiro){
-document.getElementById("list_product_retiro").innerHTML="";
+  
+    document.getElementById("list_product_retiro").innerHTML="";
      List_Productos_retiro.forEach((producto,index)=>{
 
                 document.getElementById("list_product_retiro").innerHTML+=`<article class="article-product-data">
@@ -454,17 +548,20 @@ document.getElementById("list_product_retiro").innerHTML="";
                             <button class="btn-action-producto borrar-article icon-bin2" onclick="BorrarProducto('${producto.cod}')"></button> </span>
                     </article>`;
       })
+
+
 }
+
 
 function BorrarProducto(cod){
 
-    console.log(List_Productos_retiro)
+        console.log(List_Productos_retiro)
 
-    let newarray = eliminarObjetoPorCod(List_Productos_retiro, cod)
+        let newarray = eliminarObjetoPorCod(List_Productos_retiro, cod)
 
-   List_Productos_retiro=newarray
-Render_data(List_Productos_retiro)
- calculos_resultados(List_Productos_retiro)
+        List_Productos_retiro=newarray
+        Render_data(List_Productos_retiro)
+        calculos_resultados(List_Productos_retiro)
 
 }
 
@@ -472,6 +569,8 @@ function eliminarObjetoPorCod(array, codAEliminar) {
 
     return array.filter(objeto => objeto.cod !== codAEliminar);
 }
+
+
 /*----------------------------------------------------------------*/
 
 let Total_producto = 0;
@@ -496,6 +595,46 @@ function calculos_resultados(producto){
 }
 
 
+/*----------------------------------------------------------------*/
 
+
+        function AbrirModalDatosComprador() {
+            var modal = document.getElementById("miModal");
+            modal.style.display = "block";
+        }
+
+       
+        function CerrarModalDatosComprador() {
+             var modal = document.getElementById("miModal");
+            modal.style.display = "none";
+        }
+
+        // Manejar el envío del formulario (opcional, para demostrar la captura de datos)
+        document.getElementById("formularioPersona").onsubmit = function(event) {
+            event.preventDefault(); // Evita que la página se recargue
+
+            /*----------------------------------------*/
+            
+    //console.log(List_Productos_retiro)
+    let data = {
+            comprador:{
+                nombre:document.getElementById('nombre').value,
+                ci:document.getElementById('ci').value,
+                tlf:document.getElementById('tlf').value
+            },
+            productos:List_Productos_retiro
+    }
+console.log(data)
+ /*----------------------------------------*/
+    
+    //api.send("guardar-informacion-en-movimientos",data)
+            CerrarModalDatosComprador()
+            /*---------------------------------------------*/
+            List_Productos_retiro=[]
+            document.getElementById("inputSearch").value="";
+            document.getElementById("list_product_retiro").innerHTML="";
+            document.getElementById("Precio_Total").innerHTML = 0.00;
+            document.getElementById("cantidad_total_producto").innerHTML = 0;
+        }
 </script>
  

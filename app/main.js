@@ -37,21 +37,16 @@ function App(){
 
       //Carga el archivo HTML de nuestra aplicación
   
-      mainWindow.loadFile(path.join(__dirname,'index.html'));
+    mainWindow.loadFile(path.join(__dirname,'index.html'));
 
     //mainWindow.webContents.openDevTools();
 
+    caja_control("Apertura",mainWindow)
 
-  caja_control("Apertura",mainWindow)
-
-
-  mainWindow.on('close', (event) => {
-      caja_control("Cierre",mainWindow)
-      event.preventDefault();
-  });
-
-
-  
+    mainWindow.on('close',(event) => {
+        caja_control("Cierre",mainWindow)
+        event.preventDefault();
+    });
 
 }
 /*----------------------------------------------------------*/
@@ -153,8 +148,6 @@ ipcMain.on('Buscar-input-text-producto', (event,valor) => {
     }
 
 })
-
-/*SELECT * FROM productos WHERE categoria = "helado"*/
 
 ipcMain.on('Buscar-categoria-producto', (event,valor) => {
 
