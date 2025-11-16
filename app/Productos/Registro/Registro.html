@@ -424,8 +424,7 @@ function capture_new_data(){
             }
             console.log('save_data_product',data_new_obj)
             api.send('save_data_product',data_new_obj);
-
-            window.close();                   
+               
         }
         else{
 
@@ -469,12 +468,18 @@ btn_save.addEventListener('click', function(evt){
 
     capture_new_data()
 
+    api.send('Refrescar-data-area-producto')  
+
+     setTimeout(function(){window.close() },1500)
+
   
 })
 
 let btn_exit = document.getElementById("btn_exit");
 
 btn_exit.addEventListener('click', function(evt){
+
+    api.send('Refrescar-data-area-producto')  
 
         setTimeout(function(){window.close() },1500)
 })

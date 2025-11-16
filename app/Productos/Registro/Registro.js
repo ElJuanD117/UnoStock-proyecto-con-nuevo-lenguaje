@@ -93,9 +93,10 @@ ipcMain.on('save_data_product',(event,data_producto) => {
       (async () => { 
        await DB.conectar();
 
-        const nuevoId = await DB.crear('INSERT INTO productos (cod, cod_Empresa, nombre, precio, iva, descuento, image, categoria, cant, time_registro) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',[ data_producto.code, data_producto.riff_Supplier, data_producto.name, data_producto.sale_price, data_producto.iva_product, data_producto.discount_Product_price, data_producto.image, data_producto.category, data_producto.amount, data_producto.Registration_Time]);
+        await DB.crear('INSERT INTO productos (cod, cod_Empresa, nombre, precio, iva, descuento, image, categoria, cant, time_registro) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',[ data_producto.code, data_producto.riff_Supplier, data_producto.name, data_producto.sale_price, data_producto.iva_product, data_producto.discount_Product_price, data_producto.image, data_producto.category, data_producto.amount, data_producto.Registration_Time]);
+        await DB.crear(`INSERT INTO movimientos (tipo, descripcion, fecha) VALUES (?, ?, ?)`, ['Ingreso',`Nuevo Producto Registrado`, fecha],); 
         //await console.log('Producto insertado con ID:', nuevoId);
-     
+        
        await DB.cerrar();
       })();
 

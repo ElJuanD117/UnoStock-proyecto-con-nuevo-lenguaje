@@ -93,9 +93,10 @@ ipcMain.on('save_update_product',(event,data_producto) => {
        await DB.conectar();
 
         const nuevoId = await DB.actualizar('UPDATE productos SET cod = ?, cod_Empresa = ?, nombre = ?, precio = ?, iva = ?, descuento = ?, image = ?, categoria = ?, cant = ?, time_registro = ? WHERE cod = ?',[ data_producto.code, data_producto.riff_Supplier, data_producto.name, data_producto.sale_price, data_producto.iva_product, data_producto.discount_Product_price, data_producto.image, data_producto.category, data_producto.amount, data_producto.Registration_Time,code_producto]);
-        await console.log('Producto insertado con ID:', nuevoId);
+        //await console.log('Producto insertado con ID:', nuevoId);
        await DB.cerrar();
       })();
+
 
 })
 /*

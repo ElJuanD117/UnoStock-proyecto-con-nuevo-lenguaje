@@ -18,6 +18,10 @@ contextBridge.exposeInMainWorld(
         receive:(channel, data) => {
             
             ipcRenderer.on(channel,data);
+        },      
+        invoke:(channel, data) => {
+            
+            ipcRenderer.invoke(channel,data);
         },
       minimizeWindow: () => ipcRenderer.send('minimize-window'),
       maximizeWindow: () => ipcRenderer.send('maximize-window'),

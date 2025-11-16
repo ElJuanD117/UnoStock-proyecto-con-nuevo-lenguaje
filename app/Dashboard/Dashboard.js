@@ -2,26 +2,26 @@ let Html_Dashboard = `<section class="Dashboard">
     <section class="containner_Tarjetas_dashboard">
         <div class="Tarjeta_dashboard1 sub_card_Dashboard"> 
             <label class="title_sub_card">Total de Productos</label>
-            <div class="number_estado_sub_card">50</div>
-            <span class="info_sub_card">info2 </span>
+            <div class="number_estado_sub_card" id="total_productos">50</div>
+            <span class="info_sub_card"></span>
             <span class="image_sub_card iconUnoStock-Productos_2"></span>
         </div>
         <div class="Tarjeta_dashboard2 sub_card_Dashboard">
-            <label class="title_sub_card">Total de Productos</label>
-            <div class="number_estado_sub_card">50</div>
-            <span class="info_sub_card">info2 </span>
+            <label class="title_sub_card">Stock Bajo</label>
+            <div class="number_estado_sub_card" id="total_productos_bajo">50</div>
+            <span class="info_sub_card" style="color:red; font-weight:bold">Requiere Atención</span>
             <span class="image_sub_card iconUnoStock-advertencia"></span>
         </div>
         <div class="Tarjeta_dashboard3 sub_card_Dashboard"> 
-            <label class="title_sub_card">Total de Productos</label>
-            <div class="number_estado_sub_card">50</div>
-            <span class="info_sub_card">info2 </span>
+            <label class="title_sub_card" >Valor Total</label>
+            <div class="number_estado_sub_card" id="valor_total_producto">50</div>
+            <span class="info_sub_card"></span>
             <span class="image_sub_card icon-cotainer"><p class="icon-coin-dollar"></p></span>
         </div>
         <div class="Tarjeta_dashboard4 sub_card_Dashboard"> 
-            <label class="title_sub_card">Total de Productos</label>
+            <label class="title_sub_card">Movimientos Hoy</label>
             <div class="number_estado_sub_card">50</div>
-            <span class="info_sub_card">info2 </span>
+            <span class="info_sub_card" style="color:blue; font-weight:bold"><span id="valor_movimieno_entrada">0</span> entradas y <span id="valor_movimieno_salida">0</span> salidas</span>
             <span class="image_sub_card iconUnoStock-Movimientos"></span>
         </div>
     </section>
@@ -49,115 +49,152 @@ let Html_Dashboard = `<section class="Dashboard">
             </div>
         </div>
     </section>
-    <section class="containner_Movimientos_Recientes_dasboard">
-        <label class="title_Movimientos_Recientes_dasboard">Movimientos Recientes</label>
-        <div class="container_registro_movimiento_para_dasboard">
-            <div class="container_historial_movimiento_dashboard">
-                <div class="item_list_historial_movimiento_dasboard data_item1"> Fecha de Registro</div>
-                <div class="item_list_historial_movimiento_dasboard data_item2">Tipo de Tansación </div>
-                <div class="item_list_historial_movimiento_dasboard data_item3">Producto </div>
-                <div class="item_list_historial_movimiento_dasboard data_item4">Cantidad </div>
-                <div class="item_list_historial_movimiento_dasboard data_item5">Importe </div>
-            </div>
-            <div class="list_data_historial_movimiento_dashboard" id="data_list_historial_movimiento_dashboard">
-            </div>
-        </div>
-    </section>
+  
+    <section class="containner-data-dasboard">
+             <!---------->
+            <section class="containner_Movimientos_Recientes_dasboard">
+                <label class="title_Movimientos_Recientes_dasboard">Movimientos Recientes</label>
+                <div class="container_registro_movimiento_para_dasboard">
+                    <div class="container_historial_movimiento_dashboard">
+                        <div class="item_list_historial_movimiento_dasboard data_item1">N</div>
+                        <div class="item_list_historial_movimiento_dasboard data_item1">Tipo de Tansación</div>
+                        <div class="item_list_historial_movimiento_dasboard data_item2">Descripción </div>
+                        <div class="item_list_historial_movimiento_dasboard data_item3">Fecha de Registro</div>
+                    </div>
+                    <div class="list_data_historial_movimiento_dashboard" id="data_list_historial_movimiento_dashboard">
+                    </div>
+                </div>
+            </section>
+            <!--
+            <section class="containner_Precios_Ajustados_dasboard">
+                <label class="title_Precios_Ajustados_dasboard">Precios Ajustados Dasboard</label>
+                <div class="container_registro_Precios_Ajustados_dasboard">
+                    <div class="container_Precios_Ajustados_dasboard">
+                        <div class="item_list_Precios_Ajustados_dasboard data_item1">Producto</div>
+                        <div class="item_list_Precios_Ajustados_dasboard data_item2">Catejoria</div>
+                        <div class="item_list_Precios_Ajustados_dasboard data_item3">Stock Actual</div>
+                        <div class="item_list_Precios_Ajustados_dasboard data_item4">Precio de Compra</div>
+                        <div class="item_list_Precios_Ajustados_dasboard data_item5">Precio. V anterior</div>
+                        <div class="item_list_Precios_Ajustados_dasboard data_item6">Precio. V nuevo</div>
+                    </div>
+                    <div class="list_data_Precios_Ajustados_dashboard" id="data_list_Precios_Ajustados_dashboard">
+                    </div>
+                </div>
+            </section>
+            -->
+            <section class="containner_Proveedores_Recientes_dasboard">
+                <label class="title_Proveedores_Recientes_dasboard">Proveedores Recientes</label>
+                <div class="container_registro_Proveedores_Recientes_para_dasboard">
+                    <div class="container_Proveedores_Recientes_dasboard">
+                        <div class="item_list_Proveedores_dasboard data_item1">Proveedor</div>
+                        <div class="item_list_Proveedores_dasboard data_item2">Descripción</div>
+                        <div class="item_list_Proveedores_dasboard data_item3">Contacto</div>
+                    </div>
+                    <div class="list_data_Proveedores_Recientes_dashboard" id="data_list_Proveedores_Recientes_dashboard">
+                    </div>
+                </div>
+            </section>
+            <!-----
+            <section class="container-grafias">
+                <div class="sub-containner-grafica">
+                     <h2>Cantidad de Productos por Categoria</h2>
+                      <canvas id="productosChart"></canvas>
+                      </div>
 
-    <section class="containner_Precios_Ajustados_dasboard">
-        <label class="title_Precios_Ajustados_dasboard">Precios Ajustados Dasboard</label>
-        <div class="container_registro_Precios_Ajustados_dasboard">
-            <div class="container_Precios_Ajustados_dasboard">
-                <div class="item_list_Precios_Ajustados_dasboard data_item1">Producto</div>
-                <div class="item_list_Precios_Ajustados_dasboard data_item2">Catejoria</div>
-                <div class="item_list_Precios_Ajustados_dasboard data_item3">Stock Actual</div>
-                <div class="item_list_Precios_Ajustados_dasboard data_item4">Precio de Compra</div>
-                <div class="item_list_Precios_Ajustados_dasboard data_item5">Precio. V anterior</div>
-                <div class="item_list_Precios_Ajustados_dasboard data_item6">Precio. V nuevo</div>
-            </div>
-            <div class="list_data_Precios_Ajustados_dashboard" id="data_list_Precios_Ajustados_dashboard">
-            </div>
-        </div>
-    </section>
+                <div class="sub-containner-grafica">
+                    <h2>Movimientos por Día</h2>
+                    <canvas id="movimientosChart"></canvas>
+                </div>
 
-    <section class="containner_Proveedores_Recientes_dasboard">
-        <label class="title_Proveedores_Recientes_dasboard">Proveedores Recientes</label>
-        <div class="container_registro_Proveedores_Recientes_para_dasboard">
-            <div class="container_Proveedores_Recientes_dasboard">
-                <div class="item_list_Proveedores_dasboard data_item1">Proveedor</div>
-                <div class="item_list_Proveedores_dasboard data_item2">Descripción</div>
-                <div class="item_list_Proveedores_dasboard data_item3">Contacto</div>
-            </div>
-            <div class="list_data_Proveedores_Recientes_dashboard" id="data_list_Proveedores_Recientes_dashboard">
-            </div>
-        </div>
-    </section>
+                <div class="sub-containner-grafica">
+                    <h2>Cantidad vendida por producto</h2>
+                    <canvas id="cantidadChart"></canvas>
+                </div>
+
+                <div class="sub-containner-grafica">
+                          <h2>Ingresos por producto</h2>
+                          <canvas id="ingresosChart"></canvas>
+                </div>
+            </section>
+    </section>----->
+
 </section>`;
 
+
+
+
+
+
+
+
 function Dashboard(id) {
+  
+   document.getElementById(id).innerHTML = Html_Dashboard;
 
-
-    document.getElementById(id).innerHTML = Html_Dashboard;
-
-    CargarDataMovimiento()
-    CargarDatastock_dashboard()
-    CargarDataPrecios_Ajustados_dashboard()
-    CargarDataProveedores_Recientes__dashboard()
+    api.send('get-informacion-dasboard')
+   // api.send('get-informacion-movimiento-dasboard')
 }
 
+api.receive("productos-data-total-productos",(event,data)=>{
 
-function CargarDatastock_dashboard() {
-    let cant = 10;
-    for (let i = 0; i < cant; i++) {
 
-        document.getElementById("data_list_data_stock_dashboard").innerHTML += `
-    <div class="data_item_historial_Proveedores_dashboard">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>`
-    }
-}
+        /*****
+        [
+          {
+            total_general_productos: 41,
+            total_productos_stock_bajo: 7,
+            valor_total_todos_productos: 2583.37
+          }
+        ]
+         console.log('productos-data-total-productos',data_total_producto)
+        **********/
+   
+        document.getElementById("total_productos").innerHTML=data[0].total_general_productos
+        document.getElementById("total_productos_bajo").innerHTML=data[0].total_productos_stock_bajo
+        document.getElementById("valor_total_producto").innerHTML=data[0].valor_total_todos_productos
 
-function CargarDataMovimiento() {
-    let cant = 5;
-    for (let i = 0; i < cant; i++) {
+})
+
+api.receive('productos-data-list-productos',(event,data_total_list)=>{
+
+    data_total_list.forEach((producto,item)=>{
+
+      document.getElementById("data_list_data_stock_dashboard").innerHTML += `
+            <div class="data_item_historial_Proveedores_dashboard">
+                <span>${producto.nombre}</span>
+                <span>${producto.categoria}</span>
+                <span style="color:red;  font-weight:bold">${producto.cant}</span>
+                <span>Agotado</span>
+            </div>`
+
+    })
+
+})
+
+
+
+api.receive('movimientos-data-actividad',(event,data)=>{
+
+    document.getElementById("valor_movimieno_entrada").innerHTML=data[0].movimientos_hoy
+    document.getElementById("valor_movimieno_salida").innerHTML=data[0].movimientos_ayer
+
+})
+
+api.receive('movimientos-data-list',(event,data)=>{
+
+    data.forEach((movimiento,item)=>{
 
         document.getElementById("data_list_historial_movimiento_dashboard").innerHTML += `
-        <div class="data_item_historial_movimiento_dashboard">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>`
-    }
-}
-function CargarDataPrecios_Ajustados_dashboard() {
-    let cant = 5;
-    for (let i = 0; i < cant; i++) {
+            <div class="data_item_historial_movimiento_dashboard">
+                <span>${movimiento.id}</span>
+                <span>${movimiento.tipo}</span>
+                <span>${movimiento.descripcion}</span>
+                <span>${movimiento.fecha}</span>
+            </div>`
 
-        document.getElementById("data_list_Precios_Ajustados_dashboard").innerHTML += `
-        <div class="data_item_Precios_Ajustados_dashboard">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>`
-    }
-}
-function CargarDataProveedores_Recientes__dashboard() {
-    let cant = 5;
-    for (let i = 0; i < cant; i++) {
+    })
 
-        document.getElementById("data_list_Proveedores_Recientes_dashboard").innerHTML += `
-        <div class="data_item_Proveedores_Recientes_dashboard">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>`
-    }
-}
+})
+
+
+/*------------------------------*/

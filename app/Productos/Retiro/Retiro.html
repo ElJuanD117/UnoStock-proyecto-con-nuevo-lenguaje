@@ -21,11 +21,21 @@
     display: flex;
     align-items: center;
     flex-direction: row;
+    justify-content: space-around;
 }
 
-.ventana-info1{
-    margin-left: 5px;
+.ventana-info1 {
+    margin-left: 7px;
+    font-size: 19px;
+    font-weight: bolder;
 }
+
+.ventana-info2 {
+    margin-left: 7px;
+    font-size: 19px;
+    font-weight: bolder;
+}
+
 
 .container-search-retiro {
     grid-area: 2 / 1 / 2 / 6;
@@ -289,8 +299,8 @@
         <div class="ventana-info1" id="data-ventana1-info">
             
         </div> 
-        <div class="ventana-info2">
-            
+        <div class="ventana-info2" id="data-ventana2-info">
+            <div id="reloj">00:00:00</div>
         </div>
         
     </div>
@@ -456,28 +466,6 @@ let btn_reset = document.getElementById("btn-Limpiar");
 
 
 /*----------------------------------------------------------------*/
-// Función para obtener el valor de 1 USD en bolívares
-async function obtenerCambioUSD() {
-  try {
-    const respuesta = await fetch("https://ve.dolarapi.com/v1/dolares/oficial");
-    const datos = await respuesta.json();
-
-    console.log(datos)
-
-        return datos.promedio;
-
-  } catch (error) {
-    console.error("Error al obtener el cambio:", error);
-    return null;
-  }
-}
-
-// Uso de la función
-obtenerCambioUSD().then(valor => {
-  //console.log(`1 USD = ${valor} Bs`);
-  document.getElementById("data-ventana1-info").innerHTML=`1 USD = ${valor} Bs`
-});
-
 
 function abrirModal(data) {
 
@@ -597,37 +585,39 @@ function calculos_resultados(producto){
 
 /*----------------------------------------------------------------*/
 
+function AbrirModalDatosComprador() {
+    var modal = document.getElementById("miModal");
+    modal.style.display = "block";
+}
 
-        function AbrirModalDatosComprador() {
-            var modal = document.getElementById("miModal");
-            modal.style.display = "block";
-        }
 
-       
-        function CerrarModalDatosComprador() {
-             var modal = document.getElementById("miModal");
-            modal.style.display = "none";
-        }
+function CerrarModalDatosComprador() {
+  
+     var modal = document.getElementById("miModal");
+    modal.style.display = "none";
+}
 
         // Manejar el envío del formulario (opcional, para demostrar la captura de datos)
-        document.getElementById("formularioPersona").onsubmit = function(event) {
+document.getElementById("formularioPersona").onsubmit = function(event) {
             event.preventDefault(); // Evita que la página se recargue
 
             /*----------------------------------------*/
-            
-    //console.log(List_Productos_retiro)
-    let data = {
-            comprador:{
-                nombre:document.getElementById('nombre').value,
-                ci:document.getElementById('ci').value,
-                tlf:document.getElementById('tlf').value
-            },
-            productos:List_Productos_retiro
-    }
-console.log(data)
- /*----------------------------------------*/
-    
-    //api.send("guardar-informacion-en-movimientos",data)
+                        
+                //console.log(List_Productos_retiro)
+                let data = {
+                        comprador:{
+                            nombre:document.getElementById('nombre').value,
+                            ci:document.getElementById('ci').value,
+                            tlf:document.getElementById('tlf').value
+                        },
+                        productos:List_Productos_retiro
+                }
+             /*----------------------------------------*/
+                
+              api.send("guardar-informacion-de-transacion",data)
+
+                 /*----------------------------------------*/
+                
             CerrarModalDatosComprador()
             /*---------------------------------------------*/
             List_Productos_retiro=[]
@@ -635,6 +625,131 @@ console.log(data)
             document.getElementById("list_product_retiro").innerHTML="";
             document.getElementById("Precio_Total").innerHTML = 0.00;
             document.getElementById("cantidad_total_producto").innerHTML = 0;
+}
+
+
+/*------------------------------------------------------------------------------*/
+// Función para obtener el valor de 1 USD en bolívares
+async function obtenerCambioUSD() {
+  try {
+    const respuesta = await fetch("https://ve.dolarapi.com/v1/dolares/oficial");
+    const datos = await respuesta.json();
+
+    console.log(datos)
+
+        return datos.promedio;
+
+  } catch (error) {
+    console.error("Error al obtener el cambio:", error);
+    return null;
+  }
+}
+
+// Uso de la función
+obtenerCambioUSD().then(valor => {
+  document.getElementById("data-ventana1-info").innerHTML=`1 USD = ${valor} Bs`
+});
+
+
+function programarFuncionDiaria(funcionAEjecutar, horas) {
+    const ahora = new Date();
+    const hoy = ahora.getDate();
+    const esteMes = ahora.getMonth();
+    const esteAnio = ahora.getFullYear();
+    const tiempoActualMs = ahora.getTime();
+
+    // 1. Encontrar el próximo momento de ejecución
+    let proximaEjecucionMs = Infinity;
+
+    // Buscar la hora de hoy más cercana en el futuro
+    for (const hora of horas) {
+        // Creamos un objeto Date para la hora programada de hoy
+        const tiempoProgramado = new Date(esteAnio, esteMes, hoy, hora, 0, 0, 0);
+        const tiempoProgramadoMs = tiempoProgramado.getTime();
+
+        if (tiempoProgramadoMs > tiempoActualMs) {
+            // Es una hora en el futuro hoy
+            proximaEjecucionMs = Math.min(proximaEjecucionMs, tiempoProgramadoMs);
         }
+    }
+
+    // 2. Si no hay más horas hoy, programar para la primera hora de mañana
+    if (proximaEjecucionMs === Infinity) {
+        // Ordenamos las horas para encontrar la primera hora de mañana
+        horas.sort((a, b) => a - b);
+        const primeraHoraManana = horas[0];
+
+        // Fecha de mañana con la primera hora programada
+        const manana = new Date(esteAnio, esteMes, hoy + 1, primeraHoraManana, 0, 0, 0);
+        proximaEjecucionMs = manana.getTime();
+    }
+
+    // 3. Calcular el retraso y programar
+    const retrasoMs = proximaEjecucionMs - tiempoActualMs;
+
+    console.log(`Función programada para: ${new Date(proximaEjecucionMs).toLocaleTimeString()}`);
+
+    // Usamos setTimeout para esperar hasta la hora programada
+    setTimeout(() => {
+        // Ejecutar la función deseada
+        funcionAEjecutar();
+
+        // Volver a programar para el próximo ciclo
+        programarFuncionDiaria(funcionAEjecutar, horas);
+    }, retrasoMs);
+}
+
+// --- Uso de la función ---
+
+// 1. Define la función que quieres ejecutar
+const miFuncion = () => {
+    //console.log(`¡La función se ejecutó a las ${new Date().toLocaleTimeString()}!`);
+    // Aquí iría el código real que quieres que se ejecute a las 3 PM o 5 PM
+
+    /*----------------------------------------*/
+    // Uso de la función
+    obtenerCambioUSD().then(valor => {
+      document.getElementById("data-ventana1-info").innerHTML=`1 USD = ${valor} Bs`
+    });
+    /*----------------------------------------*/
+
+};
+
+// 2. Llama a la función de programación
+// Las horas se especifican en formato 24 horas: 15 (3 PM) y 17 (5 PM).
+programarFuncionDiaria(miFuncion, [15, 17]);
+
+/*------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------*/
+function actualizarReloj() {
+    // 1. Obtener la fecha y hora actuales
+    const ahora = new Date();
+
+    // 2. Extraer horas, minutos y segundos
+    const horas = ahora.getHours();
+    const minutos = ahora.getMinutes();
+    const segundos = ahora.getSeconds();
+
+    // 3. Formatear para añadir un cero inicial si es menor a 10
+    // La función padStart(2, '0') asegura que el número tenga al menos 2 dígitos
+    // (ej: 5 se convierte en '05')
+    const formatoHoras = String(horas).padStart(2, '0');
+    const formatoMinutos = String(minutos).padStart(2, '0');
+    const formatoSegundos = String(segundos).padStart(2, '0');
+
+    // 4. Crear la cadena de texto de la hora (HH:MM:SS)
+    const tiempoActual = `${formatoHoras}:${formatoMinutos}:${formatoSegundos}`;
+
+    // 5. Mostrar la hora en el elemento HTML
+    const elementoReloj = document.getElementById('reloj');
+    elementoReloj.textContent = tiempoActual;
+}
+
+// 6. Configurar la actualización del reloj
+// setInterval() llama a la función actualizarReloj cada 1000 milisegundos (1 segundo)
+setInterval(actualizarReloj, 1000);
+
+// Llamar a la función inmediatamente al cargar la página para evitar un retraso inicial
+actualizarReloj();
 </script>
  

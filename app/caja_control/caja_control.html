@@ -16,9 +16,14 @@
 
 }
 
-.container-indicador-cant-dinero{
-
+.container-indicador-cant-dinero {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
+
 .monto {
     font-size: 30px;
     font-weight: bold;
@@ -83,7 +88,10 @@ api.receive("status-caja-dinero-apertura",(event,caja_status)=>{
 
 			document.getElementById("containner-caja-money").innerHTML=`
 			<h1 class="title-caja" id="title_caja">Registrar Dinero</h1>
-			<input type="text" class="input-caja" id="input_registro" placeholder="Agregar Cantidad">
+			<label class="container-indicador-cant-dinero">
+				<input type="text" class="input-caja" id="input_registro" placeholder="Agregar Cantidad">
+				<span class="tipo"  id="tipo_dinero">Bs</span>
+			</label>
 			<button class="btn-Guardar" id="Guardar" onclick="Registrar()">Guardar</button>`;
 
 		}
@@ -109,13 +117,29 @@ api.receive("status-caja-dinero-cierre",(event,data)=>{
 
 	console.log("status-caja-dinero-cierre",data)
 	
+	if(data.length>0){
 	   document.getElementById("containner-caja-money").innerHTML=`
 	            <h1 class="title-caja" id="title_caja">Cerrar Caja</h1>
 	            <label class="container-indicador-cant-dinero">
-	                <span class="monto" id="indicador_cantidad">${data[0].cant}</span>
+	                <span class="monto" id="indicador_cantidad">${data[0].dinero}</span>
 	                <span class="tipo" id="tipo_dinero">Bs</span>
 	            </label>
 	            <button class="btn-Guardar" id="cerrar" onclick="Cerrar()">Cerrar</button>`;
+	
+	}
+	/*
+	else{
+
+			   document.getElementById("containner-caja-money").innerHTML=`
+	            <h1 class="title-caja" id="title_caja">Cerrar Caja</h1>
+	            <label class="container-indicador-cant-dinero">
+	                <span class="monto" id="indicador_cantidad">0.00</span>
+	                <span class="tipo" id="tipo_dinero">Bs</span>
+	            </label>
+	            <button class="btn-Guardar" id="cerrar" onclick="Cerrar()">Cerrar</button>`;
+	
+	}*/
+
 
 })
 
@@ -198,6 +222,11 @@ function TimeSelect(){
 api.receive("indicar-cierre-de-app",()=>{
 	console.log("quitar aplicacion")
 
+	setTimeout(()=>{
+
+			window.close();
+
+	},3000)
 
 	setTimeout(()=>{
 
@@ -205,11 +234,6 @@ api.receive("indicar-cierre-de-app",()=>{
 
 	},2000)
 
-	setTimeout(()=>{
-
-			window.close();
-
-	},4000)
 	
 })
 

@@ -23,7 +23,7 @@ let id_product;
  * @param {string} status - "Apertura" o "Cierre".
  * @param {BrowserWindow} [mainWindow] - La ventana principal para establecer la modalidad.
  */
-function caja_control(status,) {
+function caja_control(status,mainWindow) {
     // Si la ventana ya existe y no ha sido destruida, solo la enfoca y sale.
     if (caja_control_Window && !caja_control_Window.isDestroyed()) {
         caja_control_Window.focus();
@@ -31,6 +31,7 @@ function caja_control(status,) {
     }
 
     caja_control_Window = new BrowserWindow({
+        parent:mainWindow,
         modal: true,
         width: 400,
         height: 180,
@@ -47,7 +48,7 @@ function caja_control(status,) {
     caja_control_Window.loadFile("app/caja_control/caja_control.html");
     // Solo abre DevTools en entorno de desarrollo
      
-     //caja_control_Window.webContents.openDevTools(); 
+    //caja_control_Window.webContents.openDevTools(); 
                       
     caja_control_Window.once('ready-to-show', () => {
         caja_control_Window.show();
@@ -91,7 +92,7 @@ async function getLatestData(query, sendChannel) {
         console.error(`Error al obtener datos: ${query}`, error);
         dialog.showErrorBox("Error de Base de Datos", "No se pudo cargar la información de caja.");
         // Opcional: Enviar un error al renderizador
-        // caja_control_Window.webContents.send(sendChannel, { error: true }); 
+        caja_control_Window.webContents.send(sendChannel, { error: true }); 
     } finally {
         await DB.cerrar();
     }
@@ -105,6 +106,7 @@ async function guardarHistorial(status,mensaje) {
     try {
         await DB.conectar();
         await DB.crear('INSERT INTO Historial_de_caja (estado,dinero,fecha) VALUES (?,?,?)', [status.estado, status.dinero, status.fecha] ); console.log(`Registro de caja guardado: ${status.estado}`);
+        await DB.crear('INSERT INTO Dinero_Almacenado (dinero,fecha) VALUES (?,?)', [status.dinero, status.fecha] ); console.log(`Registro de caja guardado: ${status.estado}`);
     } catch (error) {
         console.error("Error al guardar historial de caja:", error);
         dialog.showErrorBox("Error de Base de Datos", "No se pudo guardar el estado de la caja.");

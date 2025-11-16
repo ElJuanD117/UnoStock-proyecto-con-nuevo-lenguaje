@@ -5,7 +5,7 @@
 .productos {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 47px 50px repeat(3, 1fr);
+    grid-template-rows: 47px 60px repeat(3, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 8px;
     padding: 0px;
@@ -75,6 +75,7 @@
     flex-direction: row;
     padding: 0px;
     align-items: center;
+    overflow-x: auto;
 }
 .item-categoria {
     padding: 3px;
@@ -93,7 +94,7 @@
 /*------------------------------*/
 .container-list-product {
     background: #bfbfbf;
-    height: 61vh;
+    height: 58vh;
     overflow-y: scroll;
     padding: 6px;
 }

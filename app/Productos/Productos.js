@@ -80,6 +80,9 @@ function Productos(id){
 
 api.receive("categoria-list-data-product",(event,data_categoria)=>{
 
+	//console.log("categoria-list-data-product",data_categoria)
+
+
 	    let containner_categoria = document.getElementById("containner_categoria_lista");
 
         containner_categoria.innerHTML+="";
@@ -89,6 +92,7 @@ api.receive("categoria-list-data-product",(event,data_categoria)=>{
             containner_categoria.removeChild(containner_categoria.firstChild);
                                         
         }
+
         if(data_categoria.length>0){
 
 				data_categoria.forEach((categoria, index)=>{
@@ -104,6 +108,8 @@ api.receive("categoria-list-data-product",(event,data_categoria)=>{
 })
 
 api.receive("productos-data",(event, data_producto)=>{
+
+	console.log("productos-data", data_producto)
 
     let containner_product = document.getElementById("list_product");
 

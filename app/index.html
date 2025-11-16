@@ -34,10 +34,7 @@
 			<h1 class="title-header" id="title_header">Dashboard</h1>
 			<p class="sub-title-header" id="sub_title_header">#########</p>
 		</div>
-		<div class="containner-search">
-			<input id="search_name" class="search-name" type="search" name="" placeholder="Busqueda">
-			<button class="btn-search" id="btn_search_name"><i class="icon-search"></i></button>
-		</div>
+
 		<div class="sub-containner-icono-header">
 			<h2 class="Text-icono">UnoStock</h2>
 			<label class="iconoApp iconUnoStock-Logo"></label>
@@ -49,6 +46,7 @@
 <script type="text/javascript" src="assets/icoMoon/selection.json"></script>
 <script type="text/javascript" src="assets/UnoStock-v1.0/selection.json"></script>
 <script type="text/javascript" src="assets/js/AudioSpeak.js"></script>
+<script type="text/javascript" src="assets/js/chartjs.js"></script>
 <script type="text/javascript" src="Dashboard/Dashboard.js"></script>
 <script type="text/javascript" src="Proveedores/Proveedores.js"></script>
 <script type="text/javascript" src="Movimientos/Movimientos.js"></script>
@@ -56,15 +54,13 @@
 
 <script type="text/javascript">
 
-	Speak("Hola Bienvenido")
+	Speak("Bienvenido")
 	api.send("app_version");
 	api.receive('app_version', (event, info) => {
 
 		document.getElementById("versionApp").innerHTML = info.name + " " + info.version;
 
 	})
-
-
 	Dashboard("main_containner_activity");
 	document.getElementById("title_header").innerHTML = "Dashboard";
 	document.getElementById("sub_title_header").innerHTML = "Menu principal informativo";

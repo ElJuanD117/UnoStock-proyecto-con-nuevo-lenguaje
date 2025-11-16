@@ -108,12 +108,15 @@ body {
 
 .title_sub_card {
     grid-area: 1 / 1 / 2 / 3;
-    font-size: 16px;
+    font-size: 19px;
     font-weight: bold;
 }
 
 .number_estado_sub_card {
     grid-area: 2 / 1 / 3 / 2;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 14px;
 }
 
 .info_sub_card {
@@ -124,13 +127,17 @@ body {
     font-size: 39px;
 }
 
+.iconUnoStock-Productos_2 {
+    color: #ff9800;
+}
 .iconUnoStock-Movimientos {
     color: orange;
 }
 
 .iconUnoStock-advertencia {
-    color: red;
+    color: #e00000;
 }
+
 
 .icon-cotainer {
     background: green;
@@ -252,7 +259,8 @@ body {
 
 .container_historial_movimiento_dashboard {
     display: grid;
-    grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr);
+   /* grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr);*/
+    grid-template-columns: 20px 1fr 1fr 1fr;
     grid-template-rows: 24px 1fr;
     grid-column-gap: 4px;
     grid-row-gap: 0px;
@@ -278,7 +286,7 @@ body {
 
 .data_item_historial_movimiento_dashboard {
     display: grid;
-    grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr);
+   grid-template-columns: 20px 1fr 1fr 1fr;
     grid-template-rows: 29px 1fr;
     grid-column-gap: 3px;
     grid-row-gap: 2px;
@@ -328,9 +336,11 @@ body {
 }
 
 .item_list_stock_dasboard {
-    font-size: 14px;
+    font-size: 17px;
+    text-align: center;
     margin-right: 2px;
 }
+
 
 .list_data_stock_dashboard {
     height: 29vh;
@@ -345,11 +355,14 @@ body {
     grid-column-gap: 3px;
     grid-row-gap: 2px;
     padding: 0.5px;
+
 }
 
 .data_item_historial_Proveedores_dashboard>span {
     padding: 2px;
     background: white;
+    text-align: center;
+    font-weight: bold;
 }
 
 .btn_action_stock__dashboard {}
@@ -427,6 +440,7 @@ body {
 .containner_Proveedores_Recientes_dasboard {
     background: white;
     padding: 7px;
+    margin-bottom: 5px;
 }
 
 .title_Proveedores_Recientes_dasboard {
@@ -461,7 +475,7 @@ body {
 }
 
 .list_data_Proveedores_Recientes_dashboard {
-    height: 18vh;
+    height: 25vh;
     overflow-y: scroll;
     background: #d9d9d9;
 
@@ -481,3 +495,18 @@ body {
     padding: 2px;
     background: white;
 }
+
+
+.containner-data-dasboard{
+
+    display: grid;
+    grid-template-columns:1fr;
+    grid-template-rows: auto;
+    grid-column-gap: 3px;
+    grid-row-gap: 2px;
+}
+
+.container-grafias{
+
+}
+

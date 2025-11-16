@@ -10,38 +10,37 @@
         background-color: #d2d6e0;
         height: 100vh;
     }
-
-    .Movimiento-container {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(2, 50px) repeat(1, 1fr);
-        grid-column-gap: 8px;
-        grid-row-gap: 8px;
-        background-color: #d2d6e0;
-        height: 98vh;
-        padding: 4px;
-    }
-
+.Movimiento-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 0.5fr 1fr 1fr;
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+    background-color: #d7d4d4;
+    height: 80vh;
+    padding: 4px;
+    overflow-y: scroll;
+}
     .section_Movimiento1 {
-        grid-area: 1 / 1 / 3 / 2;
+        grid-area: 1 / 1 / 2 / 2;
     }
 
     .section_Movimiento2 {
-        grid-area: 1 / 2 / 3 / 3;
+       grid-area: 1 / 2 / 2 / 3;
     }
 
     .section_Movimiento3 {
-        grid-area: 1 / 3 / 3 / 4;
+       grid-area: 1 / 3 / 2 / 4;
     }
 
     .section_Movimiento4 {
-        grid-area: 1 / 4 / 3 / 5;
+       grid-area: 2 / 1 / 3 / 4;
+    }    
+
+    .section_Movimiento5 {
+       grid-area: 3 / 1 / 3 / 4;
     }
 
-    /*--------------------------------------------*/
-    .section_Movimiento5 {
-        grid-area: 3 / 1 / 5 / 5;
-    }
 
     /*----------------------------------------------*/
     .sub_card_Movimiento {
@@ -93,8 +92,7 @@
     }
 
     /*-------------------------------------------------*/
-    /*-----------------------------------------*/
-    .containner_historial_Movimientos_Recientes {
+    .containner_Movimientos_Recientes {
         margin-top: 10px;
         border-radius: 10px;
         background: white;
@@ -103,8 +101,7 @@
         /* width: 100%; */
     }
 
-    .title_historial_Movimientos_Recientes {
-        /*border-bottom: 2px solid #000;*/
+    .title_Movimientos_Recientes {
         width: 100%;
         display: block;
         width: 95%;
@@ -114,8 +111,7 @@
 
     .container-registro-movimiento {
         display: grid;
-        grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr) 0.5fr;
-        grid-template-rows: 31px 1fr;
+       grid-template-columns: 20px 1fr 1fr 1fr;
         grid-column-gap: 0px;
         grid-row-gap: 0px;
         background-color: #cacdd6;
@@ -124,56 +120,33 @@
         padding: 2px;
     }
 
-    .data-item1 {
-        grid-area: 1 / 1 / 2 / 2;
-    }
-
-    .data-item2 {
-        grid-area: 1 / 2 / 2 / 3;
-    }
-
-    .data-item3 {
-        grid-area: 1 / 3 / 2 / 4;
-    }
-
-    .data-item4 {
-        grid-area: 1 / 4 / 2 / 5;
-    }
-
-    .data-item5 {
-        grid-area: 1 / 5 / 2 / 6;
-    }
-
-    .data-item6 {
-        grid-area: 1 / 6 / 2 / 7;
-    }
-
     .list-data {
         grid-area: 2 / 1 / 3 / 7;
         width: 100%;
         padding: 2px;
         background: #d7d4d4;
         overflow-y: scroll;
-        height: 58vh;
+        height: 18vh;
     }
 
-    .item-list-historial-movimiento {
+    .item_list_movimiento{
         color: black;
         font-weight: bold;
     }
 
-    .data-item {
+    .data_item_movimiento{
         display: grid;
-        grid-template-columns: repeat(2, 1fr) 2fr repeat(2, 1fr) 0.5fr;
+        grid-template-columns: 20px 1fr 1fr 1fr;
         grid-template-rows: 1fr;
         grid-column-gap: 2px;
         grid-row-gap: 0px;
         margin-bottom: 2px;
     }
 
-    .data-item>span {
+    .data_item_movimiento>span {
         background: white;
         padding: 5px;
+        font-weight: bold;
     }
 
     .span-action {
@@ -197,3 +170,98 @@
         color: red;
 
     }
+    /*---------------------------------------------*/
+
+.section_Movimiento6 {
+    grid-area: 5 / 1 / 5 / 5;
+}
+
+    .containner_detalles_de_venta {
+        margin-top: 10px;
+        border-radius: 10px;
+        background: white;
+        padding: 7px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        /* width: 100%; */
+    }
+
+.title_historial_detalles_de_venta{
+    width: 100%;
+        display: block;
+        width: 95%;
+        font-size: 25px;
+        font-weight: bold;
+}
+
+.container-registro-detalles_de_venta {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 31px 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 2px;
+    background-color: #cacdd6;
+    border: 2px solid #c1c5de;
+    align-items: center;
+    padding: 2px;
+}
+
+.item-list-detalles-de-venta{
+
+font-weight: bold;
+
+}
+.list-data-detalles-de-venta{
+
+ grid-area: 2 / 1 / 3 / 7;
+        width: 100%;
+        padding: 2px;
+        background: #d7d4d4;
+        overflow-y: scroll;
+        height: 21vh;
+}
+
+.data-item-detalles-de-venta {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 31px 1fr;
+    grid-column-gap: 2px;
+    grid-row-gap: 0px;
+    margin-bottom: 2px;
+}
+
+    .data-item-detalles-de-venta>span {
+        background: white;
+        padding: 5px;
+        font-weight: bold;
+    }
+
+
+.section_Movimiento4 {
+    grid-area: 2 / 1 / 3 / 4;
+  display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows:1fr;
+    grid-column-gap:5px;
+    grid-row-gap: 0px;
+}
+
+.container-grafias-movimientos {
+    padding: 0px;
+}
+
+.sub-containner-grafica-movimiento {
+    /* width: 80%; */
+    background: white;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+    max-height: 250px;
+}
+
+.canvas-movimientos{
+
+  
+}

@@ -1,0 +1,129 @@
+
+<section class="container-grafias-movimientos">
+                <div class="sub-containner-grafica">
+                     <h2>Cantidad de Productos por Categoria</h2>
+                      <canvas id="productosChart"></canvas>
+                </div>
+
+                <div class="sub-containner-grafica">
+                    <h2>Movimientos por Día</h2>
+                    <canvas id="movimientosChart"></canvas>
+                </div>
+
+                <div class="sub-containner-grafica">
+                    <h2>Cantidad vendida por producto</h2>
+                    <canvas id="cantidadChart"></canvas>
+                </div>
+
+                <div class="sub-containner-grafica">
+                          <h2>Ingresos por producto</h2>
+                          <canvas id="ingresosChart"></canvas>
+                </div>
+            </section>
+// Graficar productos
+api.send('getProductos')
+
+api.receive("Grafico-productos",(event,data)=>{
+
+  const categorias = data.map(d => d.categoria);
+  const cantidades = data.map(d => d.cantidad);
+
+  new Chart(document.getElementById('productosChart'), {
+    type: 'bar',
+    data: {
+      labels: categorias,
+      datasets: [{
+        label: 'Cantidad de productos',
+        data: cantidades,
+        backgroundColor: 'rgba(54, 162, 235, 0.6)'
+      }]
+    }
+  });
+
+
+
+
+})
+
+// Graficar movimientos
+
+/******
+Agrupa los movimientos por fecha.
+
+Cuenta cuántos movimientos ocurrieron en cada día.
+
+********/
+api.send('getMovimientos')
+
+api.receive("Grafico-Movimientos",(event,data)=>{
+
+  const dias = data.map(d => d.dia);
+  const cantidades = data.map(d => d.cantidad);
+
+  new Chart(document.getElementById('movimientosChart'), {
+    type: 'line',
+    data: {
+      labels: dias,
+      datasets: [{
+        label: 'Movimientos por día',
+        data: cantidades,
+        borderColor: 'rgba(255, 99, 132, 0.8)',
+        fill: false,
+        tension: 0.1
+      }]
+       },
+    options: {
+        // **Asegúrate de que estas dos opciones estén en 'true'**
+        responsive: true,
+        maintainAspectRatio: false, // Establece a 'false' si quieres ignorar la relación de aspecto original
+
+        // Opcional: Puedes establecer un tamaño máximo si lo necesitas
+        // Esto solo funcionará si 'responsive' es 'true'
+        maxHeight: 500,
+        // maxWidth: 900
+    }
+  });
+
+})
+
+api.send('getcantidad')
+
+api.receive("Grafico-cantidad",(event,data)=>{
+
+ const productos = data.map(d => d.producto);
+  const cantidades = data.map(d => d.total_cantidad);
+
+  new Chart(document.getElementById('cantidadChart'), {
+    type: 'bar',
+    data: {
+      labels: productos,
+      datasets: [{
+        label: 'Cantidad vendida',
+        data: cantidades,
+        backgroundColor: 'rgba(54, 162, 435, 0.6)'
+      }]
+    }
+  });
+
+})
+
+
+api.send('getingresos')
+
+api.receive("Grafico-ingresos",(event,data)=>{
+const productos = data.map(d => d.producto);
+  const ingresos = data.map(d => d.ingresos);
+
+  new Chart(document.getElementById('ingresosChart'), {
+    type: 'pie',
+    data: {
+      labels: productos,
+      datasets: [{
+        label: 'Ingresos',
+        data: ingresos,
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
+      }]
+    }
+  });
+
+})
