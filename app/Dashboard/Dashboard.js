@@ -1,4 +1,8 @@
-let Html_Dashboard = `<section class="Dashboard">
+
+
+let Html_Dashboard = `
+
+<section class="Dashboard">
     <section class="containner_Tarjetas_dashboard">
         <div class="Tarjeta_dashboard1 sub_card_Dashboard"> 
             <label class="title_sub_card">Total de Productos</label>
@@ -157,20 +161,26 @@ api.receive("productos-data-total-productos",(event,data)=>{
 
 api.receive('productos-data-list-productos',(event,data_total_list)=>{
 
+    if(data_total_list.length>0){
+
     data_total_list.forEach((producto,item)=>{
 
-      document.getElementById("data_list_data_stock_dashboard").innerHTML += `
-            <div class="data_item_historial_Proveedores_dashboard">
-                <span>${producto.nombre}</span>
-                <span>${producto.categoria}</span>
-                <span style="color:red;  font-weight:bold">${producto.cant}</span>
-                <span>Agotado</span>
-            </div>`
+          document.getElementById("data_list_data_stock_dashboard").innerHTML += `
+                <div class="data_item_historial_Proveedores_dashboard">
+                    <span>${producto.nombre}</span>
+                    <span>${producto.categoria}</span>
+                    <span style="color:red;  font-weight:bold">${producto.cant}</span>
+                    <span>Agotado</span>
+                </div>`
 
-    })
+        })
+    }else{
+
+        document.getElementById("data_list_data_stock_dashboard").innerHTML += `<h1 style="color:white">No Data</h1>`;
+    }
+
 
 })
-
 
 
 api.receive('movimientos-data-actividad',(event,data)=>{
@@ -182,17 +192,24 @@ api.receive('movimientos-data-actividad',(event,data)=>{
 
 api.receive('movimientos-data-list',(event,data)=>{
 
-    data.forEach((movimiento,item)=>{
+    if(data.length>0){
 
-        document.getElementById("data_list_historial_movimiento_dashboard").innerHTML += `
-            <div class="data_item_historial_movimiento_dashboard">
-                <span>${movimiento.id}</span>
-                <span>${movimiento.tipo}</span>
-                <span>${movimiento.descripcion}</span>
-                <span>${movimiento.fecha}</span>
-            </div>`
+        data.forEach((movimiento,item)=>{
 
-    })
+            document.getElementById("data_list_historial_movimiento_dashboard").innerHTML += `
+                <div class="data_item_historial_movimiento_dashboard">
+                    <span>${movimiento.id}</span>
+                    <span>${movimiento.tipo}</span>
+                    <span>${movimiento.descripcion}</span>
+                    <span>${convertirAFormato(movimiento.fecha,"DD/MM/YYYY HH:mm:ss")}</span>
+                </div>`
+
+        })
+
+    }else{
+
+    document.getElementById("data_list_data_stock_dashboard").innerHTML += `<h1 style="color:white">No Data</h1>`;
+        }
 
 })
 

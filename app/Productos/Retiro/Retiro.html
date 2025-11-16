@@ -678,8 +678,6 @@ function programarFuncionDiaria(funcionAEjecutar, horas) {
         // Ordenamos las horas para encontrar la primera hora de mañana
         horas.sort((a, b) => a - b);
         const primeraHoraManana = horas[0];
-
-        // Fecha de mañana con la primera hora programada
         const manana = new Date(esteAnio, esteMes, hoy + 1, primeraHoraManana, 0, 0, 0);
         proximaEjecucionMs = manana.getTime();
     }

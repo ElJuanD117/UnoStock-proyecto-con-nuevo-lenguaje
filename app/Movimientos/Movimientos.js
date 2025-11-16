@@ -1,4 +1,5 @@
 let Html_Movimiento= `
+
 <section class="Movimiento-container">
     <section class="section_Movimiento1 sub_card_Movimiento"> 
            <label class="title_sub_card">Total de Productos</label>
@@ -97,7 +98,7 @@ api.receive("Informacion-de-datos-movimientos",(event,data)=>{
                 <span>${movimiento.id}</span>
                 <span>${movimiento.tipo}</span>
                 <span>${movimiento.descripcion}</span>
-                <span>${movimiento.fecha}</span>
+                <span>${convertirAFormato(movimiento.fecha,"DD/MM/YYYY HH:mm:ss")}</span>
             </div>`
 
     })

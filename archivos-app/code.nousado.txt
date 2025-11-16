@@ -1,0 +1,117 @@
+  <div class="item-list-historial-movimiento data-item1">venta_id</div>
+  <div class="item-list-historial-movimiento data-item2">cod</div>
+  <div class="item-list-historial-movimiento data-item3">producto</div>
+  <div class="item-list-historial-movimiento data-item4">cantidad</div>
+  <div class="item-list-historial-movimiento data-item5">precio</div>
+  <div class="item-list-historial-movimiento data-item6">descuento</div>
+  <div class="item-list-historial-movimiento data-item7">total</div>
+
+
+
+
+  <div class="container-registro-movimiento"> Fecha de Registro</div> 
+<div class="item-list-historial-movimiento data-item2">Tipo de Tansación </div>
+<div class="item-list-historial-movimiento data-item3">Producto </div>
+<div class="item-list-historial-movimiento data-item4">Cantidad </div>
+<div class="item-list-historial-movimiento data-item5">Importe </div>
+<div class="item-list-historial-movimiento data-item6">Acciones </div>
+        
+
+
+
+
+
+
+
+
+
+
+            <section class="section_Movimiento1 sub_card_Movimiento"> 
+           <label class="title_sub_card">Total de Productos</label>
+            <div class="number_estado_sub_card" id="total_productos">50</div>
+            <span class="info_sub_card"></span>
+            <span class="image_sub_card iconUnoStock-Productos_2"></span>
+    </section>
+    <section class="section_Movimiento2 sub_card_Movimiento">
+          <label class="title_sub_card">Stock Bajo</label>
+            <div class="number_estado_sub_card" id="total_productos_bajo">50</div>
+            <span class="info_sub_card" style="color:red; font-weight:bold">Requiere Atención</span>
+            <span class="image_sub_card iconUnoStock-advertencia"></span>
+    </section>
+    <section class="section_Movimiento3 sub_card_Movimiento"> 
+     <label class="title_sub_card" >Valor Total</label>
+            <div class="number_estado_sub_card" id="valor_total_producto">50</div>
+            <span class="info_sub_card"></span>
+            <span class="image_sub_card icon-cotainer"><p class="icon-coin-dollar"></p></span>
+    </section>
+    <section class="section_Movimiento5  containner_Movimientos_Recientes">
+        <label class="title_Movimientos_Recientes">Historial Movimientos</label>
+        <div class="container-registro-movimiento">
+                <div class="item_list_movimiento">N</div>
+                <div class="item_list_movimiento">Tipo de Tansación</div>
+                <div class="item_list_movimiento">Descripción </div>
+                <div class="item_list_movimiento">Fecha de Registro</div>
+        </div>
+        <div class="list-data" id="list_data_historial_movimiento"> </div>
+    </section>
+    <section class="section_Movimiento6  containner_detalles_de_venta">
+        <label class="title_historial_detalles_de_venta">Detalles de Ventas</label>
+        <div class="container-registro-detalles_de_venta">
+              <div class="item-list-detalles-de-venta data-item1">venta_id</div>
+              <div class="item-list-detalles-de-venta data-item2">cod</div>
+              <div class="item-list-detalles-de-venta data-item3">producto</div>
+              <div class="item-list-detalles-de-venta data-item4">cantidad</div>
+              <div class="item-list-detalles-de-venta data-item5">precio</div>
+              <div class="item-list-detalles-de-venta data-item6">descuento</div>
+              <div class="item-list-detalles-de-venta data-item7">total</div>
+              <div class="item-list-detalles-de-venta data-item8">total</div>
+        </div>
+        <div class="list-data-detalles-de-venta" id="list_data_detalles_de_venta"> </div>
+    </section>
+
+
+
+
+    SELECT producto, SUM(total) AS ingresos FROM detalle_venta GROUP BY producto ORDER BY ingresos DESC;
+
+
+/* Simulación de datos (en Electron vendrían de ipcRenderer.invoke)*/
+const cantidadData = [
+  { producto: "Lupa", total_cantidad: 10 },
+  { producto: "Helado", total_cantidad: 25 },
+  { producto: "Martillo", total_cantidad: 15 }
+];
+
+const ingresosData = [
+  { producto: "Lupa", ingresos: 490.00 },
+  { producto: "Helado", ingresos: 500.00 },
+  { producto: "Martillo", ingresos: 750.00 }
+];
+
+// Gráfico de cantidad vendida
+
+
+new Chart(document.getElementById('cantidadChart'), {
+  type: 'bar',
+  data: {
+    labels: cantidadData.map(d => d.producto),
+    datasets: [{
+      label: 'Cantidad vendida',
+      data: cantidadData.map(d => d.total_cantidad),
+      backgroundColor: 'rgba(54, 162, 235, 0.6)'
+    }]
+  }
+});
+
+// Gráfico de ingresos por producto
+new Chart(document.getElementById('ingresosChart'), {
+  type: 'pie',
+  data: {
+    labels: ingresosData.map(d => d.producto),
+    datasets: [{
+      label: 'Ingresos',
+      data: ingresosData.map(d => d.ingresos),
+      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+    }]
+  }
+});

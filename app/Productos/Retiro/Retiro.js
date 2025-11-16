@@ -68,8 +68,6 @@ ipcMain.on("Buscar-producto-retiro", (event,valor) => {
          await DB.conectar();
 
           const product = await DB.buscar('SELECT * FROM productos WHERE nombre = ?', [valor]);
-          /*await console.log('Producto select con nombre:',product);*/
-          
             await Retiro_Producto_Window.send("productos-data-retiro",[product])
          await DB.cerrar();
       })();
@@ -80,8 +78,6 @@ ipcMain.on("Buscar-producto-retiro", (event,valor) => {
 
 
 ipcMain.on("guardar-informacion-de-transacion",(event,info) => {
-
-    //console.log("guardar-informacion-de-transacion",info)
 
     guardarVenta(info)
 

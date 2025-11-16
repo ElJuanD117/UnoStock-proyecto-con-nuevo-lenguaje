@@ -2,17 +2,18 @@
 
 let Html_Producto=`
 <section class="productos" id="productosdata">
-	<div class="container-search">
-		<input  id="inputSearch" class="input-text" placeholder="Codigo o Nombre de Producto" type="search">
+	<div class="container-search-productos">
+		<input  id="inputSearch" class="input-text-producto" placeholder="Codigo o Nombre de Producto" type="search">
 		<button class="btn-product-action Buscar icon-search" id="btn-buscar"></button>
 		<button class="btn-product-action Ingreso agregar icon-arrow-down" id="btn-Ingreso">Ingreso</button>		
 		<button class="btn-product-action Retiro icon-cart" id="btn-Retiro">Retiro</button>
 		<button class="btn-product-action Categoria" id="btn-Categoria">Categoria</button>
 	</div>
-	<div class="container-select-categoria" id="containner_categoria_lista">
-		<!--------	
-		<label class="item-categoria" id="categoria">item<span>x</span></label>
-		---------->
+	<div class="container-select-categoria">
+		
+		<label class="label-categoria-productos" id="categoria">Categoria</label>
+		<div class="sub-container-select-categoria" id="containner_categoria_lista">
+		</div>
 	</div>
 	<div class="container-list-product" id="list_product">
 		<!-----------LISTA DE PRODUCTO-------------->
