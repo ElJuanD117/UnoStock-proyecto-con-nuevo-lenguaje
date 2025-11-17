@@ -18,9 +18,9 @@ function Registro_Producto(Action){
 
                 Registro_Producto_Window = new BrowserWindow({
                         width:720,
-                        height:320,
-                        maxWidth:720,   
-                        maxHeight:320, 
+                        height:360,
+                      /*  maxWidth:720,   
+                        maxHeight:320, */
                         resizable:false,   
                         frame: false, 
                         webPreferences: {
@@ -34,7 +34,7 @@ function Registro_Producto(Action){
 
                 Registro_Producto_Window.loadFile("app/Productos/Registro/Registro.html")
             
-               //Registro_Producto_Window.webContents.openDevTools()
+              // Registro_Producto_Window.webContents.openDevTools()
                                 
                 Registro_Producto_Window.once('ready-to-show', () => {
                                   
@@ -93,7 +93,7 @@ ipcMain.on('save_data_product',(event,data_producto) => {
       (async () => { 
        await DB.conectar();
 
-        await DB.crear('INSERT INTO productos (cod, cod_Empresa, nombre, precio, iva, descuento, image, categoria, cant, time_registro) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',[ data_producto.code, data_producto.riff_Supplier, data_producto.name, data_producto.sale_price, data_producto.iva_product, data_producto.discount_Product_price, data_producto.image, data_producto.category, data_producto.amount, data_producto.Registration_Time]);
+        await DB.crear('INSERT INTO productos (cod, cod_Empresa, nombre, precio, iva, descuento, image, categoria, cant, time_registro) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',[ data_producto.code, data_producto.riff_Supplier, data_producto.name, data_producto.price, data_producto.iva_product, data_producto.discount_Product_price, data_producto.image, data_producto.category, data_producto.amount, data_producto.Registration_Time]);
         await DB.crear(`INSERT INTO movimientos (tipo, descripcion, fecha) VALUES (?, ?, ?)`, ['Ingreso',`Nuevo Producto Registrado`, fecha],); 
         //await console.log('Producto insertado con ID:', nuevoId);
         

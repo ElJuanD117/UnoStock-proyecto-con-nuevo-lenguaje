@@ -195,7 +195,7 @@
 
 .container-registro-detalles_de_venta {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: 18px repeat(7, 1fr);
     grid-template-rows: 31px 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 2px;
@@ -204,7 +204,6 @@
     align-items: center;
     padding: 2px;
 }
-
 .item-list-detalles-de-venta{
 
 font-weight: bold;
@@ -222,7 +221,7 @@ font-weight: bold;
 
 .data-item-detalles-de-venta {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+ grid-template-columns: 18px repeat(7, 1fr);
     grid-template-rows: 31px 1fr;
     grid-column-gap: 2px;
     grid-row-gap: 0px;

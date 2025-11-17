@@ -14,10 +14,10 @@ let code_producto;
 function Actualizar_Producto(code_product){
 
                 Actualizar_Producto_Window = new BrowserWindow({
-                        width:720,
-                        height:320,
-                        maxWidth:720,   
-                        maxHeight:320, 
+                       width:720,
+                        height:360,
+                       /* maxWidth:720,   
+                        maxHeight:320, */
                          resizable:false,
                         frame: false,
                         webPreferences: {
@@ -92,7 +92,7 @@ ipcMain.on('save_update_product',(event,data_producto) => {
       (async () => { 
        await DB.conectar();
 
-        const nuevoId = await DB.actualizar('UPDATE productos SET cod = ?, cod_Empresa = ?, nombre = ?, precio = ?, iva = ?, descuento = ?, image = ?, categoria = ?, cant = ?, time_registro = ? WHERE cod = ?',[ data_producto.code, data_producto.riff_Supplier, data_producto.name, data_producto.sale_price, data_producto.iva_product, data_producto.discount_Product_price, data_producto.image, data_producto.category, data_producto.amount, data_producto.Registration_Time,code_producto]);
+        const nuevoId = await DB.actualizar('UPDATE productos SET cod = ?, cod_Empresa = ?, nombre = ?, precio = ?, iva = ?, descuento = ?, image = ?, categoria = ?, cant = ?, time_registro = ? WHERE cod = ?',[ data_producto.code, data_producto.riff_Supplier, data_producto.name, data_producto.price, data_producto.iva_product, data_producto.discount_Product_price, data_producto.image, data_producto.category, data_producto.amount, data_producto.Registration_Time,code_producto]);
         //await console.log('Producto insertado con ID:', nuevoId);
        await DB.cerrar();
       })();

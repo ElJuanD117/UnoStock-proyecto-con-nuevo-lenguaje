@@ -10,7 +10,6 @@ let Html_Producto=`
 		<button class="btn-product-action Categoria" id="btn-Categoria">Categoria</button>
 	</div>
 	<div class="container-select-categoria">
-		
 		<label class="label-categoria-productos" id="categoria">Categoria</label>
 		<div class="sub-container-select-categoria" id="containner_categoria_lista">
 		</div>
@@ -128,25 +127,29 @@ api.receive("productos-data",(event, data_producto)=>{
 
 				//console.log('productos-data',producto)
 
-				containner_product.innerHTML+=`<article class="articlulo-product">
-							<div class="container-imagen-product">
-								<img class="data-image-product" id="data-producto-image" alt="imagen-data" src="${producto.image}">
-							</div>
-							<div class="container-data-producto">
-								<h3 id="Nombre_producto_data">Nombre: <span id="data-npmbre">${producto.nombre}</span></h3>
-								<label id="cant_producto_data">Cant:<span>${producto.cant}</span></label>
-								<label id="categoria_producto_data">Categoria: <span>${producto.categoria}</span></label>
-								<label id="precio_producto_data">
-									<span id="precio">Precio: <span>${producto.precio}</span>
-									<span id="simbolo">Bs</span>
-								</label>
-							</div>
-							<div class="container-btn-action-producto">
-									<button class="btn-action-producto actualizar " onclick="Actualizar_producto('${producto.cod}')"><span class="icon-spinner9"></span>actualizar</button>
-									<button class="btn-action-producto informacion " onclick="Info_producto('${producto.cod}')"><span class="icon-notification"></span>informacion</button>
-									<button class="btn-action-producto borrar " onclick="Borrar_producto('${producto.cod}')"><span class="icon-bin2"></span>borrar</button>
-								</div>
-						</article>`;
+containner_product.innerHTML+=`<article class="articlulo-product">
+			<label class="productos-cod">
+				<h1>Cod:</h1>
+				<span>${producto.cod}</span>
+			</label>
+			<div class="container-imagen-product">
+				<img class="data-image-product" id="data-producto-image" alt="imagen-data" src="${producto.image}">
+			</div>
+			<div class="container-data-producto">
+				<h3 id="Nombre_producto_data">Nombre: <span id="data-npmbre">${producto.nombre}</span></h3>
+				<label id="cant_producto_data">Cant:<span>${producto.cant}</span></label>
+				<label id="categoria_producto_data">Categoria: <span>${producto.categoria}</span></label>
+				<label id="precio_producto_data">
+					<span id="precio">Precio: <span>${producto.precio}</span>
+					<span id="simbolo">Bs</span>
+				</label>
+			</div>
+			<div class="container-btn-action-producto">
+					<button class="btn-action-producto actualizar " onclick="Actualizar_producto('${producto.cod}')"><span class="icon-spinner9"></span>actualizar</button>
+					<button class="btn-action-producto informacion " onclick="Info_producto('${producto.cod}')"><span class="icon-notification"></span>informacion</button>
+					<button class="btn-action-producto borrar " onclick="Borrar_producto('${producto.cod}')"><span class="icon-bin2"></span>borrar</button>
+				</div>
+		</article>`;
 
 
 			})

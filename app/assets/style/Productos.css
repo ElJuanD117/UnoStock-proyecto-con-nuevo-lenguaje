@@ -125,6 +125,7 @@ display: flex;
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
 }
 .item-categoria>span{
 	
@@ -159,12 +160,17 @@ display: flex;
 /*-------------------------*/
 .articlulo-product {
     background: white;
-    /* height: 244px; */
     border-radius: 7px;
-    box-shadow: 4px 6px 17px -7px rgba(0,0,0,0.75);
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.productos-cod {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 3.2px;
 }
 
 .container-imagen-product {

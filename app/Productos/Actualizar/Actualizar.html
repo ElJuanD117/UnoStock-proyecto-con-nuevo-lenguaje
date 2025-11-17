@@ -297,17 +297,21 @@ grid-area:Phone;
                     <label class="containner-input  Iva-Product-input">
                         <span id="Iva_Product_span">Iva producto</span>
                         <span class="Iva-Product-containner" >
-                            <input type="number" name="Iva Product" id="Iva_Product"  class="input-value-product Iva-Product" placeholder="Iva Product" min="0" value="0" required>
+                            <input type="number" name="Iva Product" id="Iva_Product"  class="input-value-product Iva-Product" placeholder="Iva Product" min="0" value="16" required>
                             <span class="moneda" >%</span>                                        
                         </span>
                     </label>
 
                     <label class="containner-input  Price-Product-input">
-                       <span id="Price_Product_span">Precio</span>                
+                       <span id="Price_Product_span">Precio $->Bs</span>                
                        <span class="Price-Product-containner" >
-                                <input type="number" name="Price Product" id="Price_Product"  class="input-value-product Price-Product" placeholder="Price Product" min="0" value="0" required>
+                                <input type="number" name="Price Product" id="Price_Product_usb"  class="input-value-product Price-Product" placeholder="Precio" min="1" value="1"required>
+                                <span class="moneda" id="type_moneda">$</span>
+                        </span> 
+                        <span class="Price-Product-containner" >
+                                <input type="number" name="Price Product" id="Price_Product_vez"  class="input-value-product Price-Product" placeholder="Precio" min="1" value="0"required>
                                 <span class="moneda" id="type_moneda">Bs</span>
-                        </span>                     
+                        </span>                       
                     </label> 
 
                     <label class="containner-input Discount-Product-input">
@@ -319,7 +323,7 @@ grid-area:Phone;
             
                 </div>
                 <div class="containner-Image-Product">
-                    <img src="producto.png" class="image-product" id="imagen_product">
+                    <img src="UnoStock.png" class="image-product" id="imagen_product">
                     <button id="Image_Product" class="btn_send_image">Seleccionar Imagen</button>   
                 </div>
         </section>
@@ -368,7 +372,7 @@ let permission_supplier_product=false;
 /////product
 let data_Serial_Product=document.getElementById("Serial_Product");
 let data_Name_Product=document.getElementById("Name_Product");
-let data_Price_Product=document.getElementById("Price_Product");
+let data_Price_Product=document.getElementById("Price_Product_vez");
 let data_Iva_Product=document.getElementById("Iva_Product");
 let data_Category_Product=document.getElementById("Category_Product");
 let data_Amount_Product=document.getElementById("Amount_Product");
@@ -378,15 +382,6 @@ let data_type_moneda=document.getElementById("type_moneda");
 let data_Discount_Product_price=document.getElementById("Discount_Product_price");
 let image_pre_wiev = document.getElementById("imagen_product");
 
-/*supplicer
-let data_Riff_Product_Supplier=document.getElementById("Riff_Product_Supplier");
-let data_Name_Product_Supplier=document.getElementById("Name_Product_Supplier");
-let data_Addres_Product_Supplier=document.getElementById("Addres_Product_Supplier");
-let data_Email_Product_Supplier=document.getElementById("Email_Product_Supplier");
-let data_Phone_Product_Supplier=document.getElementById("Phone_Product_Supplier");
-let data_Price_Unitario_Product_Supplier=document.getElementById("Price_Unitario_Product_Supplier");
-let data_Majority_Price_Product_Supplier=document.getElementById("Majority_Price_Product_Supplier");
-*/
 
 api.send("get-Informacion-producto-actualizar")
 api.receive("Informacion-producto-actualizar",(event,producto)=>{
@@ -395,7 +390,7 @@ api.receive("Informacion-producto-actualizar",(event,producto)=>{
 
     document.getElementById("Serial_Product").value=producto.cod;
     document.getElementById("Name_Product").value=producto.nombre;
-    document.getElementById("Price_Product").value=producto.precio;
+    document.getElementById("Price_Product_vez").value=producto.precio;
     document.getElementById("Iva_Product").value=producto.iva;
     document.getElementById("Category_Product").value=producto.categoria;
     document.getElementById("Amount_Product").value=producto.cant;
@@ -457,7 +452,7 @@ function capture_new_data(){
                     data_new_obj={                       
                         code:data_Serial_Product.value,
                         name:(data_Name_Product.value).toLowerCase(),
-                        sale_price:data_Price_Product.value,
+                        price:data_Price_Product.value,
                         iva_product:data_Iva_Product.value,
                         discount_Product_price:data_Discount_Product_price.value,
                         image:image_pre_wiev.src,
@@ -486,7 +481,7 @@ let btn_select_image = document.getElementById("Image_Product");
 btn_select_image.addEventListener('click', function(evt){
 
    evt.stopPropagation();
-         api.send('Select_image_product_update')
+   api.send('Select_image_product_update')
                   
   
 })
@@ -524,6 +519,50 @@ btn_exit.addEventListener('click', function(evt){
 
 
 })
+/*------------------------------------------------------------------------*/
 
+let Valor_money_cambio;
+
+async function obtenerCambioUSD() {
+  try {
+    const respuesta = await fetch("https://ve.dolarapi.com/v1/dolares/oficial");
+    const datos = await respuesta.json();
+
+        return datos.promedio;
+
+  } catch (error) {
+    console.error("Error al obtener el cambio:", error);
+    return null;
+  }
+}
+
+// Uso de la función
+obtenerCambioUSD().then(valor => {
+    
+    Valor_money_cambio=valor
+       Price_Product_usb.value=(Price_Product_vez.value/Valor_money_cambio).toFixed(2)
+       Price_Product_vez.value=(Price_Product_usb.value*Valor_money_cambio).toFixed(2)
+
+
+});
+/*--------------------------------*/
+let Price_Product_usb = document.getElementById("Price_Product_usb")
+let Price_Product_vez = document.getElementById("Price_Product_vez")
+
+Price_Product_usb.addEventListener('click',function(evet){
+
+    console.log("USD_VEZ")
+    Price_Product_vez.value=(Price_Product_usb.value*Valor_money_cambio).toFixed(2)
+
+})
+
+Price_Product_vez.addEventListener('click',function(evet){
+
+  console.log("VEZ_USD")
+  Price_Product_usb.value=(Price_Product_vez.value/Valor_money_cambio).toFixed(2)
+
+
+
+})
 </script>
  

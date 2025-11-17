@@ -49,6 +49,7 @@ let Html_Movimiento= `
             <section class="containner_detalles_de_venta">
                 <label class="title_historial_detalles_de_venta">Detalles de Ventas</label>
                 <div class="container-registro-detalles_de_venta">
+                      <div class="item-list-detalles-de-venta data-item0">N</div>
                       <div class="item-list-detalles-de-venta data-item1">venta_id</div>
                       <div class="item-list-detalles-de-venta data-item2">cod</div>
                       <div class="item-list-detalles-de-venta data-item3">producto</div>
@@ -56,7 +57,7 @@ let Html_Movimiento= `
                       <div class="item-list-detalles-de-venta data-item5">precio</div>
                       <div class="item-list-detalles-de-venta data-item6">descuento</div>
                       <div class="item-list-detalles-de-venta data-item7">total</div>
-                      <div class="item-list-detalles-de-venta data-item8">total</div>
+                      
                 </div>
                 <div class="list-data-detalles-de-venta" id="list_data_detalles_de_venta"> </div>
             </section>
@@ -84,7 +85,7 @@ api.receive("Informacion-de-datos-movimientos-productos",(event,data)=>{
     console.log(data)
     document.getElementById("total_productos").innerHTML=data[0].total_general_productos
     document.getElementById("total_productos_bajo").innerHTML=data[0].total_productos_stock_bajo
-    document.getElementById("valor_total_producto").innerHTML=data[0].valor_total_todos_productos
+    document.getElementById("valor_total_producto").innerHTML=data[0].valor_total_todos_productos+"Bs"
 
 
 })
@@ -116,9 +117,9 @@ api.receive("Informacion-de-datos-detalle_venta",(event,data)=>{
                     <span>${detalle_venta.cod}</span>
                     <span>${detalle_venta.producto}</span>
                     <span>${detalle_venta.cantidad}</span>
-                    <span>${detalle_venta.precio}</span>
-                    <span>${detalle_venta.descuento}</span>
-                    <span>${detalle_venta.total}</span>
+                    <span>${detalle_venta.precio}Bs</span>
+                    <span>${detalle_venta.descuento}Bs</span>
+                    <span>${detalle_venta.total}Bs</span>
                 </div>`
         })
 })
