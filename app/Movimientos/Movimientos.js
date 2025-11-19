@@ -85,7 +85,7 @@ api.receive("Informacion-de-datos-movimientos-productos",(event,data)=>{
     console.log(data)
     document.getElementById("total_productos").innerHTML=data[0].total_general_productos
     document.getElementById("total_productos_bajo").innerHTML=data[0].total_productos_stock_bajo
-    document.getElementById("valor_total_producto").innerHTML=data[0].valor_total_todos_productos+"Bs"
+    document.getElementById("valor_total_producto").innerHTML=data[0].valor_total_todos_productos.toFixed(2)+"Bs"
 
 
 })

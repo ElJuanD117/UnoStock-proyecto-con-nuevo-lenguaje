@@ -163,10 +163,11 @@ containner_product.innerHTML+=`<article class="articlulo-product">
 			</div>
 			<div class="container-data-producto">
 				<h3 id="Nombre_producto_data">Nombre: <span id="data-npmbre">${producto.nombre}</span></h3>
-				<label id="cant_producto_data">Cant:<span>${producto.cant}</span></label>
-				<label id="categoria_producto_data">Categoria: <span>${producto.categoria}</span></label>
-				<label id="precio_producto_data">
-					<span id="precio">Precio: <span>${producto.precio*Valor_money_cambio}</span>
+				<label id="cant_producto_data" class="item-product">Cant:<span>${producto.cant}</span></label>
+				<label id="categoria_producto_data" class="item-product">Categoria: <span>${producto.categoria}</span></label>
+				<label id="precio_producto_data" class="item-product">
+					<span id="precio" class="item-product">Precio:</span>
+					<span>${(producto.precio*Valor_money_cambio).toFixed(2)}</span>
 					<span id="simbolo">Bs</span>
 				</label>
 			</div>
