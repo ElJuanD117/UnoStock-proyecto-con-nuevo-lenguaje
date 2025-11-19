@@ -90,9 +90,13 @@ let Html_Dashboard = `
                 <label class="title_Proveedores_Recientes_dasboard">Proveedores Recientes</label>
                 <div class="container_registro_Proveedores_Recientes_para_dasboard">
                     <div class="container_Proveedores_Recientes_dasboard">
-                        <div class="item_list_Proveedores_dasboard data_item1">Proveedor</div>
-                        <div class="item_list_Proveedores_dasboard data_item2">Descripción</div>
-                        <div class="item_list_Proveedores_dasboard data_item3">Contacto</div>
+                        <div class="item_list_Proveedores_dasboard data_item1">N</div>
+                        <div class="item_list_Proveedores_dasboard data_item2">Riff</div>
+                        <div class="item_list_Proveedores_dasboard data_item3">Proveedor</div>
+                        <div class="item_list_Proveedores_dasboard data_item4">Descripción</div>
+                        <div class="item_list_Proveedores_dasboard data_item5">Dirección</div>
+                        <div class="item_list_Proveedores_dasboard data_item6">Correo</div>
+                        <div class="item_list_Proveedores_dasboard data_item7">Telefòno</div>
                     </div>
                     <div class="list_data_Proveedores_Recientes_dashboard" id="data_list_Proveedores_Recientes_dashboard">
                     </div>
@@ -124,19 +128,11 @@ let Html_Dashboard = `
 
 </section>`;
 
-
-
-
-
-
-
-
 function Dashboard(id) {
   
    document.getElementById(id).innerHTML = Html_Dashboard;
 
     api.send('get-informacion-dasboard')
-   // api.send('get-informacion-movimiento-dasboard')
 }
 
 api.receive("productos-data-total-productos",(event,data)=>{
@@ -202,6 +198,33 @@ api.receive('movimientos-data-list',(event,data)=>{
                     <span>${movimiento.tipo}</span>
                     <span>${movimiento.descripcion}</span>
                     <span>${convertirAFormato(movimiento.fecha,"DD/MM/YYYY HH:mm:ss")}</span>
+                </div>`
+
+        })
+
+    }else{
+
+    document.getElementById("data_list_data_stock_dashboard").innerHTML += `<h1 style="color:white">No Data</h1>`;
+        }
+
+})
+
+
+api.receive('proveedores-data-list',(event,data)=>{
+
+    if(data.length>0){
+
+        data.forEach((proveedor,item)=>{
+
+            document.getElementById("data_list_Proveedores_Recientes_dashboard").innerHTML += `
+                 <div class="data_item_Proveedores_Recientes_dashboard">
+                    <label><span>${item}</span></label>
+                    <label><span>${proveedor.cod_Empresa}</span></label>
+                    <label><span>${proveedor.Nombre}</span></label>
+                    <label><span>${proveedor.Descripcion}</span></label>
+                    <label><span>${proveedor.Direccion}</span></label>
+                    <label><span>${proveedor.correo}</span></label>
+                    <label><span>${proveedor.Telefono}</span></label>
                 </div>`
 
         })

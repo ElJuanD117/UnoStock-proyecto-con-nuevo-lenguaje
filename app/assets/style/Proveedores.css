@@ -1,16 +1,3 @@
-    * {
-        margin: 0px;
-        padding: 0;
-    }
-
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Calibri, sans-serif;
-        background-color: #d2d6e0;
-        height: 100vh;
-    }
-
 .parent {
     display: grid;
     grid-template-columns: 1fr;
@@ -56,11 +43,12 @@
     }
 
     /*-----------------------------------------*/
-    .container-proveedores-gestion {
-        border-radius: 10px;
-        background: white;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
+.container-proveedores-gestion {
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 4px;
+}
 
     .title_historial_Movimientos_Recientes {}
 
@@ -224,103 +212,140 @@
         z-index: 999;
     }
 
-    .modal-content {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        padding: 25px;
-        border-radius: 10px;
-        width: 90%;
-        max-width: 400px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 47%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 11px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.form-proveedores {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    padding: 6.5px;
+    font-weight: bold;
+}
+
+.titulo-form {
+    text-align: center;
+}
+
+.container-element-form1 { grid-area: 1 / 1 / 2 / 3; }
+.container-element-form2 { grid-area: 1 / 3 / 2 / 5; }
+.container-element-form3 { grid-area: 2 / 1 / 3 / 3; }
+.container-element-form4 { grid-area: 2 / 3 / 3 / 5; }
+.container-element-form5 {
+    grid-area: 3 / 1 / 4 / 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     flex-direction: column;
+}
+.container-element-form6 {
+    grid-area: 4 / 1 / 6 / 5;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
 
-    label {
-        display: block;
-        margin-top: 10px;
-        font-weight: bold;
-    }
+.container-element-form7 {
+    grid-area: 6 / 1 / 7 / 5;
+    display: flex;
+    justify-content: space-around;
+}
 
-    input,
-    select {
-        width: 100%;
-        padding: 8px;
-        margin-top: 5px;
-        box-sizing: border-box;
-    }
+.input-form-proveedores {
+    border-style: none;
+    border-bottom: 2.5px solid black;
+}
 
-    table {
-        margin-left: 10px;
-        width: 98%;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        border-collapse: collapse;
-        border-radius: 10px;
-    }
+.descripcion{
+    width: 100%;
+    height: -webkit-fill-available;
+}
 
-    td {
-        background-color: #ffffff;
-        padding: 10px;
-        padding-left: 5px;
-        border: 2px solid #cecfd2;
-    }
+.tabla-proveedores {
+    margin-left: 3px;
+    width: 99%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    border-collapse: collapse;
+    border-radius: 10px;
+}
 
-    table thead {
-        background-color: #cacdd6;
-        border: 2px solid #c1c5de;
-    }
+.containner-info-proveedores {
+    background-color: #ffffff;
+    padding: 10px;
+    padding-left: 5px;
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    grid-template-rows: 29px 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    background-color: #b6b9c0;
+}
 
-    table tbody {
-        background-color: #c4c4c4;
-    }
+
+.sub-element-proveedores {
+    background-color: #c4c4c4;
+    padding: 2px;
+    height: 46vh;
+}
+
+.article-proveedores {
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    grid-template-rows: 29px 1fr;
+    grid-column-gap: 2px;
+    grid-row-gap: 2px;
+    background-color: #b6b9c0;
+}
+
+.article-proveedores>span {
+    background: white;
+    overflow-x: scroll;
+}
+
+/* Estiliza toda la barra de desplazamiento */
+.article-proveedores>span::-webkit-scrollbar {
+    width: 1px;
+    height: 6px;
+}
+/* Estiliza el canal (la pista) */
+.article-proveedores>span::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Fondo del canal */
+}
+
+/* Estiliza el pulgar (el controlador) */
+.article-proveedores>span::-webkit-scrollbar-thumb {
+  background: #888; /* Color del pulgar */
+  border-radius: 6px; /* Bordes redondeados */
+}
+
+/* Estiliza el pulgar al pasar el ratón */
+.article-proveedores>span::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
 
     .Ultimo {
         background-color: #b6b9c0;
         border: 2px solid #afb2c7;
     }
 
-    .modal-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 999;
-    }
-
-    .modal-content {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        padding: 25px;
-        border-radius: 10px;
-        width: 90%;
-        max-width: 400px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-
-
-    label {
-        display: block;
-        margin-top: 10px;
-        font-weight: bold;
-    }
-
-    input,
-    select {
-        width: 100%;
-        padding: 8px;
-        margin-top: 5px;
-        box-sizing: border-box;
-    }
 
     .saveBoton {
         margin-top: 10px;
@@ -337,13 +362,33 @@
         background-color: #0056b3;
     }
 
-    .close-btn {
-        float: right;
-        font-size: 18px;
-        cursor: pointer;
-        color: #aaa;
+.close-btn {
+    margin-top: 10px;
+    margin-right: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+    .close-btn:hover {
+         background-color:#b92318;
     }
 
-    .close-btn:hover {
-        color: #000;
+.search-container-proveedores {
+    display: grid;
+    grid-template-columns: 81% 19%;
+    grid-template-rows: 1fr;
+    grid-column-gap: 2px;
+    grid-row-gap: 0px;
+    padding: 6px;
+}
+    .btn-search-name-proveedor{
+        background-color: #0ea2cf;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
     }

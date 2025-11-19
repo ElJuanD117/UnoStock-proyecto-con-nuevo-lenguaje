@@ -454,9 +454,8 @@ body {
 .container_registro_Proveedores_Recientes_dasboard {}
 
 .container_Proveedores_Recientes_dasboard {
-
     display: grid;
-    grid-template-columns: 0.5fr 0.5fr 1fr;
+   grid-template-columns: 22px 92px 100px 1fr 150px 0.5fr 0.5fr;
     grid-template-rows: 29px 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
@@ -464,8 +463,8 @@ body {
     border: 2px solid #afb2c7;
     font-weight: bold;
     align-items: center;
-
 }
+
 
 .item_list_Proveedores_Recientes_dasboard {
 
@@ -483,18 +482,48 @@ body {
 
 .data_item_Proveedores_Recientes_dashboard {
     display: grid;
-    grid-template-columns: 0.5fr 0.5fr 1fr;
-    grid-template-rows: 29px 1fr;
-    grid-column-gap: 3px;
-    grid-row-gap: 2px;
-    padding: 0.5px;
+    grid-template-columns: 22px 92px 100px 1fr 150px 0.5fr 0.5fr;
+    grid-template-rows: 47px;
+    grid-column-gap: 2px;
+    grid-row-gap: 1px;
 }
 
-.data_item_Proveedores_Recientes_dashboard>span {
+.data_item_Proveedores_Recientes_dashboard>label {
+    /* padding: 2px; */
+    background: white;
+    overflow-x: scroll;
+}
 
-    padding: 2px;
+
+
+/* Estiliza toda la barra de desplazamiento */
+.data_item_Proveedores_Recientes_dashboard>label::-webkit-scrollbar {
+    width: 1px;
+    height: 6px;
+}
+/* Estiliza el canal (la pista) */
+.data_item_Proveedores_Recientes_dashboard>label::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Fondo del canal */
+}
+
+/* Estiliza el pulgar (el controlador) */
+.data_item_Proveedores_Recientes_dashboard>label::-webkit-scrollbar-thumb {
+  background: #888; /* Color del pulgar */
+  border-radius: 6px; /* Bordes redondeados */
+}
+
+/* Estiliza el pulgar al pasar el ratón */
+.data_item_Proveedores_Recientes_dashboard>label::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+.data_item_Proveedores_Recientes_dashboard>label>span{
+
     background: white;
 }
+
+
 
 
 .containner-data-dasboard{
