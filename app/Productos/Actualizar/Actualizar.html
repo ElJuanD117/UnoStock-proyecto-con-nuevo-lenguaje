@@ -372,7 +372,7 @@ let permission_supplier_product=false;
 /////product
 let data_Serial_Product=document.getElementById("Serial_Product");
 let data_Name_Product=document.getElementById("Name_Product");
-let data_Price_Product=document.getElementById("Price_Product_vez");
+let data_Price_Product=document.getElementById("Price_Product_usb");
 let data_Iva_Product=document.getElementById("Iva_Product");
 let data_Category_Product=document.getElementById("Category_Product");
 let data_Amount_Product=document.getElementById("Amount_Product");
@@ -390,7 +390,7 @@ api.receive("Informacion-producto-actualizar",(event,producto)=>{
 
     document.getElementById("Serial_Product").value=producto.cod;
     document.getElementById("Name_Product").value=producto.nombre;
-    document.getElementById("Price_Product_vez").value=producto.precio;
+    document.getElementById("Price_Product_usb").value=producto.precio;
     document.getElementById("Iva_Product").value=producto.iva;
     document.getElementById("Category_Product").value=producto.categoria;
     document.getElementById("Amount_Product").value=producto.cant;
@@ -522,6 +522,8 @@ btn_exit.addEventListener('click', function(evt){
 /*------------------------------------------------------------------------*/
 
 let Valor_money_cambio;
+let Price_Product_usb = document.getElementById("Price_Product_usb")
+let Price_Product_vez = document.getElementById("Price_Product_vez")
 
 async function obtenerCambioUSD() {
   try {
@@ -538,16 +540,17 @@ async function obtenerCambioUSD() {
 
 // Uso de la función
 obtenerCambioUSD().then(valor => {
+
+    console.log(Price_Product_usb.value)
     
     Valor_money_cambio=valor
-       Price_Product_usb.value=(Price_Product_vez.value/Valor_money_cambio).toFixed(2)
+       //Price_Product_usb.value=(Price_Product_vez.value/Valor_money_cambio).toFixed(2)
        Price_Product_vez.value=(Price_Product_usb.value*Valor_money_cambio).toFixed(2)
 
 
 });
 /*--------------------------------*/
-let Price_Product_usb = document.getElementById("Price_Product_usb")
-let Price_Product_vez = document.getElementById("Price_Product_vez")
+
 
 Price_Product_usb.addEventListener('click',function(evet){
 

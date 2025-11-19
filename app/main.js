@@ -500,19 +500,31 @@ ipcMain.on('solicitud-proveedor-by-id', async (event, id) => {
 
 
 // 5. ACTUALIZAR PROVEEDOR
-ipcMain.on('Actualizar-proveedor',(event, data) => {
+ipcMain.on('Actualizar-proveedor',async(event, data) => {
   //console.log('Actualizar-proveedor',data)
+try {
+        await DB.conectar();
+                     
+        const sql = 'UPDATE proveedores SET cod_Empresa=?, Nombre=?, Direccion=?, Telefono=?, correo=?, Descripcion=? WHERE key = ?';
+        const proveedor = await DB.actualizar(sql,[data.Riff, data.Nombre, data.Direccion, data.Telefono, data.correo, data.Descripcion, data.key]);
+        await console.log('Actualizar-proveedor',proveedor) 
+       
+        if (mainWindow && !mainWindow.isDestroyed()) {
+          mainWindow.send('proveedor-operacion-completa');
+        }
 
-(async () => { 
-          await DB.conectar();
-                      
-          const sql = 'UPDATE proveedores SET cod_Empresa=?, Nombre=?, Direccion=?, Telefono=?, correo=?, Descripcion=? WHERE key = ?';
-         const proveedor = await DB.actualizar(sql,[data.Riff, data.Nombre, data.Direccion, data.Telefono, data.correo, data.Descripcion, data.key]);
-     await console.log('Actualizar-proveedor',proveedor) 
-      await mainWindow.send('proveedor-operacion-completa');       
+        await DB.cerrar();
+    } 
+    catch (error) {
+        console.error('Error al actualizar proveedor:', error);
 
-          await DB.cerrar();
-})();
+        if (error.code === 'SQLITE_CONSTRAINT') {
+            let mensaje = "Error de la Base de Datos: El correo electrónico ya existe o falta un campo obligatorio.";
+            if (mainWindow && !mainWindow.isDestroyed()) {
+                mainWindow.send('proveedor-operacion-error', mensaje);
+            }
+        }
+    }
 
 
 });

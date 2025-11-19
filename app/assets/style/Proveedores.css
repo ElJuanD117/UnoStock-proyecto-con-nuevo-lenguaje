@@ -287,7 +287,7 @@
 
 .containner-info-proveedores {
     background-color: #ffffff;
-    padding: 10px;
+    padding: 2px;
     padding-left: 5px;
     display: grid;
     grid-template-columns: repeat(7,1fr);
@@ -295,8 +295,13 @@
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     background-color: #b6b9c0;
+    justify-content: center;
 }
 
+.containner-info-proveedores {
+    font-weight: bold;
+    font-size: 17px;
+}
 
 .sub-element-proveedores {
     background-color: #c4c4c4;

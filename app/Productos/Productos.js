@@ -78,6 +78,32 @@ function Productos(id){
     api.send("solicitud-data-productos")
 }
 
+/*------------------------------------------------*/
+let Valor_money_cambio;
+
+async function obtenerCambioUSD() {
+  try {
+    const respuesta = await fetch("https://ve.dolarapi.com/v1/dolares/oficial");
+    const datos = await respuesta.json();
+
+        return datos.promedio;
+
+  } catch (error) {
+    console.error("Error al obtener el cambio:", error);
+    return null;
+  }
+}
+
+// Uso de la función
+obtenerCambioUSD().then(valor => {
+    
+    Valor_money_cambio=valor
+
+});
+
+/*------------------------------------------------*/
+
+
 api.receive("categoria-list-data-product",(event,data_categoria)=>{
 
 	//console.log("categoria-list-data-product",data_categoria)
@@ -140,7 +166,7 @@ containner_product.innerHTML+=`<article class="articlulo-product">
 				<label id="cant_producto_data">Cant:<span>${producto.cant}</span></label>
 				<label id="categoria_producto_data">Categoria: <span>${producto.categoria}</span></label>
 				<label id="precio_producto_data">
-					<span id="precio">Precio: <span>${producto.precio}</span>
+					<span id="precio">Precio: <span>${producto.precio*Valor_money_cambio}</span>
 					<span id="simbolo">Bs</span>
 				</label>
 			</div>
@@ -213,3 +239,5 @@ function Notificacion(NOTIFICATION_BODY){
 	new Notification(NOTIFICATION_TITLE, { body: NOTIFICATION_BODY }).onclick =
 	() => console.log(CLICK_MESSAGE)
 }
+
+
