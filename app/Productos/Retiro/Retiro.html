@@ -182,7 +182,7 @@
     margin-left: 12px;
 }
 
-.btn-cerrar-modal {
+.btn-abrir-modal {
     margin-top: 15px;
     padding: 7px 6px;
     background: #409243;
@@ -192,6 +192,21 @@
     cursor: pointer;
     font-size: 18;
 }
+.btn-cerrar-modal {
+    margin-top: 15px;
+    padding: 7px 6px;
+    background: red;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18;
+}
+
+.btn-abrir-modal:hover {
+    background: #005fa3;
+}
+
 
 .btn-cerrar-modal:hover {
     background: #005fa3;
@@ -288,9 +303,27 @@
     border-radius: 4px;
     cursor: pointer;
     float: right;
+    width: 150px;
+}
+
+
+.btn-cancelar-venta {
+    background-color: red;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    width: 150px;
+}
+
+.btn-containner-modal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     width: 100%;
 }
- /*----------------------------------------------------------------*/
 </style>
 
 <section class="productos-retiro" id="productosdata">
@@ -336,82 +369,206 @@
         </label>        
         <label class="label-resultado">
             <span class="Cantidad_producto">cant.</span>
-            <span id="cantidad_total_producto">5</span>
+            <span id="cantidad_total_producto">0</span>
         </label>        
     </div>
 
-<!----------------------------------->
-<div class="modal-overlay" id="modalOverlay">
-    <div id="container-producto-buscado">
-        <h1>Producto seleccionado</h1>
-        <label class="containner-data-nodal-retiro">
-        cod:
-        <span class="cod-modal-producto" id="cod_modal_producto">00000000</span>
-        </label>  
-        <label class="containner-data-nodal-retiro">
-        Nombre:
-        <span class="nombre-modal-producto" id="nombre_modal_producto"></span>
-        </label>
+    <!----------------------------------->
+    <div class="modal-overlay" id="modalOverlay">
+        <div id="container-producto-buscado">
+            <h1>Producto seleccionado</h1>
+            <label class="containner-data-nodal-retiro">
+            cod:
+            <span class="cod-modal-producto" id="cod_modal_producto">00000000</span>
+            </label>  
+            <label class="containner-data-nodal-retiro">
+            Nombre:
+            <span class="nombre-modal-producto" id="nombre_modal_producto">Nombre del Producto</span>
+            </label>
 
-        <label class="containner-data-nodal-retiro">
-        Precio:
-        <span class="Precio-producto-modal" id="Precio_producto_modal">0.00</span>
-        <span class="Precio-producto-modal-simbolo" id="Simbolo_Precio_producto_modal">Bs</span>
-        </label>
+            <label class="containner-data-nodal-retiro">
+            Precio:
+            <span class="Precio-producto-modal" id="Precio_producto_modal">0.00</span>
+            <span class="Precio-producto-modal-simbolo" id="Simbolo_Precio_producto_modal">Bs</span>
+            </label>
 
-        <label class="containner-data-nodal-retiro">
-        Descuento:
-        <span class="Descuento-producto-modal" id="Descuento_producto_modal">0.00</span>
-        <span class="Precio-producto-modal-simbolo" id="Simbolo_Precio_producto_modal">Bs</span>
-        </label>  
+            <label class="containner-data-nodal-retiro">
+            Descuento:
+            <span class="Descuento-producto-modal" id="Descuento_producto_modal">0.00</span>
+            <span class="Precio-producto-modal-simbolo" id="Simbolo_Precio_producto_modal">Bs</span>
+            </label>  
 
-        <label class="containner-data-nodal-retiro">
-        Cantidad:
-        <input type="number" class="cantidad" id="cantidad" min="1" value="1">
-        </label> 
+            <label class="containner-data-nodal-retiro">
+            Cantidad:
+            <input type="number" class="cantidad" id="cantidad" min="1" value="1">
+            </label> 
 
-        <label class="containner-data-nodal-retiro">
-        Precio:
-        <span class="Precio-producto-modal" id="Precio_total_producto_modal">0.00</span>
-        <span class="Precio-producto-modal-simbolo" id="Simbolo_Precio_producto_modal">Bs</span>
-        </label>
-        <button class="btn-cerrar-modal"onclick="cerrarModal()">Aceptar</button>
+            <label class="containner-data-nodal-retiro">
+            Precio:
+            <span class="Precio-producto-modal" id="Precio_total_producto_modal">0.00</span>
+            <span class="Precio-producto-modal-simbolo" id="Simbolo_Precio_producto_modal">Bs</span>
+            </label>
+            <div class="btn-containner-modal">
+              <button class="btn-abrir-modal" onclick="AceptarModal()">Aceptar</button>
+               <button class="btn-cerrar-modal" onclick="cerrarModal()">Cancelar</button>  
+            </div>
+
+        </div>
     </div>
-</div>
-<!----------------------------------->
-<div id="miModal" class="modal">
+    <!----------------------------------->
+    <div id="miModal" class="modal">
 
-    <div class="modal-content">
-        <h2>Datos de la Persona</h2>
-        <form id="formularioPersona">
-            <div class="containner-label-comprador">
-                <label for="nombre">Nombre Completo:</label>
-                <input type="text" id="nombre" name="nombre" required> 
-            </div>
-         
-            <div class="containner-label-comprador">
-                 <label for="ci">Cédula de Identidad (C.I.):</label>
-                 <input type="text" id="ci" name="ci" required>
-            </div>
-           
-            <div class="containner-label-comprador">
-                <label for="tlf">Teléfono (Tlf):</label>
-                <input type="text" id="tlf" name="tlf" required>
-            </div>
-           
-            <div class="containner-label-comprador" style="padding: 2px; display: flex; align-items: center; justify-content: center; ">
-             <button type="submit" class="btn-guardar-venta">Guardar Datos</button>
-            </div>
-            
-        </form>
+        <div class="modal-content">
+            <h2>Datos de la Persona</h2>
+            <form id="formularioPersona">
+                <div class="containner-label-comprador">
+                    <label for="nombre">Nombre Completo:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre del Cliente" required> 
+                </div>
+             
+                <div class="containner-label-comprador">
+                     <label for="ci">Cédula de Identidad (C.I.):</label>
+                     <input type="text" id="ci" name="ci" placeholder="Cédula de Identidad" required>
+                </div>
+               
+                <div class="containner-label-comprador">
+                    <label for="tlf">Teléfono (Tlf):</label>
+                    <input type="text" id="tlf" name="tlf" placeholder="Teléfono del Cliente" required>
+                </div>
+               
+              <div class="containner-label-comprador" style="padding: 2px;display: flex;align-items: center;justify-content: space-around;">
+                 <button type="submit" class="btn-guardar-venta">Aceptar</button>
+                 <button type="submit" class="btn-cancelar-venta" onclick="CerrarModalDatosComprador()">Cancelar</button>
+                </div>
+                
+            </form>
+        </div>
+
     </div>
-
-</div>
-<!----------------------------------->
+    <!----------------------------------->
 </section>
 <script type="text/javascript" src="../../assets/icoMoon/selection.json"></script>
 <script type="text/javascript">
 let List_Productos_retiro=[];
+let Valorcambio;
+
+/*-----------------------------------*/
+
+/*------------------------------------------------------------------------------*/
+// Función para obtener el valor de 1 USD en bolívares
+async function obtenerCambioUSD() {
+  try {
+    const respuesta = await fetch("https://ve.dolarapi.com/v1/dolares/oficial");
+    const datos = await respuesta.json();
+
+        return datos.promedio;
+
+  } catch (error) {
+    console.error("Error al obtener el cambio:", error);
+    return null;
+  }
+}
+
+// Uso de la función
+obtenerCambioUSD().then(valor => {
+    Valorcambio=valor;
+  document.getElementById("data-ventana1-info").innerHTML=`1 USD = ${valor} Bs`
+});
+
+
+function programarFuncionDiaria(funcionAEjecutar, horas) {
+    const ahora = new Date();
+    const hoy = ahora.getDate();
+    const esteMes = ahora.getMonth();
+    const esteAnio = ahora.getFullYear();
+    const tiempoActualMs = ahora.getTime();
+
+    // 1. Encontrar el próximo momento de ejecución
+    let proximaEjecucionMs = Infinity;
+
+    // Buscar la hora de hoy más cercana en el futuro
+    for (const hora of horas) {
+        // Creamos un objeto Date para la hora programada de hoy
+        const tiempoProgramado = new Date(esteAnio, esteMes, hoy, hora, 0, 0, 0);
+        const tiempoProgramadoMs = tiempoProgramado.getTime();
+
+        if (tiempoProgramadoMs > tiempoActualMs) {
+            // Es una hora en el futuro hoy
+            proximaEjecucionMs = Math.min(proximaEjecucionMs, tiempoProgramadoMs);
+        }
+    }
+
+    // 2. Si no hay más horas hoy, programar para la primera hora de mañana
+    if (proximaEjecucionMs === Infinity) {
+        // Ordenamos las horas para encontrar la primera hora de mañana
+        horas.sort((a, b) => a - b);
+        const primeraHoraManana = horas[0];
+        const manana = new Date(esteAnio, esteMes, hoy + 1, primeraHoraManana, 0, 0, 0);
+        proximaEjecucionMs = manana.getTime();
+    }
+
+    // 3. Calcular el retraso y programar
+    const retrasoMs = proximaEjecucionMs - tiempoActualMs;
+
+    console.log(`Función programada para: ${new Date(proximaEjecucionMs).toLocaleTimeString()}`);
+
+    // Usamos setTimeout para esperar hasta la hora programada
+    setTimeout(() => {
+        // Ejecutar la función deseada
+        funcionAEjecutar();
+
+        // Volver a programar para el próximo ciclo
+        programarFuncionDiaria(funcionAEjecutar, horas);
+    }, retrasoMs);
+}
+
+// --- Uso de la función ---
+
+// 1. Define la función que quieres ejecutar
+const miFuncion = () => {
+
+    obtenerCambioUSD().then(valor => {
+        Valorcambio=valor;
+      document.getElementById("data-ventana1-info").innerHTML=`1 USD = ${valor} Bs`
+    });
+};
+
+// 2. Llama a la función de programación
+// Las horas se especifican en formato 24 horas: 15 (3 PM) y 17 (5 PM).
+programarFuncionDiaria(miFuncion, [15, 17]);
+
+/*------------------------------------------------------------------------------*/
+function actualizarReloj() {
+    // 1. Obtener la fecha y hora actuales
+    const ahora = new Date();
+
+    // 2. Extraer horas, minutos y segundos
+    const horas = ahora.getHours();
+    const minutos = ahora.getMinutes();
+    const segundos = ahora.getSeconds();
+
+    // 3. Formatear para añadir un cero inicial si es menor a 10
+    // La función padStart(2, '0') asegura que el número tenga al menos 2 dígitos
+    // (ej: 5 se convierte en '05')
+    const formatoHoras = String(horas).padStart(2, '0');
+    const formatoMinutos = String(minutos).padStart(2, '0');
+    const formatoSegundos = String(segundos).padStart(2, '0');
+
+    // 4. Crear la cadena de texto de la hora (HH:MM:SS)
+    const tiempoActual = `${formatoHoras}:${formatoMinutos}:${formatoSegundos}`;
+
+    // 5. Mostrar la hora en el elemento HTML
+    const elementoReloj = document.getElementById('reloj');
+    elementoReloj.textContent = tiempoActual;
+}
+
+// 6. Configurar la actualización del reloj
+// setInterval() llama a la función actualizarReloj cada 1000 milisegundos (1 segundo)
+setInterval(actualizarReloj, 1000);
+
+// Llamar a la función inmediatamente al cargar la página para evitar un retraso inicial
+actualizarReloj();
+/*-------------------------------------*/
 
 let btn_Buscar = document.getElementById("btn-Buscar");
     btn_Buscar.focus();
@@ -471,20 +628,23 @@ function abrirModal(data) {
 
     document.getElementById("modalOverlay").style.display = "flex";
     document.getElementById("cantidad").focus();
+    
     /*------------------------------------------*/
+    
     document.getElementById("cod_modal_producto").innerHTML=data.cod;
     document.getElementById("nombre_modal_producto").innerHTML=data.nombre;
     document.getElementById("Descuento_producto_modal").innerHTML=data.descuento.toFixed(2);
-    document.getElementById("Precio_producto_modal").innerHTML=data.precio.toFixed(2);
+    document.getElementById("Precio_producto_modal").innerHTML=(data.precio*Valorcambio).toFixed(2);
+   
     /*--------------------------------*/
 
     document.getElementById("cantidad").onclick=function(){
        let cant = document.getElementById("cantidad").value
 
-        document.getElementById("Precio_total_producto_modal").innerHTML=((parseFloat(data.precio)-parseFloat(data.descuento))*parseFloat(cant)).toFixed(2);
+        document.getElementById("Precio_total_producto_modal").innerHTML=((parseFloat((data.precio*Valorcambio))-parseFloat(data.descuento))*parseFloat(cant)).toFixed(2);
     }
 
-    document.getElementById("Precio_total_producto_modal").innerHTML=((parseFloat(data.precio)-parseFloat(data.descuento))*parseFloat(document.getElementById("cantidad").value)).toFixed(2);
+    document.getElementById("Precio_total_producto_modal").innerHTML=((parseFloat((data.precio*Valorcambio))-parseFloat(data.descuento))*parseFloat(document.getElementById("cantidad").value)).toFixed(2);
 
 }
 
@@ -493,12 +653,18 @@ document.getElementById("modalOverlay").addEventListener('keydown', manejarCierr
 function manejarCierreConEnter(event) {
   if (event.key === 'Enter' || event.keyCode === 13) {
     
-    cerrarModal();
+    AceptarModal()
 
   }
 }
 
+/*-----------------------------------------------*/
 function cerrarModal(){
+
+      document.getElementById("modalOverlay").style.display = "none";
+}
+
+function AceptarModal(){
 
       document.getElementById("modalOverlay").style.display = "none";
 
@@ -593,17 +759,15 @@ function AbrirModalDatosComprador() {
 
 function CerrarModalDatosComprador() {
   
-     var modal = document.getElementById("miModal");
+    var modal = document.getElementById("miModal");
     modal.style.display = "none";
 }
 
         // Manejar el envío del formulario (opcional, para demostrar la captura de datos)
 document.getElementById("formularioPersona").onsubmit = function(event) {
-            event.preventDefault(); // Evita que la página se recargue
+            event.preventDefault(); 
 
             /*----------------------------------------*/
-                        
-                //console.log(List_Productos_retiro)
                 let data = {
                         comprador:{
                             nombre:document.getElementById('nombre').value,
@@ -615,10 +779,12 @@ document.getElementById("formularioPersona").onsubmit = function(event) {
              /*----------------------------------------*/
                 
               api.send("guardar-informacion-de-transacion",data)
-
+             
                  /*----------------------------------------*/
                 
             CerrarModalDatosComprador()
+             api.send("recargar-informacion-de-transacion")
+
             /*---------------------------------------------*/
             List_Productos_retiro=[]
             document.getElementById("inputSearch").value="";
@@ -628,126 +794,5 @@ document.getElementById("formularioPersona").onsubmit = function(event) {
 }
 
 
-/*------------------------------------------------------------------------------*/
-// Función para obtener el valor de 1 USD en bolívares
-async function obtenerCambioUSD() {
-  try {
-    const respuesta = await fetch("https://ve.dolarapi.com/v1/dolares/oficial");
-    const datos = await respuesta.json();
-
-    console.log(datos)
-
-        return datos.promedio;
-
-  } catch (error) {
-    console.error("Error al obtener el cambio:", error);
-    return null;
-  }
-}
-
-// Uso de la función
-obtenerCambioUSD().then(valor => {
-  document.getElementById("data-ventana1-info").innerHTML=`1 USD = ${valor} Bs`
-});
-
-
-function programarFuncionDiaria(funcionAEjecutar, horas) {
-    const ahora = new Date();
-    const hoy = ahora.getDate();
-    const esteMes = ahora.getMonth();
-    const esteAnio = ahora.getFullYear();
-    const tiempoActualMs = ahora.getTime();
-
-    // 1. Encontrar el próximo momento de ejecución
-    let proximaEjecucionMs = Infinity;
-
-    // Buscar la hora de hoy más cercana en el futuro
-    for (const hora of horas) {
-        // Creamos un objeto Date para la hora programada de hoy
-        const tiempoProgramado = new Date(esteAnio, esteMes, hoy, hora, 0, 0, 0);
-        const tiempoProgramadoMs = tiempoProgramado.getTime();
-
-        if (tiempoProgramadoMs > tiempoActualMs) {
-            // Es una hora en el futuro hoy
-            proximaEjecucionMs = Math.min(proximaEjecucionMs, tiempoProgramadoMs);
-        }
-    }
-
-    // 2. Si no hay más horas hoy, programar para la primera hora de mañana
-    if (proximaEjecucionMs === Infinity) {
-        // Ordenamos las horas para encontrar la primera hora de mañana
-        horas.sort((a, b) => a - b);
-        const primeraHoraManana = horas[0];
-        const manana = new Date(esteAnio, esteMes, hoy + 1, primeraHoraManana, 0, 0, 0);
-        proximaEjecucionMs = manana.getTime();
-    }
-
-    // 3. Calcular el retraso y programar
-    const retrasoMs = proximaEjecucionMs - tiempoActualMs;
-
-    console.log(`Función programada para: ${new Date(proximaEjecucionMs).toLocaleTimeString()}`);
-
-    // Usamos setTimeout para esperar hasta la hora programada
-    setTimeout(() => {
-        // Ejecutar la función deseada
-        funcionAEjecutar();
-
-        // Volver a programar para el próximo ciclo
-        programarFuncionDiaria(funcionAEjecutar, horas);
-    }, retrasoMs);
-}
-
-// --- Uso de la función ---
-
-// 1. Define la función que quieres ejecutar
-const miFuncion = () => {
-    //console.log(`¡La función se ejecutó a las ${new Date().toLocaleTimeString()}!`);
-    // Aquí iría el código real que quieres que se ejecute a las 3 PM o 5 PM
-
-    /*----------------------------------------*/
-    // Uso de la función
-    obtenerCambioUSD().then(valor => {
-      document.getElementById("data-ventana1-info").innerHTML=`1 USD = ${valor} Bs`
-    });
-    /*----------------------------------------*/
-
-};
-
-// 2. Llama a la función de programación
-// Las horas se especifican en formato 24 horas: 15 (3 PM) y 17 (5 PM).
-programarFuncionDiaria(miFuncion, [15, 17]);
-
-/*------------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------------*/
-function actualizarReloj() {
-    // 1. Obtener la fecha y hora actuales
-    const ahora = new Date();
-
-    // 2. Extraer horas, minutos y segundos
-    const horas = ahora.getHours();
-    const minutos = ahora.getMinutes();
-    const segundos = ahora.getSeconds();
-
-    // 3. Formatear para añadir un cero inicial si es menor a 10
-    // La función padStart(2, '0') asegura que el número tenga al menos 2 dígitos
-    // (ej: 5 se convierte en '05')
-    const formatoHoras = String(horas).padStart(2, '0');
-    const formatoMinutos = String(minutos).padStart(2, '0');
-    const formatoSegundos = String(segundos).padStart(2, '0');
-
-    // 4. Crear la cadena de texto de la hora (HH:MM:SS)
-    const tiempoActual = `${formatoHoras}:${formatoMinutos}:${formatoSegundos}`;
-
-    // 5. Mostrar la hora en el elemento HTML
-    const elementoReloj = document.getElementById('reloj');
-    elementoReloj.textContent = tiempoActual;
-}
-
-// 6. Configurar la actualización del reloj
-// setInterval() llama a la función actualizarReloj cada 1000 milisegundos (1 segundo)
-setInterval(actualizarReloj, 1000);
-
-// Llamar a la función inmediatamente al cargar la página para evitar un retraso inicial
-actualizarReloj();
 </script>
  

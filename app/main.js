@@ -10,6 +10,7 @@ const UnoStockDB = require(path.join(__dirname,'./BD/UnoStockManager.js'))
 let DB_Path = path.join(__dirname,'./BD/UnoStock.db');
 const DB = new UnoStockDB(DB_Path);
 const generarProductos = require(path.join(__dirname,'./BD/generarProductos.js'))
+const generarVentasEjemplo = require(path.join(__dirname,'./BD/generarVenta.js'))
 
 /*-------------LINK BASE DE DATOS -------------------------*/
 /*---------------LINK A FUNCIONES DE ARCHIVOS Y VENTANAS-----------------------------------*/
@@ -41,8 +42,6 @@ function App(){
 
     mainWindow.webContents.openDevTools();
 
-
-
    //caja_control("Apertura",mainWindow)
 
     //mainWindow.on('close',(event) => {
@@ -52,14 +51,12 @@ function App(){
         //event.preventDefault();
         
     //});
-
-
-
-
 }
-/*-------------------------------------------------------------
-fs.watch(DB_Path, (eventType, filename) => {
+/*-------------------------------------------------------------*/
+//fs.watch(DB_Path, (eventType, filename) => {
 
+//console.log("reload")
+/*
     (async () => {
        await DB.conectar();
 
@@ -69,11 +66,11 @@ fs.watch(DB_Path, (eventType, filename) => {
             const categoria_list = await DB.leer('SELECT * FROM categoria');
             await mainWindow.send("categoria-list-data-product",categoria_list)
           
-        await DB.cerrar();
+        //await DB.cerrar();
     })();
-
-});
 */
+//});
+
 
 
 /*******CREA LA BASE DE DATOS SI NO ESTA Y SE CONECTA****************/
@@ -85,11 +82,12 @@ DB.conectar("UnoStock.db").then(async db => {
       const tablas = await DB.listarTablas();
       await console.log('Tablas en la base de datos:',tablas.length);
       /*------------------------------*/
-      if(tablas.length==0){
+    if(tablas.length==0){
+
         console.log("creando tablas...")
         await DB.conectar();
 
-        await DB.crearTabla("CREATE TABLE IF NOT EXISTS productos (key INTEGER PRIMARY KEY AUTOINCREMENT, cod TEXT UNIQUE NOT NULL, cod_Empresa TEXT, nombre TEXT NOT NULL, precio REAL NOT NULL, iva REAL DEFAULT 0.00, descuento REAL DEFAULT 0.00, image TEXT, categoria TEXT, cant INTEGER NOT NULL DEFAULT 0, time_registro DATETIME DEFAULT CURRENT_TIMESTAMP )")
+        await DB.crearTabla("CREATE TABLE IF NOT EXISTS productos (key INTEGER PRIMARY KEY AUTOINCREMENT, cod TEXT UNIQUE NOT NULL, nombre TEXT NOT NULL, precio REAL NOT NULL, iva REAL DEFAULT 0.00, descuento REAL DEFAULT 0.00, image TEXT, categoria TEXT, cant INTEGER NOT NULL DEFAULT 0, time_registro DATETIME DEFAULT CURRENT_TIMESTAMP )")
         await DB.crearTabla("CREATE TABLE IF NOT EXISTS categoria (key INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT)")
         /*---------------------*/
         await DB.crearTabla("CREATE TABLE IF NOT EXISTS proveedores (key INTEGER PRIMARY KEY AUTOINCREMENT, cod_Empresa TEXT NOT NULL UNIQUE, Nombre TEXT NOT NULL, Direccion TEXT, correo TEXT UNIQUE, Telefono TEXT, Descripcion TEXT )") 
@@ -111,9 +109,9 @@ DB.conectar("UnoStock.db").then(async db => {
 
         await DB.cerrar();
 
-            generarProductos()/**Agregar Productos de Pruebas**/
-
-      }
+        generarProductos()/**Agregar Productos de Pruebas**/
+        generarVentasEjemplo()
+    }
 
 }).catch(err => {
     console.error('No se pudo conectar a la base de datos:', err);

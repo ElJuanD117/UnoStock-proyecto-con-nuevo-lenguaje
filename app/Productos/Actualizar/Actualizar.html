@@ -260,7 +260,7 @@ grid-area:Phone;
 }
 </style>
 
-<div class="containner-update">
+<div class="containner-update" id="containner_update">
     <div class="form-update-product">
     <!--------->
         <h1 class="title-registre-Product" id="title_pagina">Actualización de Producto</h2>
@@ -373,11 +373,14 @@ let permission_supplier_product=false;
 let data_Serial_Product=document.getElementById("Serial_Product");
 let data_Name_Product=document.getElementById("Name_Product");
 let data_Price_Product=document.getElementById("Price_Product_usb");
+data_Price_Product.focus();
+
 let data_Iva_Product=document.getElementById("Iva_Product");
 let data_Category_Product=document.getElementById("Category_Product");
 let data_Amount_Product=document.getElementById("Amount_Product");
 let data_Time_Product=document.getElementById("Time_Product");
     data_Time_Product.value=TimeSelect();
+
 let data_type_moneda=document.getElementById("type_moneda");
 let data_Discount_Product_price=document.getElementById("Discount_Product_price");
 let image_pre_wiev = document.getElementById("imagen_product");
@@ -398,6 +401,10 @@ api.receive("Informacion-producto-actualizar",(event,producto)=>{
     document.getElementById("Discount_Product_price").value=producto.descuento;
     document.getElementById("imagen_product").src=producto.image;
 
+/*--------------------------------------------*/
+
+
+/*--------------------------------------------*/
 
 })
 
@@ -552,19 +559,17 @@ obtenerCambioUSD().then(valor => {
 /*--------------------------------*/
 
 
-Price_Product_usb.addEventListener('click',function(evet){
+Price_Product_usb.addEventListener('change',function(evet){
 
     console.log("USD_VEZ")
     Price_Product_vez.value=(Price_Product_usb.value*Valor_money_cambio).toFixed(2)
 
 })
 
-Price_Product_vez.addEventListener('click',function(evet){
+Price_Product_vez.addEventListener('change',function(evet){
 
   console.log("VEZ_USD")
   Price_Product_usb.value=(Price_Product_vez.value/Valor_money_cambio).toFixed(2)
-
-
 
 })
 </script>

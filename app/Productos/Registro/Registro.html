@@ -346,6 +346,7 @@ let permission_supplier_product=false;
 let data_Serial_Product=document.getElementById("Serial_Product");
 let data_Name_Product=document.getElementById("Name_Product");
 let data_Price_Product=document.getElementById("Price_Product_usb");
+data_Price_Product.focus();
 let data_Iva_Product=document.getElementById("Iva_Product");
 let data_Category_Product=document.getElementById("Category_Product");
 let data_Amount_Product=document.getElementById("Amount_Product");
@@ -505,19 +506,17 @@ obtenerCambioUSD().then(valor => {
 let Price_Product_usb = document.getElementById("Price_Product_usb")
 let Price_Product_vez = document.getElementById("Price_Product_vez")
 
-Price_Product_usb.addEventListener('click',function(evet){
+Price_Product_usb.addEventListener('change',function(evet){
 
     console.log("USD_VEZ")
     Price_Product_vez.value=(Price_Product_usb.value*Valor_money_cambio).toFixed(2)
 
 })
 
-Price_Product_vez.addEventListener('click',function(evet){
+Price_Product_vez.addEventListener('change',function(evet){
 
   console.log("VEZ_USD")
   Price_Product_usb.value=(Price_Product_vez.value/Valor_money_cambio).toFixed(2)
-
-
 
 })
 </script>

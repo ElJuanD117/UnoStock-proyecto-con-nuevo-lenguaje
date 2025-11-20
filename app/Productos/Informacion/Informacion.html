@@ -334,27 +334,50 @@ let data_Amount_Product=document.getElementById("Amount_Product");
 let data_Time_Product=document.getElementById("Time_Product");
 let data_type_moneda=document.getElementById("type_moneda");
 let data_Discount_Product_price=document.getElementById("Discount_Product_price");
-/*supplicer
-let data_Riff_Product_Supplier=document.getElementById("Riff_Product_Supplier");
-let data_Name_Product_Supplier=document.getElementById("Name_Product_Supplier");
-let data_Addres_Product_Supplier=document.getElementById("Addres_Product_Supplier");
-let data_Email_Product_Supplier=document.getElementById("Email_Product_Supplier");
-let data_Phone_Product_Supplier=document.getElementById("Phone_Product_Supplier");
-let data_Price_Unitario_Product_Supplier=document.getElementById("Price_Unitario_Product_Supplier");
-let data_Majority_Price_Product_Supplier=document.getElementById("Majority_Price_Product_Supplier");
-*/
+
 let image_pre_wiev = document.getElementById("imagen_product");
 /*---------------------------------------------------------*/
+
+let Valor_money_cambio;
+// Uso de la función
+
+
+
+/*--------------------------------*/
+
+
+
 api.send("get-Informacion-productos")
 
 api.receive("Informacion-productos",(event,producto)=>{
 
     console.log("Informacion-productos",producto)
 
+async function obtenerCambioUSD() {
+  try {
+    const respuesta = await fetch("https://ve.dolarapi.com/v1/dolares/oficial");
+    const datos = await respuesta.json();
+
+        return datos.promedio;
+
+  } catch (error) {
+    console.error("Error al obtener el cambio:", error);
+    return null;
+  }
+}
+
+obtenerCambioUSD().then(valor => {
+    
+         document.getElementById("Price_Product").innerHTML=(producto.precio*valor).toFixed(2);
+
+
+});
+
+
 
     document.getElementById("Serial_Product").innerHTML=producto.cod;
     document.getElementById("Name_Product").innerHTML=producto.nombre;
-    document.getElementById("Price_Product").innerHTML=producto.precio;
+  
     document.getElementById("Iva_Product").innerHTML=producto.iva;
     document.getElementById("Category_Product").innerHTML=producto.categoria;
     document.getElementById("Amount_Product").innerHTML=producto.cant;

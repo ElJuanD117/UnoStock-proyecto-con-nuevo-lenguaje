@@ -83,6 +83,22 @@ ipcMain.on("guardar-informacion-de-transacion",(event,info) => {
 
 })
 
+ipcMain.on("recargar-informacion-de-transacion",(event,info) => {
+
+  (async () => { 
+       await DB.conectar();
+
+            const productos = await DB.leer('SELECT * FROM productos');
+            await Retiro_Producto_Window.send('productos-data',productos)
+        
+            const categoria_list = await DB.leer('SELECT * FROM categoria');
+            await Retiro_Producto_Window.send("categoria-list-data-product",categoria_list)
+
+       await DB.cerrar();
+      })();
+
+})
+
 
 /*----------
 CREATE TABLE "detalle_venta" (
